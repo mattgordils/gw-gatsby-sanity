@@ -8,6 +8,7 @@ const isProd = process.env.NODE_ENV === "production"
 module.exports = {
   siteMetadata: {
     title: "GW Gatsby Sanity Base",
+    siteUrl: process.env.GATSBY_SITE_URL
   },
   plugins: [
     {
