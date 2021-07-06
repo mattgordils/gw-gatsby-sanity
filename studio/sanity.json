@@ -5,8 +5,8 @@
     "basePath": "/studio"
   },
   "api": {
-    "projectId": "PULLED_FROM_ENV", //"43xoyrik",
-    "dataset": "PULLED_FROM_ENV", //"production"
+    "projectId": "PULLED_FROM_ENV",
+    "dataset": "PULLED_FROM_ENV"
   },
   "plugins": [
     "@sanity/base",
