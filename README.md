@@ -1,1 +1,1 @@
-Run `sanity graphql deploy`. This is important to get the Sanity API to work with Gatsby.
+Run `sanity graphql deploy`. This is important to get the Sanity API to work with Gatsby. 
