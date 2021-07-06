@@ -3,7 +3,7 @@
   "name": "gw-gatsby-sanity-base",
   "version": "1.0.4",
   "scripts": {
-    "build": "sanity-template build --template-values .sanity-template/template-values.json && cd studio && lerna run graphql-deploy",
+    "build": "sanity-template build --output public --template-values .sanity-template/template-values.json && cd studio && lerna run graphql-deploy",
     "dev": "sanity-template watch --template-values .sanity-template/template-values.json",
     "start": "lerna run dev --parallel",
     "format": "lerna run format",
