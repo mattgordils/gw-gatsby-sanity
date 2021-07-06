@@ -1,4 +1,3 @@
 {
-	"builds": [{"config": { "distDir": "dist" }}],
 	"rewrites": [{ "source": "/studio/(.*)", "destination": "/studio/index.html" }]
 }

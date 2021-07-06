@@ -1,23 +1,20 @@
 {
-  "private": true,
   "name": "gw-gatsby-sanity-base",
-  "version": "1.0.4",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "sanity-template build --output public --template-values .sanity-template/template-values.json && cd studio && sanity graphql deploy",
-    "dev": "sanity-template watch --template-values .sanity-template/template-values.json",
-    "start": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "devDependencies": {
-    "@sanity/cli": "^2.10.5",
-    "lerna": "^3.22.1",
-    "sanity-template": "^2.4.3"
+    "dev": "gatsby develop",
+    "build": "npm run build:sanity && npm run build:web",
+    "build:web": "cd web && gatsby build",
+    "start:web": "cd web && gatsby start",
+    "build:sanity": "cd studio && npx sanity build ../public/studio -y && cd ..",
+    "start:sanity": "cp .env.local ./studio/.env.development && cd studio && sanity start",
+    "postinstall": "lerna bootstrap"
   },
   "dependencies": {
-    "@sanity/production-preview": "^2.2.6"
+    "lerna": "^3.22.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-json-pretty": "^2.2.0"
   }
 }
