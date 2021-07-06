@@ -15,6 +15,7 @@
     "lerna": "^3.22.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-json-pretty": "^2.2.0"
+    "react-json-pretty": "^2.2.0",
+    "sanity": "^2.2.6"
   }
 }
