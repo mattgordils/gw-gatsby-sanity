@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "npm run build:sanity",
     "build": "npm run build:sanity",
     "build:sanity": "cd studio && npx sanity build public ../public/studio -y && cd ..",
     "start:sanity": "cp .env.local ./studio/.env.development && cd studio && sanity start",
