@@ -21,7 +21,13 @@
   ],
   "deployment": {
     "provider": "vercel",
-    "studio": { "basePath": "/studio" },
+    "studio": {
+      "basePath": "/studio"
+    },
+    "envVars": {
+      "dataset": ["SANITY_PROJECT_DATASET"],
+      "projectId": ["SANITY_PROJECT_ID"]
+    },
     "corsOrigins": [
       {
         "origin": "http://localhost:3000",
