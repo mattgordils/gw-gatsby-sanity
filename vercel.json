@@ -1,7 +1,5 @@
 {
-	"builds": [
-		{ "use": "@vercel/node" },
-		{ "config": { "distDir": "studio" }, "use": "@vercel/node" }
-	],
-	"rewrites": [{ "source": "/studio/(.*)", "destination": "/studio/index.html" }]
+	"rewrites": [
+		{ "source": "/studio/(.*)", "destination": "/studio/index.html" }
+	]
 }
