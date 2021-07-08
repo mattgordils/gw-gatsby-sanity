@@ -23,6 +23,9 @@ import doc from './types/doc'
 // import subscription from './types/ecommerce/subscription'
 
 // Modules
+import textSection from './modules/textSection'
+
+//
 import externalLink from './modules/externalLink'
 import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
@@ -71,6 +74,8 @@ export default createSchema({
     // variant,
     // subscription, // This can be disabled/hidden if not using recharge
     // Modules
+    textSection,
+    //
     externalLink,
     internalLink,
     // productGrid,

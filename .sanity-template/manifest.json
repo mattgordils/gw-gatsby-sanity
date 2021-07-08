@@ -22,7 +22,7 @@
   "deployment": {
     "provider": "vercel",
     "studio": {
-      "basePath": "/studio"
+      "basePath": "/"
     },
     "envVars": {
       "dataset": ["SANITY_PROJECT_DATASET"],

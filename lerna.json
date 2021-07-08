@@ -1,8 +1,4 @@
 {
-  "packages": [
-    "web",
-    "studio",
-    "auth"
-  ],
+  "packages": ["web", "studio", "auth"],
   "version": "1.0.0"
 }

@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  fragment TextSection on SanityStandardText {
+  fragment TextSection on SanityTextSection {
     _key
     _type
     text {

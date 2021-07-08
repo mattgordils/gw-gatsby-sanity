@@ -1,14 +1,14 @@
-const path = require('path')
+const path = require("path");
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "development"}`
+  path: `../.env.${process.env.NODE_ENV || "development"}`,
 });
 
-const isProd = process.env.NODE_ENV === "production"
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   siteMetadata: {
     title: "GW Gatsby Sanity Base",
-    siteUrl: process.env.GATSBY_SITE_URL
+    siteUrl: process.env.GATSBY_SITE_URL,
   },
   plugins: [
     {
@@ -18,13 +18,13 @@ module.exports = {
         dataset: process.env.GATSBY_SANITY_DATASET,
         token: process.env.GATSBY_SANITY_READ_TOKEN,
         watchMode: !isProd,
-        overlayDrafts: !isProd
+        overlayDrafts: !isProd,
       },
     },
     {
-      resolve: 'gatsby-plugin-layout',
+      resolve: "gatsby-plugin-layout",
       options: {
-        component: require.resolve('./src/layout/index.js'),
+        component: require.resolve("./src/layout/index.js"),
       },
     },
     "gatsby-plugin-emotion",
@@ -34,7 +34,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "DEV",
+        trackingId: process.env.GATSBY_GA_TRACKING_ID,
       },
     },
     "gatsby-plugin-react-helmet",
@@ -56,10 +56,10 @@ module.exports = {
       __key: "images",
     },
     {
-      resolve: 'gatsby-plugin-root-import',
+      resolve: "gatsby-plugin-root-import",
       options: {
-        src: path.join(__dirname, 'src')
-      }
+        src: path.join(__dirname, "src"),
+      },
     },
   ],
 };

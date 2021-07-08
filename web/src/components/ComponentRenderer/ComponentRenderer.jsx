@@ -7,11 +7,11 @@ const componentMap = {
 
 const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, isFirstSection }) => {
   const Component = componentMap[item._type]
+  console.log(item._type)
   return Component
     ? (
       <Component
         {...item}
-        key={item.key}
         prevTheme={prevTheme}
         nextTheme={nextTheme}
         isLastSection={isLastSection}

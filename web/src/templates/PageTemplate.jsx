@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react";
+import { graphql } from "gatsby";
 // import { RenderModules } from 'src/utils/renderModules'
 // import { SEO } from 'src/components/SEO'
-import ComponentRenderer from 'src/components/ComponentRenderer'
+import ComponentRenderer from "src/components/ComponentRenderer";
 
 const Page = ({ data }) => {
-  const content = data?.sanityPage?.content?.main
+  const content = data?.sanityPage?.content?.main;
   // const meta = data?.sanityPage?.content?.meta
-  const path = content?.slug?.current
+  const path = content?.slug?.current;
   // const url = path === 'home' ? '' : path
-  const modules = content?.modules
-  
+  const modules = content?.modules;
+
   return (
     <div>
       {/*<SEO
@@ -20,21 +20,21 @@ const Page = ({ data }) => {
         pagePath={url}
       />*/}
       <div>
-        page template at slug: {path}
         {modules.map((item, index) => {
+          console.log(item)
           return (
-            <ComponentRenderer item={item} key={item._key || 'section-' + index} />
+            <ComponentRenderer item={item} key={item?._key || 'section-' + index} />
           )
         })}
         {/*RenderModules(modules)*/}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
-  query($id: String!) {
-    sanityPage(id: {eq: $id}) {
+  query ($id: String!) {
+    sanityPage(id: { eq: $id }) {
       content {
         main {
           slug {
@@ -42,6 +42,7 @@ export const pageQuery = graphql`
           }
           modules {
             ...TextSection
+            ...WideMedia
           }
         }
         meta {
@@ -54,6 +55,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Page
+export default Page;
