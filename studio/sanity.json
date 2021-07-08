@@ -2,7 +2,7 @@
   "root": true,
   "project": {
     "name": "GW Gatsby Sanity Base",
-    "basePath": "/studio"
+    "basePath": "/"
   },
   "api": {
     "projectId": "PLACEHOLDER_PULLED_FROM_ENV",
