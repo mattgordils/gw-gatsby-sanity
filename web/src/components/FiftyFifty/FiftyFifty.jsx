@@ -105,7 +105,7 @@ const FiftyFifty = ({
       <Grid
         small="1 [12] 1"
         large={arrangeMedia[mediaPlacement || 'left'][mediaWidth || 'normal']}
-        rowGap={['7vw', '7vw', '80px']}
+        rowGap={['4vw', '4vw', '80px']}
         vAlign={verticalAlignment}
         gridDirection={mediaPlacement.includes('right') || mediaPlacement.includes('Right') ? 'rtl' : 'ltr'}
       >
