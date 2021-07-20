@@ -34,7 +34,7 @@ const EnteranceWrap = styled.div`
 	` }
 `
 
-const ScrollEntrance = ({ children, className, transform, speed, delay, timing, transitionIn }) => {
+const ScrollEntrance = ({ children, className, transform, speed, delay = '10', timing, transitionIn }) => {
 	// const [ref, inView] = useInView({ triggerOnce: true })
 
 	if (!children) {

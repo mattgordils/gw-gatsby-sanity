@@ -4,7 +4,6 @@ import styled from '@emotion/styled'
 import Section from 'src/components/Section'
 import Grid from 'src/components/Grid'
 import ScrollEntrance from 'src/components/ScrollEntrance'
-import Video from 'src/components/Video'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import TextLockup from 'src/components/TextLockup'
 import { mq } from 'src/styles'
@@ -145,6 +144,7 @@ const Columns = ({
           as={alignment === 'center' ? 'div' : Grid}
         >
           {columns.map((column, index) => {
+            console.log(column?.icon?.asset?.gatsbyImageData)
             const sizes = '(min-width: ' + mq.mediumBreakpoint + 'px) ' + (86 / desktopColumnCount) + 'vw, (min-width: ' + mq.smallBreakpoint + 'px) ' + (86 / tabletColumnCount) + 'vw, ' + (86 / mobileColumnCount) + 'vw'
             return (
               <ColumnWrapper
@@ -153,21 +153,16 @@ const Columns = ({
                 colCount={columns.length}
                 key={column.id + '-' + index + '-' + id}
               >
-                {(column.media && column.media !== null) && (
+                {column.icon && (
                   <MediaScrollEntrance delay={index} imageSize={imageSize || 'large'}>
-                    {column.media.file.contentType.includes('video') ? (
-                      <Video video={column.media} />
-                    ) : (
-                      <GatsbyImage image={column.media.gatsbyImageData} alt={column.media.file.fileName} sizes={sizes} format={['auto', 'avif', 'webp']}/>
-                    )}
+                    <GatsbyImage image={column?.icon?.asset?.gatsbyImageData} alt={column?.icon?.altText} sizes={sizes} format={['auto', 'avif', 'webp']}/>
                   </MediaScrollEntrance>
                 )}
                 <ColumnText
                   entranceDelay={column.media ? index + 1 : index}
-                  eyebrow={column.eyebrow}
+                  eyebrow={column.text.eyebrow}
                   text={column.text}
                   textSize={paragraphSize}
-                  actions={column.actions}
                   theme={theme}
                   alignment={alignment}
                 />

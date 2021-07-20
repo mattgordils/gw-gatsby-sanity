@@ -68,18 +68,20 @@ const FiftyFifty = ({
   prevTheme,
   nextTheme,
   media,
-  mediaPlacement,
-  mediaWidth,
+  mediaPlacement = 'left',
+  mediaWidth = 'normal',
   eyebrow,
   text,
   actions,
-  paragraphSize,
-  verticalAlignment,
+  verticalAlignment = 'center',
   isFirstSection,
   listType
 }) => {
-  if (!mediaPlacement || mediaPlacement === null) {
-    mediaPlacement = 'left'
+  const image = media?.image?.asset
+  const video = media?.video?.asset
+
+  if (!image && !video) {
+    return false
   }
 
   // set responsive image sizes
@@ -89,6 +91,8 @@ const FiftyFifty = ({
     imageSize = mediaSizes.bleed[mediaWidth]
   }
   sizes = '(min-width: ' + mq.mediumBreakpoint + 'px) ' + imageSize + 'vw, 86vw'
+
+  console.log(actions)
 
   return (
     <FFSection
@@ -107,17 +111,17 @@ const FiftyFifty = ({
       >
         {media && (
           <ColumnWrapper>
-            {media.file.contentType === 'video/mp4' && (
+            {media.mediaType === 'video' && (
               <ScrollEntrance>
-                <Video video={media} />
+                <Video src={video.url} />
               </ScrollEntrance>
             )}
-            {media.file.contentType.includes('image') && (
+            {media.mediaType === 'image' && (
               <ScrollEntrance>
                 <GatsbyImage
-                  image={media.gatsbyImageData}
+                  image={image.gatsbyImageData}
                   loading={isFirstSection ? 'eager' : 'lazy'}
-                  alt={media.file.fileName}
+                  alt={image.altText || image.title}
                   sizes={sizes}
                   format={['auto', 'avif', 'webp']}
                 />
@@ -131,7 +135,6 @@ const FiftyFifty = ({
             entranceDelay={1}
             eyebrow={eyebrow}
             text={text}
-            textSize={paragraphSize}
             actions={actions}
             theme={theme}
             listType={listType}
@@ -170,7 +173,6 @@ FiftyFifty.propTypes = {
       label: PropTypes.string
     }
   ]),
-  paragraphSize: PropTypes.oneOf(['body', 'bodyMedium', 'bodyLarge', 'bodySmall']),
   verticalAlignment: PropTypes.oneOf(['bottom', 'top', 'center', 'baseline', 'stretch']),
   /** Should we adjust the space to accomidate the header? */
   isFirstSection: PropTypes.bool,

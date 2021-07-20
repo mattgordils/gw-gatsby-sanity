@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { AppContext } from 'src/state/AppState'
 

@@ -268,8 +268,6 @@ Button.defaultProps = {
 	iconPosition: 'left'
 }
 
-const themeKeys = Object.keys(themes).toString()
-
 Button.propTypes = {
   /** What theme to use. (src/styles/themes.js) */
   setTheme: PropTypes.string,

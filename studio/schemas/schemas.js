@@ -22,8 +22,19 @@ import doc from './types/doc'
 // import collection from './types/ecommerce/collection'
 // import subscription from './types/ecommerce/subscription'
 
+import theme from './modules/theme'
+import textLockup from './modules/textLockup'
+import media from './modules/media'
+import actions from './modules/actions'
+import link from './modules/link'
+import button from './modules/button'
+
 // Modules
 import textSection from './modules/textSection'
+import wideMedia from './modules/wideMedia'
+import fiftyFifty from './modules/fiftyFifty'
+import columns from './modules/columns'
+import column from './modules/column'
 
 //
 import externalLink from './modules/externalLink'
@@ -34,7 +45,6 @@ import socialLink from './modules/socialLink'
 import nestedPages from './modules/nestedPages'
 import pageItem from './modules/pageItem'
 import pageModule from './modules/pageModule'
-import imageModule from './modules/imageModule'
 import standardText from './modules/standardText'
 import moduleContent from './modules/moduleContent'
 // Ecommerce Modules
@@ -73,8 +83,18 @@ export default createSchema({
     // product,
     // variant,
     // subscription, // This can be disabled/hidden if not using recharge
+    theme,
+    textLockup,
+    actions,
+    link,
+    button,
+    media,
     // Modules
     textSection,
+    wideMedia,
+    fiftyFifty,
+    columns,
+    column,
     //
     externalLink,
     internalLink,
@@ -85,7 +105,6 @@ export default createSchema({
     social,
     socialLink,
     standardText,
-    imageModule,
     moduleContent,
     metaCard,
     blockContent,

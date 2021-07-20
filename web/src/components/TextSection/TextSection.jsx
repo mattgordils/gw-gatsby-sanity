@@ -34,15 +34,14 @@ const TextSection = ({
   nextTheme,
   prevTheme,
   theme,
-  eyebrow,
   text,
-  paragraphSize,
   actions,
-  alignment,
+  alignment = 'center',
   isFirstSection,
   id
 }) => {
-  if (!text && !eyebrow && !actions) {
+  // console.log(text)
+  if (!text && !text.eyebrow && !actions) {
     return false
   }
   const align = {
@@ -84,9 +83,9 @@ const TextSection = ({
         larger={align[alignment].larger}
       >
         <TextLockup
-          eyebrow={eyebrow}
+          eyebrow={text.eyebrow}
           text={text}
-          textSize={paragraphSize}
+          // textSize={paragraphSize}
           actions={actions}
           theme={theme}
         />

@@ -22,15 +22,15 @@ class IntersectionObserverPolyfill extends React.Component {
 			this.setState({ ready: true })
 		} else {
 			// load the polyfill
-			require.ensure(
-				['intersection-observer'],
-				() => {
-					// eslint-disable-next-line global-require
-					require('intersection-observer')
-					this.setState({ ready: true })
-				},
-				'intersection-observer'
-			)
+			// require.ensure(
+			// 	['intersection-observer'],
+			// 	() => {
+			// 		// eslint-disable-next-line global-require
+			// 		require('intersection-observer')
+			// 		this.setState({ ready: true })
+			// 	},
+			// 	'intersection-observer'
+			// )
 		}
 	}
 

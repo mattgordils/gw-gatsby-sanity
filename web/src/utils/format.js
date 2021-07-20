@@ -38,3 +38,15 @@ export const getVariantOption = (item, name) => {
 	}
 	return option
 }
+
+export const getSlugLink = (link, prefix) => {
+	const currentLink = link?.content?.main?.slug?.current
+	if (currentLink && prefix) {
+		return '/' + prefix + '/' + currentLink
+	} else if (currentLink === 'home') {
+		return '/'
+	} else if (currentLink) {
+		return currentLink
+	}
+	return '/'
+}

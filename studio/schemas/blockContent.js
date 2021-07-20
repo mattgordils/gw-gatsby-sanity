@@ -1,3 +1,4 @@
+import React from 'react'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 
 /**
@@ -10,6 +11,15 @@ import { FaExternalLinkAlt } from 'react-icons/fa'
  *    type: 'blockContent'
  *  }
  */
+
+const largeRender = props => (
+  <span style={{ fontSize: '1.2em' }}>{props.children}</span>
+)
+
+const smallRender = props => (
+  <span style={{ fontSize: '.8em' }}>{props.children}</span>
+)
+
 export default {
   title: 'Block Content',
   name: 'blockContent',
@@ -24,6 +34,8 @@ export default {
       // use your content.
       styles: [
         { title: 'Normal', value: 'normal' },
+        { title: 'Large', value: 'bodyLarge', blockEditor: { render: largeRender } },
+        { title: 'Small', value: 'bodySmall', blockEditor: { render: smallRender } },
         { title: 'H1', value: 'h1' },
         { title: 'H2', value: 'h2' },
         { title: 'H3', value: 'h3' },

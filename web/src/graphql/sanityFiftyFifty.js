@@ -1,9 +1,27 @@
 import { graphql } from 'gatsby'
 
 export const query = graphql`
-  fragment TextSection on SanityTextSection {
+  fragment FiftyFifty on SanityFiftyFifty {
     _key
     _type
+    theme
+    media {
+      mediaType
+      image {
+        asset {
+          gatsbyImageData
+          url
+          title
+          altText
+        }
+      }
+      video {
+        asset {
+          title
+          url
+        }
+      }
+    }
     text {
       eyebrow
       text {
@@ -19,8 +37,6 @@ export const query = graphql`
         list
       }
     }
-    alignment
-    theme
     actions {
       ...Button
       ...Link

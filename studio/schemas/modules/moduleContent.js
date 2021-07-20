@@ -3,20 +3,15 @@ export default {
   name: 'moduleContent',
   type: 'array',
   of: [
-    {
-      type: 'textSection'
-    },
-    {
-      type: 'imageModule'
-    },
-    {
-      type: 'standardText'
-    },
+    { type: 'textSection' },
+    { type: 'wideMedia' },
+    { type: 'fiftyFifty' },
+    { type: 'columns' }
     // {
     //   type: 'productGrid'
     // },
-    {
-      type: 'nestedPages'
-    }
+    // {
+    //   type: 'nestedPages'
+    // }
   ]
 }

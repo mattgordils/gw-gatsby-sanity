@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import Section from 'src/components/Section'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Video from 'src/components/Video'
 import Grid from 'src/components/Grid'
 import { colors, animations } from 'src/styles'
@@ -175,12 +175,12 @@ const WideMedia = ({
   prevTheme,
   nextTheme,
   height,
-  eyebrow,
   text,
   paragraphSize,
   actions,
-  overlayPlacement,
-  overlayTextAlignment,
+  overlayPlacementVertical,
+  overlayPlacementHorizontal,
+  alignment,
   isFirstSection,
   overlayTextColor
 }) => {
@@ -198,6 +198,8 @@ const WideMedia = ({
     return type.includes('video') ? 'video' : 'image'
   }
 
+  const image = getImage(media.asset)
+
   let fullHeight = false//isFirstSection ? use100vh() : false
 
   const heightValues = {
@@ -207,22 +209,23 @@ const WideMedia = ({
     shortHeight: '50vh'
   }
 
-  const [verticalPlacement, horizontalPlacement] = (overlayPlacement || 'center center').split(' ')
-  const overlayGridSettings = getHorizontalPlacementGridValues({ fullWidth, horizontalPlacement })
-  const hasOverlay = eyebrow || text || actions
+  const overlayGridSettings = getHorizontalPlacementGridValues({ fullWidth, overlayPlacementHorizontal })
+  const hasOverlay = text.text || actions
 
   const renderMedia = (mediaItem, size, hasOverlay, autoHeight) => {
-    if (size === 'small' && !mediaItem) {
-      mediaItem = mediaMedium || media
-    } else if (size === 'medium' && !mediaItem) {
-      mediaItem = media
-    }
+    // if (size === 'small' && !mediaItem) {
+    //   mediaItem = mediaMedium || media
+    // } else if (size === 'medium' && !mediaItem) {
+    //   mediaItem = media
+    // }
+    // console.log(mediaItem)
     if (mediaItem) {
-      const contentType = mediaItem.file ? getMediaType(mediaItem.file.contentType) : 'image'
+      const contentType = mediaItem.mediaType || 'image'
       if (contentType === 'video') {
+        const media = mediaItem.video.asset
         return <MediaItem
           overlay={hasOverlay}
-          video={mediaItem}
+          src={media.url}
           playing={true}
           isFirstSection={isFirstSection}
           loop={true}
@@ -233,13 +236,14 @@ const WideMedia = ({
           overlayTextColor={overlayTextColor}
         />
       } else {
+        const media = mediaItem.image.asset
         return <MediaItem
           overlay={hasOverlay}
-          image={mediaItem.gatsbyImageData}
+          image={media.gatsbyImageData}
           loading={isFirstSection ? 'eager' : 'lazy'}
           isFirstSection={isFirstSection}
           height={heightValues[height]}
-          alt={mediaItem.file.fileName}
+          alt={mediaItem.altText || mediaItem.title}
           as={GatsbyImage}
           format={['auto', 'avif', 'webp']}
           overlayTextColor={overlayTextColor}
@@ -260,16 +264,18 @@ const WideMedia = ({
       <WideMediaWrap height={heightValues[height]} overlayTextColor={overlayTextColor}>
         <Grid small={fullWidth ? '[1]' : 'container'} medium={fullWidth ? '[1]' : 'container'} large={fullWidth ? '[1]' : 'container'}>
           <ContentWrap>
-            <ResponsiveComponent
+            {/*<ResponsiveComponent
               small={renderMedia(mediaSmall, 'small', hasOverlay, height === 'auto')}
               medium={renderMedia(mediaMedium, 'medium', hasOverlay, height === 'auto')}
               large={renderMedia(media, 'large', hasOverlay, height === 'auto')}
-            />
+            />*/}
+
+            {renderMedia(media, 'large', hasOverlay, height === 'auto')}
             {hasOverlay && (
               <OverlayContent
                 padded={!fullWidth}
-                overlayTextAlignment={overlayTextAlignment}
-                verticalPlacement={verticalPlacement}
+                overlayTextAlignment={alignment}
+                verticalPlacement={overlayPlacementVertical}
                 height={heightValues[height]}
               >
                 <OverlaySection isFirstSection={isFirstSection}>
@@ -280,11 +286,10 @@ const WideMedia = ({
                     {...overlayGridSettings}
                   >
                     <TextLockup
-                      eyebrow={eyebrow}
                       text={text}
                       textSize={paragraphSize}
                       actions={actions}
-                      alignment={overlayTextAlignment}
+                      alignment={alignment}
                       transitionIn={!isFirstSection}
                     />
                   </Grid>

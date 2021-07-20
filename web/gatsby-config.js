@@ -31,6 +31,7 @@ module.exports = {
     "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-image",
     "gatsby-plugin-env-variables",
+    "gatsby-transformer-inline-svg",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -48,12 +49,19 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'assets',
+        path: path.join(__dirname, '/src/assets'),
       },
-      __key: "images",
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
     },
     {
       resolve: "gatsby-plugin-root-import",

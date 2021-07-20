@@ -3,10 +3,10 @@ import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import { Global, css } from '@emotion/react'
 import globalStyles from 'src/styles/globalStyles'
-// import PageTransition from 'src/components/PageTransition'
-// import ScrollListener from 'src/components/ScrollListener'
-// import IntersectionObserverPolyfill from 'src/components/IntersectionObserverPolyfill'
-// import AppProvider from 'src/state/AppState'
+import PageTransition from 'src/components/PageTransition'
+import ScrollListener from 'src/components/ScrollListener'
+import IntersectionObserverPolyfill from 'src/components/IntersectionObserverPolyfill'
+import AppProvider from 'src/state/AppState'
 // import ShopifyProvider from 'src/state/ShopifyState.js'
 import './reset.css'
 
@@ -24,20 +24,18 @@ const Layout = ({ children, location }) => (
 			`}
 			render={data => (
 				<>
-					{/*<IntersectionObserverPolyfill>
-						<ShopifyProvider>
+					<IntersectionObserverPolyfill>
 						<AppProvider>
 			        <ScrollListener>
-								<PageTransition location={location || { pathName: '/' }}>*/}
+								<PageTransition location={location || { pathName: '/' }}>
 									<Global
 										styles={css`${ globalStyles }`}
 									/>
 									{children}
-								{/*</PageTransition>
+								</PageTransition>
 							</ScrollListener>
 						</AppProvider>
-						</ShopifyProvider>
-					</IntersectionObserverPolyfill>*/}
+					</IntersectionObserverPolyfill>
 				</>	
 			)}
 		/>

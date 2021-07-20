@@ -7,6 +7,7 @@ import ScrollEntrance from 'src/components/ScrollEntrance'
 import SanityRichText from 'src/components/SanityRichText'
 import { typography, mq } from 'src/styles'
 import { themes } from 'src/styles/themes'
+import { getSlugLink } from 'src/utils/format'
 
 const Wrapper = styled.div`
 	display: inline-block;
@@ -98,6 +99,8 @@ const TextLockup = ({
 		transitionIn,
 		listType
 	}) => {
+	text = text?.text
+	console.log(actions)
 	return (
 		<Wrapper className={className} alignment={alignment}>
 			<div>
@@ -113,22 +116,22 @@ const TextLockup = ({
 						<Headline as={headlineElement || headlineSize} headlineSize={headlineSize} hasText={text} hasEyebrow={eyebrow}>{headline}</Headline>
 					)}
 
-					{text && text.raw &&
-						<Text textSize={textSize} alignment={alignment}><SanityRichText richText={text} listType={listType}/></Text>
+					{text && Array.isArray(text) &&
+						<Text textSize={textSize} alignment={alignment}><SanityRichText text={text} listType={listType}/></Text>
 					}
 
 					{typeof text === 'string' &&
 						<Text textSize={textSize} alignment={alignment}><p>{text}</p></Text>
 					}
 
-					{text && typeof text !== 'string' && !text.raw &&
+					{text && typeof text !== 'string' && !Array.isArray(text) &&
 						<Text textSize={textSize} alignment={alignment}>{text}</Text>
 					}
 
 					{actions && (
 						<ButtonActions buttons={actions} alignment={alignment}>
 							{actions.map((action, index) => {
-								if (action.__typename === 'ContentfulButton') {
+								if (action._type === 'button') {
 									let actionTheme = 'default'
 									if (action.theme === 'primary') {
 										actionTheme = themes[theme].buttonTheme || 'default'
@@ -139,13 +142,13 @@ const TextLockup = ({
 										<ActionWrapper key={'button-' + index}>
 											<Button
 												setTheme={actionTheme}
-												to={action.to || '/' + action.linkToPage.slug}
+												to={action.to || getSlugLink(action.link)}
 												external={action.to}
 												target={action.openInNewTab ? '_blank' : ''}
-												title={action.label}
-												name={action.label}
+												title={action.title}
+												name={action.title}
 											>
-												{action.label}
+												{action.title}
 											</Button>
 										</ActionWrapper>
 									)
@@ -153,13 +156,13 @@ const TextLockup = ({
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<TextLink
-												to={action.to || '/' + action.linkToPage.slug}
+												to={action.to || getSlugLink(action.link)}
 												external={action.to}
 												target={action.openInNewTab ? '_blank' : ''}
-												title={action.label}
-												name={action.label}
+												title={action.title}
+												name={action.title}
 											>
-												{action.label}
+												{action.title}
 											</TextLink>
 										</ActionWrapper>
 									)
@@ -197,7 +200,7 @@ TextLockup.propTypes = {
 	/** Buttons or links to go under text */
 	actions: PropTypes.shape([
 		{
-			__typename: PropTypes.oneOf(['ContentfulButton', 'ContentfulLink']),
+			_type: PropTypes.oneOf(['button', 'link']),
 			to: PropTypes.string,
 			linkToPage: PropTypes.shape({ slug: PropTypes.string }),
 			openInNewTab: PropTypes.bool,

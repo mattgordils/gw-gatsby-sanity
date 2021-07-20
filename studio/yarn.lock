@@ -8443,6 +8443,11 @@ sanity-diff-patch@^1.0.9:
   dependencies:
     diff-match-patch "^1.0.5"
 
+sanity-plugin-conditional-field@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/sanity-plugin-conditional-field/-/sanity-plugin-conditional-field-1.0.0.tgz#fdef379bd5db2770f69cbd9a94a8d7f71a800a8c"
+  integrity sha512-0eoKyM+md/u7XkxzwrjdYcGH61gZUwQ6ldWUoHvqhlKQHB1Nn3CTn0seOS0IoHX4+d1vNNCBeyd0iXk96hwwtA==
+
 sanity-plugin-tabs@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/sanity-plugin-tabs/-/sanity-plugin-tabs-2.0.1.tgz"
