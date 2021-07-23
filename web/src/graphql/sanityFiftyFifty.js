@@ -5,6 +5,9 @@ export const query = graphql`
     _key
     _type
     theme
+    mediaPlacement
+    mediaWidth
+    width
     media {
       mediaType
       image {
@@ -13,6 +16,7 @@ export const query = graphql`
           url
           title
           altText
+          originalFilename
         }
       }
       video {

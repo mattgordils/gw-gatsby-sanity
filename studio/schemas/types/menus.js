@@ -30,8 +30,7 @@ export default {
       title: 'Nav Items',
       type: 'array',
       of: [
-        { type: 'internalLink' },
-        { type: 'externalLink' }
+        { type: 'link' }
       ]
     },
   ]

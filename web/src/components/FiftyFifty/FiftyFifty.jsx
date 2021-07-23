@@ -27,22 +27,12 @@ const ColumnWrapper = styled.div`
 `
 
 const arrangeMedia = {
-  left: {
+  default: {
     normal: '2 [11] 2 [11] 2',
     large: '2 [12] 2 [10] 2',
     extraLarge: '2 [13] 2 [9] 2'
   },
-  right: {
-    normal: '2 [11] 2 [11] 2',
-    large: '2 [12] 2 [10] 2',
-    extraLarge: '2 [13] 2 [9] 2'
-  },
-  bleedLeft: {
-    normal: '[13] 2 [11] 2',
-    large: '[14] 2 [10] 2',
-    extraLarge: '[15] 2 [9] 2'
-  },
-  bleedRight: {
+  fullWidth: {
     normal: '[13] 2 [11] 2',
     large: '[14] 2 [10] 2',
     extraLarge: '[15] 2 [9] 2'
@@ -50,12 +40,12 @@ const arrangeMedia = {
 }
 
 const mediaSizes = {
-  noBleed: {
+  default: {
     normal: 100 / 28 * 11,
     large: 100 / 28 * 12,
     extraLarge: 100 / 28 * 13
   },
-  bleed: {
+  fullWidth: {
     normal: 100 / 28 * 13,
     large: 100 / 28 * 14,
     extraLarge: 100 / 28 * 15
@@ -70,6 +60,7 @@ const FiftyFifty = ({
   media,
   mediaPlacement = 'left',
   mediaWidth = 'normal',
+  width = 'default',
   eyebrow,
   text,
   actions,
@@ -86,14 +77,10 @@ const FiftyFifty = ({
 
   // set responsive image sizes
   let sizes = '100vw'
-  let imageSize = mediaSizes.noBleed[mediaWidth]
-  if (mediaPlacement.includes('bleed')) {
-    imageSize = mediaSizes.bleed[mediaWidth]
-  }
+  let imageSize = mediaSizes.default[mediaWidth]
   sizes = '(min-width: ' + mq.mediumBreakpoint + 'px) ' + imageSize + 'vw, 86vw'
 
-  console.log(actions)
-
+  const fullWidth = width === 'fullWidth'
   return (
     <FFSection
       className={className}
@@ -101,13 +88,14 @@ const FiftyFifty = ({
       prevTheme={prevTheme}
       nextTheme={nextTheme}
       isFirstSection={isFirstSection}
+      padded={!fullWidth}
     >
       <Grid
-        small="1 [12] 1"
-        large={arrangeMedia[mediaPlacement || 'left'][mediaWidth || 'normal']}
+        small={fullWidth ? '[1]' : '1 [12] 1'}
+        large={arrangeMedia[width || 'default'][mediaWidth || 'normal']}
         rowGap={['4vw', '4vw', '80px']}
         vAlign={verticalAlignment}
-        gridDirection={mediaPlacement.includes('right') || mediaPlacement.includes('Right') ? 'rtl' : 'ltr'}
+        gridDirection={mediaPlacement?.includes('right') ? 'rtl' : 'ltr'}
       >
         {media && (
           <ColumnWrapper>
@@ -121,7 +109,7 @@ const FiftyFifty = ({
                 <GatsbyImage
                   image={image.gatsbyImageData}
                   loading={isFirstSection ? 'eager' : 'lazy'}
-                  alt={image.altText || image.title}
+                  alt={text?.eyebrow || media.originalFilename}
                   sizes={sizes}
                   format={['auto', 'avif', 'webp']}
                 />
@@ -131,14 +119,20 @@ const FiftyFifty = ({
         )}
 
         <ColumnWrapper>
-          <TextLockup
-            entranceDelay={1}
-            eyebrow={eyebrow}
-            text={text}
-            actions={actions}
-            theme={theme}
-            listType={listType}
-          />
+          <Grid
+            small={fullWidth ? '1 [12] 1' : '[1]'}
+            large='[1]'
+          >
+            <div>
+              <TextLockup
+                entranceDelay={1}
+                text={text}
+                actions={actions}
+                theme={theme}
+                listType={listType}
+              />
+            </div>
+          </Grid>
         </ColumnWrapper>
       </Grid>
     </FFSection>
@@ -156,9 +150,10 @@ FiftyFifty.propTypes = {
   /** Can be an image or video from Contentful */
   media: PropTypes.string,
   /** Where should the media be placed? */
-  mediaPlacement: PropTypes.oneOf(['left', 'right', 'bleedLeft', 'bleedRight']),
+  mediaPlacement: PropTypes.oneOf(['left', 'right']),
   /** How wide should the media be? */
   mediaWidth: PropTypes.oneOf(['normal', 'large', 'extraLarge']),
+  width: PropTypes.oneOf(['default', 'fullWidth']),
   /** Text above the headline */
   eyebrow: PropTypes.string,
   /** `raw` rich text from Contentful */

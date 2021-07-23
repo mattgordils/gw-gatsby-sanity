@@ -13,6 +13,7 @@ export const query = graphql`
           url
           title
           altText
+          originalFilename
         }
       }
       text {

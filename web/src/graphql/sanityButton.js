@@ -7,6 +7,7 @@ export const query = graphql`
     title
     theme
     externalLink
+    newTab
     link {
     	content {
     		main {

@@ -21,11 +21,8 @@ export default {
       type: 'image',
       inputComponent: ConditionalField,
       options: {
-        hotspot: true
-      },
-      options: {
         hide: ({ parents }) => parents[0].mediaType !== 'image'
-      },
+      }
     },
     {
       name: 'video',
@@ -35,7 +32,7 @@ export default {
       inputComponent: ConditionalField,
       options: {
         hide: ({ parents }) => parents[0].mediaType !== 'video'
-      },
+      }
     }
   ]
 }

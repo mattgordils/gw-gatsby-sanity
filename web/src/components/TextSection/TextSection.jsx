@@ -83,7 +83,6 @@ const TextSection = ({
         larger={align[alignment].larger}
       >
         <TextLockup
-          eyebrow={text.eyebrow}
           text={text}
           // textSize={paragraphSize}
           actions={actions}

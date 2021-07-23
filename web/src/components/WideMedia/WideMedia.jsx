@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import Section from 'src/components/Section'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Video from 'src/components/Video'
 import Grid from 'src/components/Grid'
 import { colors, animations } from 'src/styles'
 import TextLockup from 'src/components/TextLockup'
-import ResponsiveComponent from 'src/components/ResponsiveComponent'
+// import ResponsiveComponent from 'src/components/ResponsiveComponent'
 import { headerHeight } from 'src/components/Header'
 import { use100vh } from 'react-div-100vh'
 
@@ -184,6 +184,7 @@ const WideMedia = ({
   isFirstSection,
   overlayTextColor
 }) => {
+  const winHeight = use100vh()
   if (!media) {
     return false
   }
@@ -198,9 +199,8 @@ const WideMedia = ({
     return type.includes('video') ? 'video' : 'image'
   }
 
-  const image = getImage(media.asset)
-
-  let fullHeight = false//isFirstSection ? use100vh() : false
+  const fullHeight = !isFirstSection ? winHeight : false
+  // const fullHeight = false
 
   const heightValues = {
     auto: 'auto',
@@ -243,7 +243,7 @@ const WideMedia = ({
           loading={isFirstSection ? 'eager' : 'lazy'}
           isFirstSection={isFirstSection}
           height={heightValues[height]}
-          alt={mediaItem.altText || mediaItem.title}
+          alt={text?.eyebrow || media.originalFilename}
           as={GatsbyImage}
           format={['auto', 'avif', 'webp']}
           overlayTextColor={overlayTextColor}

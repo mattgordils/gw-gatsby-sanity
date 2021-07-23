@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { MdViewWeek } from 'react-icons/md'
+import SectionIcon from "../../components/SectionIcon";
 
 export default {
   title: 'Columns',
@@ -52,7 +55,7 @@ export default {
       return Object.assign({}, selection, {
         title: 'Columns Section',
         subtitle: columns && columns.length + ' columns',
-        media: MdViewWeek
+        media: <SectionIcon><MdViewWeek/></SectionIcon>
       })
     }
   }

@@ -99,8 +99,8 @@ const TextLockup = ({
 		transitionIn,
 		listType
 	}) => {
+	eyebrow = eyebrow || text?.eyebrow
 	text = text?.text
-	console.log(actions)
 	return (
 		<Wrapper className={className} alignment={alignment}>
 			<div>
@@ -138,13 +138,15 @@ const TextLockup = ({
 									} else if (action.theme === 'secondary') {
 										actionTheme = themes[theme].buttonThemeSecondary || 'default'
 									}
+									console.log(action.externalLink)
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<Button
+												target={action.newTab && '_blank'}
 												setTheme={actionTheme}
-												to={action.to || getSlugLink(action.link)}
-												external={action.to}
-												target={action.openInNewTab ? '_blank' : ''}
+												to={action.externalLink || getSlugLink(action.link)}
+												external={action.externalLink}
+												target={action.newTab ? '_blank' : ''}
 												title={action.title}
 												name={action.title}
 											>
@@ -156,9 +158,10 @@ const TextLockup = ({
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<TextLink
-												to={action.to || getSlugLink(action.link)}
-												external={action.to}
-												target={action.openInNewTab ? '_blank' : ''}
+												target={action.newTab && '_blank'}
+												to={action.externalLink || getSlugLink(action.link)}
+												external={action.externalLink}
+												target={action.newTab ? '_blank' : ''}
 												title={action.title}
 												name={action.title}
 											>
@@ -203,7 +206,7 @@ TextLockup.propTypes = {
 			_type: PropTypes.oneOf(['button', 'link']),
 			to: PropTypes.string,
 			linkToPage: PropTypes.shape({ slug: PropTypes.string }),
-			openInNewTab: PropTypes.bool,
+			newTab: PropTypes.bool,
 			label: PropTypes.string
 		}
 	]),

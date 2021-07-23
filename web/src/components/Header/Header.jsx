@@ -10,9 +10,8 @@ import ResponsiveComponent from 'src/components/ResponsiveComponent'
 import AnimatedIcon from 'src/components/AnimatedIcon'
 import MobileMenu from 'src/components/MobileMenu'
 import { AppContext } from 'src/state/AppState'
+import { getSlugLink } from 'src/utils/format'
 import { colors, typography, animations, mq, util } from 'src/styles'
-
-import CartIcon from 'src/components/CartIcon'
 
 const showHide = false // show and hide header on scroll
 export const headerHeight = (attr = 'height', additionalHeight = 0) => util.responsiveStyles(attr, (140 + additionalHeight), (130 + additionalHeight), (110 + additionalHeight), (75 + additionalHeight))
@@ -206,13 +205,6 @@ const MenuIcon = styled.li`
   }
 `
 
-const HeaderPlaceholder = styled.div`
-  background: transparent;
-  width: 100%;
-  transition: height ${ animations.mediumSpeed } ease-in-out;
-  ${ headerHeight() }
-`
-
 const HeaderNotificationBanner = styled(NotificationBanner)`
   position: relative;
   z-index: 5;
@@ -228,8 +220,7 @@ const Header = ({
   collapsed,
   bannerColor,
   navigation,
-  title,
-  placeholder
+  title
 }) => {
   const [bannerVisible, toggleBanner] = useState(true)
 
@@ -287,7 +278,49 @@ const Header = ({
                   navVisible={!scrolledUp && !scrolledToTop && showHide}
                 >
                   <div>
-                    <CartIcon/>
+                    <NavLinks alignment="left">
+                      <ResponsiveComponent
+                        small={
+                          <MenuIcon id="mobile-menu-icon">
+                            <button onClick={() => toggleMobileMenu(!mobileMenu)} aria-label='Toggle Navigation'>
+                              <AnimatedIcon
+                                icon={mobileMenu ? 'close' : 'menu'}
+                              />
+                            </button>
+                          </MenuIcon>
+                        }
+                        medium={navigation && navigation.map((item, index) => {
+                          // let link = item?.link?.content?.main?.slug?.current
+                          let link = getSlugLink(item?.link)
+                          const externalLink = item.externalLink
+                          console.log(link)
+                          return (
+                            <li key={'header-link-' + item._key}>
+                              <NavLink
+                                external={externalLink}
+                                scrolled={scrolled}
+                                hasAtf={pageHasAtf}
+                                to={externalLink ? externalLink : link}
+                                active={pathname === link}
+                                key={link}
+                                // hasDropdown={link.dropdownLinks}
+                              >
+                                {item.title}
+                              </NavLink>
+                              {/*link.dropdownLinks && (
+                                <Dropdown>
+                                  {link.dropdownLinks.map((dropdownLink, index) => (
+                                    <li key={dropdownLink.id}>
+                                      <Link to={'/' + dropdownLink.to.slug}>{dropdownLink.label}</Link>
+                                    </li>
+                                  ))}
+                                </Dropdown>
+                              )*/}
+                            </li>
+                          )
+                        })}
+                      />
+                    </NavLinks>
                   </div>
                   <LogoCol>
                     <Link to="/" title={title}>
@@ -299,43 +332,6 @@ const Header = ({
                     </Link>
                   </LogoCol>
                   <div>
-                    <NavLinks alignment="right">
-                      <ResponsiveComponent
-                        small={
-                          <MenuIcon id="mobile-menu-icon">
-                            <button onClick={() => toggleMobileMenu(!mobileMenu)} aria-label='Toggle Navigation'>
-                              <AnimatedIcon
-                                icon={mobileMenu ? 'close' : 'menu'}
-                              />
-                            </button>
-                          </MenuIcon>
-                        }
-                        medium={navigation && navigation.map((link, index) => (
-                          <li key={'header-link-' + link.id}>
-                            <NavLink
-                              scrolled={scrolled}
-                              hasAtf={pageHasAtf}
-                              to={'/' + link.to.slug}
-                              active={pathname === link.to.slug}
-                              key={link.to.slug}
-                              hasDropdown={link.dropdownLinks}
-                            >
-                              {link.label}
-                            </NavLink>
-                            {link.dropdownLinks && (
-                              <Dropdown>
-                                {link.dropdownLinks.map((dropdownLink, index) => (
-                                  <li key={dropdownLink.id}>
-                                    <Link to={'/' + dropdownLink.to.slug}>{dropdownLink.label}</Link>
-                                  </li>
-                                ))}
-                              </Dropdown>
-                            )}
-                          </li>
-                        ))}
-                      />
-                    </NavLinks>
-
                   </div>
                 </HeaderContent>
               </HeaderWrapper>
@@ -343,10 +339,6 @@ const Header = ({
           )
         }}
       </ScrollListener.Consumer>
-
-      {placeholder && (
-        <HeaderPlaceholder hasBanner={bannerText && bannerVisible} />
-      )}
 
       <ResponsiveComponent
         small={

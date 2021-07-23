@@ -31,7 +31,19 @@ module.exports = {
     "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-image",
     "gatsby-plugin-env-variables",
-    "gatsby-transformer-inline-svg",
+    {
+      resolve: 'gatsby-plugin-breakpoints',
+      options: {
+        queries: {
+          sm: '(min-width: 320px)',
+          md: '(min-width: 768px)',
+          l: '(min-width: 1024px)',
+          xl: '(min-width: 1440px)',
+          portrait: '(orientation: portrait)',
+          landscape: '(orientation: landscape)'
+        }
+      }
+    },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -52,7 +64,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: path.join(__dirname, '/src/assets'),
+        path: path.join(__dirname, './src/assets'),
       },
     },
     {

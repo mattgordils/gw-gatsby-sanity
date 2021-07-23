@@ -11,14 +11,21 @@ export const ConfigMenu = S.listItem()
     S.list()
       .title('Settings')
       .items([
-        S.listItem()
+        // S.listItem()
+        //   .title('Site Settings')
+        //   .id('siteSettings')
+        //   .child(
+        //     S.documentTypeList('siteSettings')
+        //       .title('Site Settings')
+        //       .filter('_type == $type')
+        //       .params({ type: 'siteSettings' })
+        //   ),
+        S.documentListItem('siteSettings')
           .title('Site Settings')
-          .child(
-            S.documentTypeList('siteSettings')
-              .title('Site Settings')
-              .filter('_type == $type')
-              .params({ type: 'siteSettings' })
-          ),
+          .id('siteSettings')
+          .schemaType('siteSettings'),
+          // .filter('_type == $type')
+          // .params({ type: 'siteSettings' }),
         S.listItem()
           .title('Menus')
           .child(

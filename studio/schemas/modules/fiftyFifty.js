@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { MdArtTrack, MdSlideshow } from 'react-icons/md'
+import SectionIcon from "../../components/SectionIcon";
 
 export default {
   title: 'Fifty Fifty',
@@ -32,13 +35,23 @@ export default {
       type: 'string',
       initialValue: 'left',
       options: {
-        list: ['left', 'right', 'bleedLeft', 'bleedRight'],
+        list: ['left', 'right'],
+        layout: 'dropdown',
+      },
+    },
+    {
+      name: 'width',
+      title: 'Section Width',
+      type: 'string',
+      initialValue: 'default',
+      options: {
+        list: ['default', 'fullWidth'],
         layout: 'dropdown',
       },
     },
     {
       name: 'mediaWidth',
-      title: 'Media Width',
+      title: 'Media Size',
       type: 'string',
       initialValue: 'normal',
       options: {
@@ -66,7 +79,7 @@ export default {
       return Object.assign({}, selection, {
         title: 'Fifty Fifty',
         subtitle: subtitle,
-        media: media.mediaType === 'video' ? MdSlideshow : media.image
+        media: media.mediaType === 'video' ? <SectionIcon><MdSlideshow/></SectionIcon> : media.image
       })
     }
   }

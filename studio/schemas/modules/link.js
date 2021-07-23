@@ -25,6 +25,12 @@ export default {
       title: 'External Link',
       type: 'string',
       description: 'There is no `link` validation on this so please type accurate urls with https://, mailto:, tel: etc.'
+    },
+    {
+      name: 'newTab',
+      title: 'Open in new tab',
+      initialValue: false,
+      type: 'boolean'
     }
   ],
   preview: {

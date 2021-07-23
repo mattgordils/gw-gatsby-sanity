@@ -144,7 +144,6 @@ const Columns = ({
           as={alignment === 'center' ? 'div' : Grid}
         >
           {columns.map((column, index) => {
-            console.log(column?.icon?.asset?.gatsbyImageData)
             const sizes = '(min-width: ' + mq.mediumBreakpoint + 'px) ' + (86 / desktopColumnCount) + 'vw, (min-width: ' + mq.smallBreakpoint + 'px) ' + (86 / tabletColumnCount) + 'vw, ' + (86 / mobileColumnCount) + 'vw'
             return (
               <ColumnWrapper
@@ -155,12 +154,11 @@ const Columns = ({
               >
                 {column.icon && (
                   <MediaScrollEntrance delay={index} imageSize={imageSize || 'large'}>
-                    <GatsbyImage image={column?.icon?.asset?.gatsbyImageData} alt={column?.icon?.altText} sizes={sizes} format={['auto', 'avif', 'webp']}/>
+                    <GatsbyImage image={column?.icon?.asset?.gatsbyImageData} alt={column?.icon?.altText || column?.text?.eyebrow || column?.icon?.originalFilename} sizes={sizes} format={['auto', 'avif', 'webp']}/>
                   </MediaScrollEntrance>
                 )}
                 <ColumnText
                   entranceDelay={column.media ? index + 1 : index}
-                  eyebrow={column.text.eyebrow}
                   text={column.text}
                   textSize={paragraphSize}
                   theme={theme}

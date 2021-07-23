@@ -1,4 +1,7 @@
-import { MdArtTrack, MdSlideshow } from 'react-icons/md'
+import React from 'react'
+
+import { MdSlideshow } from 'react-icons/md'
+import SectionIcon from "../../components/SectionIcon";
 
 export default {
   title: 'Wide Media',
@@ -50,6 +53,21 @@ export default {
       }
     },
     {
+      name: 'height',
+      title: 'Height',
+      type: 'string',
+      initialValue: 'auto',
+      options: {
+        list: [
+          { title: 'auto', value: 'auto' },
+          { title: 'Full Height', value: 'fullHeight' },
+          { title: 'Medium Height', value: 'mediumHeight' },
+          { title: 'Short Height', value: 'shortHeight' }
+        ],
+        layout: 'dropdown'
+      }
+    },
+    {
       name: 'width',
       title: 'Width',
       type: 'string',
@@ -73,7 +91,7 @@ export default {
       return Object.assign({}, selection, {
         title: 'Wide Media',
         subtitle: subtitle,
-        media: media.mediaType === 'video' ? MdSlideshow : media.image
+        media: media.mediaType === 'video' ? <SectionIcon><MdSlideshow/></SectionIcon> : media.image
       })
     }
   }

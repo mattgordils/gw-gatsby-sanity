@@ -37,8 +37,6 @@ import columns from './modules/columns'
 import column from './modules/column'
 
 //
-import externalLink from './modules/externalLink'
-import internalLink from './modules/internalLink'
 import metaCard from './modules/metaCard'
 import social from './modules/social'
 import socialLink from './modules/socialLink'
@@ -96,8 +94,6 @@ export default createSchema({
     columns,
     column,
     //
-    externalLink,
-    internalLink,
     // productGrid,
     pageModule,
     nestedPages,

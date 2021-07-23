@@ -1,5 +1,6 @@
 export default {
   name: 'siteSettings',
+  _id: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
   // You probably want to uncomment the next line once you've made a siteSettings document in the Studio. This will remove the settings document type from the create-menus.
@@ -7,7 +8,7 @@ export default {
   fields: [
     {
       name: 'title',
-      title: 'Title',
+      title: 'Site Title',
       type: 'string'
     },
     {
@@ -28,6 +29,16 @@ export default {
       name: 'author',
       title: 'Author',
       type: 'string'
+    },
+    {
+      name: 'favicon',
+      title: 'Favicon',
+      type: 'image'
+    },
+    {
+      name: 'touchicon',
+      title: 'Touch Icon',
+      type: 'image'
     }
   ]
 }

@@ -34,6 +34,12 @@ export default {
       options: {
         list: ['primary', 'secondary']
       }
+    },
+    {
+      name: 'newTab',
+      title: 'Open in new tab',
+      initialValue: false,
+      type: 'boolean'
     }
   ],
   preview: {
