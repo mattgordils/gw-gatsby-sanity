@@ -128,7 +128,7 @@ const TextLockup = ({
 						<Text textSize={textSize} alignment={alignment}>{text}</Text>
 					}
 
-					{actions && (
+					{actions && actions.length > 0 && (
 						<ButtonActions buttons={actions} alignment={alignment}>
 							{actions.map((action, index) => {
 								if (action._type === 'button') {
@@ -138,7 +138,6 @@ const TextLockup = ({
 									} else if (action.theme === 'secondary') {
 										actionTheme = themes[theme].buttonThemeSecondary || 'default'
 									}
-									console.log(action.externalLink)
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<Button

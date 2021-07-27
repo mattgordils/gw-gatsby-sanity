@@ -7,11 +7,33 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import Video from 'src/components/Video'
 import TextLockup from 'src/components/TextLockup'
 import ScrollEntrance from 'src/components/ScrollEntrance'
-import { mq } from 'src/styles'
+import { mq, globals } from 'src/styles'
 
-const FFSection = styled(Section)``
+const FFSection = styled(Section)`
+  ${mq.largeAndBelow} {
+    ${ globals.verticalSpacing('padding-bottom') }
+  }
+`
 
 const ColumnWrapper = styled.div`
+  ${({ fullWidth }) => fullWidth && `
+    height: 100%;
+    // get to work for video also
+    > div,
+    .gatsby-image-wrapper,
+    .video-wrapper,
+    .video-wrapper > div,
+    .video-wrapper > div > div {
+      height: 100%;
+    }
+    .video-wrapper > div > div {
+      padding-bottom: ${9 / 16 * 100}%;
+    }
+    .video-wrapper video {
+      position: absolute;
+      object-fit: cover;
+    }
+  `}
   h1, h2, h3 {
     max-width: 20em;
   }
@@ -24,6 +46,15 @@ const ColumnWrapper = styled.div`
   p {
     max-width: 40em;
   }
+`
+
+const TextWrapper = styled.div`
+  ${({ fullWidth }) => fullWidth && `
+    ${mq.largerAndUp} {
+      ${ globals.verticalSpacing('padding-top') }
+      ${ globals.verticalSpacing('padding-bottom') }
+    }
+  `}
 `
 
 const arrangeMedia = {
@@ -98,7 +129,7 @@ const FiftyFifty = ({
         gridDirection={mediaPlacement?.includes('right') ? 'rtl' : 'ltr'}
       >
         {media && (
-          <ColumnWrapper>
+          <ColumnWrapper fullWidth={fullWidth}>
             {media.mediaType === 'video' && (
               <ScrollEntrance>
                 <Video src={video.url} />
@@ -118,12 +149,12 @@ const FiftyFifty = ({
           </ColumnWrapper>
         )}
 
-        <ColumnWrapper>
+        <ColumnWrapper fullWidth={fullWidth}>
           <Grid
             small={fullWidth ? '1 [12] 1' : '[1]'}
             large='[1]'
           >
-            <div>
+            <TextWrapper fullWidth={fullWidth}>
               <TextLockup
                 entranceDelay={1}
                 text={text}
@@ -131,7 +162,7 @@ const FiftyFifty = ({
                 theme={theme}
                 listType={listType}
               />
-            </div>
+            </TextWrapper>
           </Grid>
         </ColumnWrapper>
       </Grid>

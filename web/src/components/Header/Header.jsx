@@ -294,9 +294,14 @@ const Header = ({
                           let link = getSlugLink(item?.link)
                           const externalLink = item.externalLink
                           console.log(link)
+                          console.log(item)
+                          if (!item.title) {
+                            return false
+                          }
                           return (
                             <li key={'header-link-' + item._key}>
                               <NavLink
+                                target={item.newTab && '_blank'}
                                 external={externalLink}
                                 scrolled={scrolled}
                                 hasAtf={pageHasAtf}

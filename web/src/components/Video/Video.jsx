@@ -93,7 +93,7 @@ const Video = ({
 	}
 
 	return (
-		<Wrapper className={className} cover={cover}>
+		<Wrapper className={'video-wrapper ' + className} cover={cover}>
 			<VideoWrapper cover={cover}>
 				<StyledVideo
 					cover={cover}

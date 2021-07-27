@@ -7,11 +7,11 @@ import Footer from 'src/components/Footer'
 import ComponentRenderer from "src/components/ComponentRenderer";
 
 const Page = ({ data }) => {
-  const content = data?.sanityPage?.content?.main;
+  const page = data?.sanityPage?.content?.main
   const menus = data?.allSanityMenus?.edges
   // const meta = data?.sanityPage?.content?.meta
-  const path = content?.slug?.current;
-  const modules = content?.modules;
+  const path = page?.slug?.current;
+  const modules = page?.modules;
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
 
   const mainNavigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
@@ -22,7 +22,8 @@ const Page = ({ data }) => {
         // defaultMeta={site.defaultMeta}
         // defaultTitle={path === 'home' ? 'SITE TITLE' : title}
         // metaInfo={meta}
-        // pagePath={path}
+        pagePath={path}
+        title={page.title}
       />
       <Header
         hasAtf={hasAtf}
@@ -72,6 +73,7 @@ export const pageQuery = graphql`
           }
           items {
             title
+            newTab
             link {
               content {
                 main {
@@ -92,6 +94,7 @@ export const pageQuery = graphql`
     sanityPage(id: { eq: $id }) {
       content {
         main {
+          title
           slug {
             current
           }
