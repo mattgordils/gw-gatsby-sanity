@@ -71,7 +71,7 @@ export default {
       name: 'width',
       title: 'Width',
       type: 'string',
-      initialValue: 'full',
+      initialValue: 'fullWidth',
       options: {
         list: [
           {title: 'Full Width', value: 'fullWidth'},

@@ -8,6 +8,12 @@ const StyledBlockContent = styled(BlockContent)`
 	* {
 		white-space: pre-wrap;
 	}
+	h1, h2 {
+		margin-top: 1.5em;
+	}
+	h3, h4, h5 {
+		margin-top: 2.5em;
+	}
 	p {
 		min-height: 1em;
 		&.last-item {
@@ -30,9 +36,12 @@ const StyledBlockContent = styled(BlockContent)`
 	}
 `
 
-const SanityRichText = text => {
+const SanityRichText = ({text, className}) => {
+	console.log(text)
 	return (
-		<StyledBlockContent blocks={text.text} serializers={Serializer} />
+		<div className={className}>
+			<StyledBlockContent blocks={text?._rawText || text?.text || text} serializers={Serializer} />
+		</div>
 	)
 }
 

@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import Section from 'src/components/Section'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import Image from 'src/components/Image'
 import Video from 'src/components/Video'
 import Grid from 'src/components/Grid'
 import { colors, animations } from 'src/styles'
@@ -126,7 +127,7 @@ const OverlaySection = styled(Section)`
   ` }
 `
 
-function getHorizontalPlacementGridValues ({ fullWidth, horizontalPlacement }) {
+function getHorizontalPlacementGridValues ({ fullWidth, overlayPlacementHorizontal }) {
   if (!fullWidth) {
     return {
       left: {
@@ -144,7 +145,7 @@ function getHorizontalPlacementGridValues ({ fullWidth, horizontalPlacement }) {
         large: '7 [5] 2',
         larger: '7 [5] 2'
       }
-    }[horizontalPlacement]
+    }[overlayPlacementHorizontal]
   } else {
     return {
       left: {
@@ -162,7 +163,7 @@ function getHorizontalPlacementGridValues ({ fullWidth, horizontalPlacement }) {
         large: '7 [6] 1',
         larger: '7 [6] 1'
       }
-    }[horizontalPlacement]
+    }[overlayPlacementHorizontal]
   }
 }
 
@@ -240,11 +241,12 @@ const WideMedia = ({
         return <MediaItem
           overlay={hasOverlay}
           image={media.gatsbyImageData}
+          media={mediaItem.image}
           loading={isFirstSection ? 'eager' : 'lazy'}
           isFirstSection={isFirstSection}
           height={heightValues[height]}
           alt={text?.eyebrow || media.originalFilename}
-          as={GatsbyImage}
+          as={Image}
           format={['auto', 'avif', 'webp']}
           overlayTextColor={overlayTextColor}
         />

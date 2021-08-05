@@ -1,29 +1,35 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react'
+import { graphql } from 'gatsby'
 // import { RenderModules } from 'src/utils/renderModules'
 import SEO from 'src/components/SEO'
 import Header from 'src/components/Header'
 import Footer from 'src/components/Footer'
-import ComponentRenderer from "src/components/ComponentRenderer";
+import ComponentRenderer from 'src/components/ComponentRenderer'
 
 const Page = ({ data }) => {
   const page = data?.sanityPage?.content?.main
   const menus = data?.allSanityMenus?.edges
-  // const meta = data?.sanityPage?.content?.meta
+  const pageMeta = data?.sanityPage?.content?.meta
   const path = page?.slug?.current;
   const modules = page?.modules;
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
+  const siteTitle = data?.allSanitySiteSettings?.edges[0]?.node?.title
 
   const mainNavigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
   return (
     <>
       <SEO
-        // defaultMeta={site.defaultMeta}
-        // defaultTitle={path === 'home' ? 'SITE TITLE' : title}
-        // metaInfo={meta}
         pagePath={path}
-        title={page.title}
+        title={pageMeta?.metaTitle || page.title}
+        description={pageMeta?.metaDescription}
+        keywords={pageMeta?.metaKeywords}
+        ogTitle={pageMeta?.openTitle}
+        ogImage={pageMeta?.openImage?.asset?.url}
+        ogDescription={pageMeta?.openGraphDescription}
+        twitterDescription={pageMeta?.twitterDescription}
+        twitterImage={pageMeta?.twitterImage?.asset?.url}
+        twitterTitle={pageMeta?.twitterTitle}
       />
       <Header
         hasAtf={hasAtf}
@@ -31,7 +37,7 @@ const Page = ({ data }) => {
         // bannerColor={site.bannerColor}
         navigation={mainNavigation}
         location={path}
-        // title={site.title}
+        title={siteTitle}
       />
       {modules.map((item, index) => {
         const prevSection = modules[index - 1]
@@ -52,17 +58,26 @@ const Page = ({ data }) => {
             item={item} key={item?._key || 'section-' + index}
             nextTheme={nextTheme}
             prevTheme={prevTheme}
+            isFirstSection={index === 0}
+            isLastSection={index === modules.length - 1}
           />
         )
       })}
       {/*RenderModules(modules)*/}
-      <Footer/>
+      <Footer title={siteTitle}/>
     </>
   );
 };
 
 export const pageQuery = graphql`
   query ($id: String!) {
+    allSanitySiteSettings {
+      edges {
+        node {
+          title
+        }
+      }
+    }
     allSanityMenus {
       edges {
         node {
@@ -106,11 +121,23 @@ export const pageQuery = graphql`
           }
         }
         meta {
+          metaTitle
+          metaDescription
+          metaKeywords
+          openGraphDescription
           openImage {
             asset {
               url
             }
           }
+          openTitle
+          twitterDescription
+          twitterImage {
+            asset {
+              url
+            }
+          }
+          twitterTitle
         }
       }
     }

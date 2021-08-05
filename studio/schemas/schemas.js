@@ -40,7 +40,6 @@ import column from './modules/column'
 import metaCard from './modules/metaCard'
 import social from './modules/social'
 import socialLink from './modules/socialLink'
-import nestedPages from './modules/nestedPages'
 import pageItem from './modules/pageItem'
 import pageModule from './modules/pageModule'
 import standardText from './modules/standardText'
@@ -96,7 +95,6 @@ export default createSchema({
     //
     // productGrid,
     pageModule,
-    nestedPages,
     pageItem,
     social,
     socialLink,

@@ -22,9 +22,13 @@ export default {
   ],
   fields: [
     {
-      name: 'metaKeywords',
-      title: 'Meta Keywords',
-      type: 'string'
+      name: 'keywords',
+      title: 'Keywords',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      }
     },
     {
       name: 'metaTitle',

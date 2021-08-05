@@ -3,7 +3,19 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettings, pagePath }) {
+function SEO ({
+		lang,
+		pagePath,
+		title,
+		description,
+		keywords,
+		ogTitle,
+		ogImage,
+		ogDescription,
+		twitterDescription,
+		twitterImage,
+		twitterTitle
+	}) {
 	const { site, favicon, appleTouchIcon, socialShareImage, allSanitySiteGlobal, allSanitySiteSettings } = useStaticQuery(
 		graphql`
 			query {
@@ -68,28 +80,28 @@ function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettin
 		`
 	)
 
-	const sanitySiteGlobals = allSanitySiteGlobal?.edges[0]?.node
+	// const sanitySiteGlobals = allSanitySiteGlobal?.edges[0]?.node
 	const sanitySiteSettings = allSanitySiteSettings?.edges[0]?.node
 
-	const metaDescription = description || sanitySiteSettings.description
-	const host = process.env.GATSBY_HOST
+	console.log(sanitySiteSettings)
+
+	const metaDescription = description || sanitySiteSettings?.description
+	const host = process.env.GATSBY_SITE_URL
 
 	const metaFavicon = host + favicon.publicURL
 	const metaTouchIcon = host + appleTouchIcon.publicURL
 
 	let metaShareImage = host + socialShareImage.publicURL
-	if (shareImage) {
-		metaShareImage = shareImage
+	if (ogImage || twitterImage) {
+		metaShareImage = ogImage || twitterImage
 	}
-	// if (defaultSeo.shareImage) {
-	// 	metaShareImage = 'https:' + defaultSeo.shareImage.file.url
-	// }
 
-	let metaKeywords = ''
-	if (keywords) {
+	let metaKeywords = []
+	if (keywords && keywords.length > 0) {
+		console.log(keywords)
 		metaKeywords = keywords.join(', ')
-	} else if (sanitySiteSettings.keywords) {
-		metaKeywords = sanitySiteSettings.keywords.join(', ')
+	} else if (sanitySiteSettings?.keywords) {
+		metaKeywords = sanitySiteSettings?.keywords.join(', ')
 	}
 
 	const sanityFavicon = sanitySiteSettings?.favicon?.asset?.url
@@ -116,7 +128,7 @@ function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettin
 				},
 				{
 					property: 'og:title',
-					content: `${ title } | ${ siteTitle || site.siteMetadata.title }`,
+					content: `${ ogTitle || titleTemplate }`,
 				},
 				{
 					property: 'og:type',
@@ -124,15 +136,15 @@ function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettin
 				},
 				{
 					property: 'og:image',
-					content: `${ metaShareImage }`
+					content: `${ ogImage || metaShareImage }`
 				},
 				{
 					property: 'og:description',
-					content: metaDescription,
+					content: ogDescription || metaDescription,
 				},
 				{
 					name: 'twitter:image',
-					content: `${ metaShareImage }`
+					content: `${ twitterImage || metaShareImage }`
 				},
 				{
 					name: 'twitter:card',
@@ -144,11 +156,11 @@ function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettin
 				},
 				{
 					name: 'twitter:title',
-					content: `${ title } | ${ siteTitle || site.siteMetadata.title }`,
+					content: `${ twitterTitle || titleTemplate }`,
 				},
 				{
 					name: 'twitter:description',
-					content: metaDescription,
+					content: twitterDescription || metaDescription,
 				},
 				{
 					name: 'keywords',
@@ -156,7 +168,7 @@ function SEO ({ description, lang, meta, keywords, title, shareImage, siteSettin
 				}
 			]}
 			link={[
-				{ rel: 'icon', type: 'image/png', sizes: '32x32', href: sanityFavicon || metaFavicon },
+				{ rel: 'icon', type: 'image/png', sizes: '32x32', href: sanityFavicon },
 				{ rel: 'apple-touch-icon', type: 'image/png', sizes: '120x120', href: sanitytouchIcon || metaTouchIcon }
 			]}
 		/>

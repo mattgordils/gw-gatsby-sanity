@@ -91,7 +91,7 @@ const Footer = ({ title }) => {
 				>
 					<Copyright>
 						<FooterLogo />
-						<p className="sm" style={{ paddingLeft: '1em' }}>© <span className="mobile-hide">{title}</span> {new Date().getFullYear()}</p>
+						<p className="sm">© <span className="mobile-hide">{title}</span> {new Date().getFullYear()}</p>
 					</Copyright>
 					<SiteCredit><p className="sm"><Link to="https://gordilsandwillis.com/" target="_blank" external>Site Credit</Link></p></SiteCredit>
 				</Grid>

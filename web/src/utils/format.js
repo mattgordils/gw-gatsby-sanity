@@ -46,7 +46,7 @@ export const getSlugLink = (link, prefix) => {
 	} else if (currentLink === 'home') {
 		return '/'
 	} else if (currentLink) {
-		return currentLink
+		return '/' + currentLink
 	}
 	return '/'
 }

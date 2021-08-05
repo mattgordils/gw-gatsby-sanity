@@ -21,7 +21,8 @@ export default {
       type: 'image',
       inputComponent: ConditionalField,
       options: {
-        hide: ({ parents }) => parents[0].mediaType !== 'image'
+        hide: ({ parents }) => parents[0].mediaType !== 'image',
+        hotspot: true
       }
     },
     {

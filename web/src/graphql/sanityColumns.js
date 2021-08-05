@@ -5,11 +5,11 @@ export const query = graphql`
     _key
     _type
     theme
-    # alignment
+    alignment
     columns {
       icon {
         asset {
-          gatsbyImageData
+          gatsbyImageData(placeholder: NONE)
           url
           title
           altText

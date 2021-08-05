@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 	display: inline-block;
 	display: block;
 	vertical-align: top;
+	text-align: ${ ({ alignment }) => alignment };
 	${ ({ alignment }) => alignment === 'center' && `
 		margin-left: auto;
 		margin-right: auto;
@@ -26,7 +27,6 @@ const Wrapper = styled.div`
 	}
 `
 const TextContainer = styled(ScrollEntrance)`
-	text-align: ${ ({ alignment }) => alignment };
 	width: 100%;
 	${ ({ alignment }) => alignment === 'center' && `
 		margin-left: auto;
@@ -129,7 +129,7 @@ const TextLockup = ({
 					}
 
 					{actions && actions.length > 0 && (
-						<ButtonActions buttons={actions} alignment={alignment}>
+						<ButtonActions buttons={actions} alignment={alignment} className='actions'>
 							{actions.map((action, index) => {
 								if (action._type === 'button') {
 									let actionTheme = 'default'

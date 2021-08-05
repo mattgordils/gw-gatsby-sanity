@@ -293,8 +293,6 @@ const Header = ({
                           // let link = item?.link?.content?.main?.slug?.current
                           let link = getSlugLink(item?.link)
                           const externalLink = item.externalLink
-                          console.log(link)
-                          console.log(item)
                           if (!item.title) {
                             return false
                           }
@@ -306,7 +304,7 @@ const Header = ({
                                 scrolled={scrolled}
                                 hasAtf={pageHasAtf}
                                 to={externalLink ? externalLink : link}
-                                active={pathname === link}
+                                active={'/' + pathname === link}
                                 key={link}
                                 // hasDropdown={link.dropdownLinks}
                               >

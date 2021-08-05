@@ -10,11 +10,23 @@ export const query = graphql`
       mediaType
       image {
         asset {
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH)
           url
           title
           altText
           originalFilename
+        }
+        hotspot {
+          width
+          height
+          x
+          y
+        }
+        crop {
+          top
+          bottom
+          left
+          right
         }
       }
       video {

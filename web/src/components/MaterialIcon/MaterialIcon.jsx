@@ -22,7 +22,7 @@ const Icon = styled.span`
 `
 
 const MaterialIcon = ({ children, size, className }) => (
-	<Icon size={size || undefined} className={className}>{children}</Icon>
+	<Icon size={size || undefined} className={'icon ' + className}>{children}</Icon>
 )
 
 MaterialIcon.defaultProps = {

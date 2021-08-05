@@ -131,8 +131,8 @@ const ButtonStyles = (state, shape, size, theme) => (`
 	${ state === 'disabled' ? `${ DisabledButtonStyles() }` : '' }
 
 	// Button Size Tweaks
-	${ size === 'small' ? 'font-size: inherit;' : '' }
-	${ size === 'tiny' ? 'font-size: inherit;' : '' }
+	${ size === 'small' ? `font-size: inherit; ${ typography.smallCaps }` : '' }
+	${ size === 'tiny' ? `font-size: inherit; ${ typography.smallCaps }` : '' }
 `)
 
 const ButtonContent = styled.div`
@@ -156,19 +156,37 @@ const StyledButtonElement = styled.button`
 	${ ({ loading, error, success, disabled, shape, size, theme }) => ButtonStyles(getState(loading, error, success, disabled), shape, size, theme) }
 `
 
-class Button extends Component {
-	renderIcon = (icon, position, shape, size) => {
+const Button = ({
+	to,
+	external,
+	target,
+	icon,
+	iconPosition,
+	loading,
+	error,
+	success,
+	disabled,
+	onClick,
+	setTheme,
+	className,
+	shape,
+	size,
+	title,
+	name,
+	children,
+	label
+}) => {
+	const renderIcon = (icon, position, shape, size) => {
 		let renderedIcon = false
 		if (typeof icon === 'string') {
-			renderedIcon = <ButtonIcon size={size} position={position} shape={shape}><MaterialIcon size={this.props.size === 'tiny' ? '18px' : '24px'}>{icon}</MaterialIcon></ButtonIcon>
+			renderedIcon = <ButtonIcon size={size} position={position} shape={shape}><MaterialIcon size={size === 'tiny' ? '18px' : '24px'}>{icon}</MaterialIcon></ButtonIcon>
 		} else {
 			renderedIcon = <ButtonIcon size={size} position={position} shape={shape}>{icon}</ButtonIcon>
 		}
 		return renderedIcon
 	}
 
-	renderButtonContent = () => {
-		const { loading, error, success, children, label, icon, iconPosition, shape, size } = this.props
+	const renderButtonContent = () => {
 		if (loading) {
 			return <ButtonContent>
 				<Spinner radius={18} color='inherit' stroke={2} />
@@ -183,80 +201,59 @@ class Button extends Component {
 			</ButtonContent>
 		} else {
 			return <ButtonContent>
-				{icon && iconPosition !== 'right' ? this.renderIcon(icon, iconPosition, shape, size) : false}
+				{icon && iconPosition !== 'right' ? renderIcon(icon, iconPosition, shape, size) : false}
 				{children || label}
-				{icon && iconPosition === 'right' ? this.renderIcon(icon, iconPosition, shape, size) : false}
+				{icon && iconPosition === 'right' ? renderIcon(icon, iconPosition, shape, size) : false}
 			</ButtonContent>
 		}
 	}
 
-	render () {
-		const {
-			to,
-			external,
-			target,
-			icon,
-			iconPosition,
-			loading,
-			error,
-			success,
-			disabled,
-			onClick,
-			setTheme,
-			className,
-			shape,
-			size,
-			title,
-			name
-		} = this.props
-
-		if (to) {
-			return (
-				<StyledButtonLink
-					className={className}
-					to={to}
-					target={target}
-					external={external}
-					icon={icon}
-					iconPosition={iconPosition}
-					loading={loading ? loading.toString() : 'false'}
-					error={error}
-					success={success}
-					disabled={disabled}
-					onClick={onClick}
-					theme={setTheme || 'default'}
-					shape={shape}
-					size={size}
-					title={title}
-					name={name || title}
-					aria-label={name || title}
-					rel={external ? 'noopener noreferrer' : ''}
-				>
-					{this.renderButtonContent()}
-				</StyledButtonLink>
-			)
-		} else {
-			return (
-				<StyledButtonElement
-					className={className}
-					icon={icon}
-					iconPosition={iconPosition}
-					loading={loading ? loading.toString() : 'false'}
-					error={error}
-					success={success}
-					disabled={disabled}
-					onClick={onClick}
-					theme={setTheme || 'default'}
-					shape={shape}
-					size={size}
-					title={title}
-					name={name || title}
-					aria-label={name || title}
-				>
-					{this.renderButtonContent()}
-				</StyledButtonElement>
-			)
-		}
+	if (to) {
+		return (
+			<StyledButtonLink
+				className={'button ' + className}
+				to={to}
+				target={target}
+				external={external}
+				icon={icon}
+				iconPosition={iconPosition}
+				loading={loading ? loading.toString() : 'false'}
+				error={error}
+				success={success}
+				disabled={disabled}
+				onClick={onClick}
+				theme={setTheme || 'default'}
+				shape={shape}
+				size={size}
+				title={title}
+				name={name || title}
+				aria-label={name || title}
+				rel={external ? 'noopener noreferrer' : ''}
+			>
+				{renderButtonContent()}
+			</StyledButtonLink>
+		)
+	} else {
+		return (
+			<StyledButtonElement
+				className={'button ' + className}
+				icon={icon}
+				iconPosition={iconPosition}
+				loading={loading ? loading.toString() : 'false'}
+				error={error}
+				success={success}
+				disabled={disabled}
+				onClick={onClick}
+				theme={setTheme || 'default'}
+				shape={shape}
+				size={size}
+				title={title}
+				name={name || title}
+				aria-label={name || title}
+			>
+				{renderButtonContent()}
+			</StyledButtonElement>
+		)
 	}
 }
 

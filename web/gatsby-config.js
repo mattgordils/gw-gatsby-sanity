@@ -55,7 +55,9 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "src/assets/images/favicon.png",
+        legacy: false,
+        include_favicon: false
       },
     },
     "gatsby-plugin-sharp",

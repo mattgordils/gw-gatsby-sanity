@@ -7,6 +7,7 @@ import ThemeSelector from 'src/components/ThemeSelector'
 import ScrollEntrance from 'src/components/ScrollEntrance'
 import { colors, typography, util } from 'src/styles'
 import { Transition } from 'react-transition-group'
+import { getSlugLink } from 'src/utils/format'
 
 const timeout = 300
 const timingFunction = 'cubic-bezier(0.44, 0.24, 0.16, 1.00)'
@@ -119,30 +120,31 @@ const MobileMenu = ({
           <MainSection>
             <Grid small="1 [12] 1">
               <ScrollEntrance>
-                {navLinks.map((link, index) => (
-                  <div>
-                    <MobileNavLink to={'/' + link.to.slug}>
-                    	<span onClick={() => pathname === link.to.slug ? toggleMobileMenu(false) : false}>{link.label}</span>
-                    </MobileNavLink>
-                    {link.dropdownLinks && (
-                      <SubLinks>
-                        {link.dropdownLinks.map((dropdownLink, index) => (
-                          <li>
-                            <Link to={'/' + dropdownLink.to.slug}>{dropdownLink.label}</Link>
-                          </li>
-                        ))}
-                      </SubLinks>
-                    )}
-                  </div>
-                ))}
+                {navLinks.map((item, index) => {
+                	let link = getSlugLink(item?.link)
+                  const externalLink = item.externalLink
+                	return (
+	                  <div>
+	                    <MobileNavLink
+	                    	external={externalLink}
+                        to={externalLink ? externalLink : link}
+                        active={'/' + pathname === link}
+                        key={link}
+                        type={item._type}
+	                    >
+	                    	<span onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>{item.title}</span>
+	                    </MobileNavLink>
+	                  </div>
+	                )
+                })}
               </ScrollEntrance>
             </Grid>
           </MainSection>
-          <BottomSection>
+          {/*<BottomSection>
             <Grid small="1 [12] 1" rowGap="3vw">
 							<div>Bottom Links</div>
             </Grid>
-          </BottomSection>
+          </BottomSection>*/}
         </Wrapper>
       )}
     </Transition>

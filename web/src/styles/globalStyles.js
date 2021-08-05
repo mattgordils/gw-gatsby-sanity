@@ -46,7 +46,7 @@ const globalStyles = `
   }
 
   b, strong {
-    font-weight: 600;
+    font-weight: ${ typography.bold };
   }
 
   em, i {
@@ -60,7 +60,7 @@ const globalStyles = `
 
   h1, h2, h3, h4, h5, h6, blockquote {
     b, strong {
-      font-weight: 600;
+      font-weight: ${ typography.bold };
     }
   }
 

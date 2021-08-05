@@ -12,7 +12,7 @@ export const query = graphql`
       mediaType
       image {
         asset {
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
           url
           title
           altText

@@ -4,7 +4,7 @@ import themes from 'src/styles/themes'
 import { rgba } from 'polished'
 
 const ThemeWrapper = styled.div`
-	${ ({ 'data-theme': setTheme }) => (setTheme && setTheme !== 'bgColor') && `
+	${ ({ 'data-theme': setTheme }) => (setTheme && setTheme !== 'bgColor' && themes[setTheme]) && `
 		background-color: ${ themes[setTheme].background };
 		color: ${ themes[setTheme].color };
 		*::selection {

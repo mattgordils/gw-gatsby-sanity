@@ -1,4 +1,8 @@
 import Tabs from 'sanity-plugin-tabs'
+import React from 'react'
+
+import { MdInsertDriveFile } from 'react-icons/md'
+import SectionIcon from "../../components/SectionIcon"
 
 export default {
   name: 'page',
@@ -18,6 +22,11 @@ export default {
       title: 'content.main.title',
       subtitle: 'heroText',
       media: 'mainImage'
+    },
+    prepare (selection) {
+      return Object.assign({}, selection, {
+        media: <SectionIcon><MdInsertDriveFile/></SectionIcon>
+      })
     }
   }
 }

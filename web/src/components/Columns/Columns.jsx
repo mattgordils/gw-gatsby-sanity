@@ -118,7 +118,7 @@ const Columns = ({
   desktopColumnCount,
   tabletColumnCount,
   mobileColumnCount,
-  imageSize,
+  imageSize = 'small',
   paragraphSize
 }) => {
   return (
@@ -153,7 +153,7 @@ const Columns = ({
                 key={column.id + '-' + index + '-' + id}
               >
                 {column.icon && (
-                  <MediaScrollEntrance delay={index} imageSize={imageSize || 'large'}>
+                  <MediaScrollEntrance delay={index} imageSize={imageSize || 'small'}>
                     <GatsbyImage image={column?.icon?.asset?.gatsbyImageData} alt={column?.icon?.altText || column?.text?.eyebrow || column?.icon?.originalFilename} sizes={sizes} format={['auto', 'avif', 'webp']}/>
                   </MediaScrollEntrance>
                 )}
