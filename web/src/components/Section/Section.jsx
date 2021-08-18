@@ -8,18 +8,24 @@ const SectionWrapper = styled(ThemeSelector)`
 	width: 100%;
 	z-index: ${ ({ zIndex }) => zIndex };
 	${ ({ padded, prevTheme, nextTheme, setTheme, isFirstSection }) => padded !== false && `
-		${ !isFirstSection ? `
-			${ setTheme === prevTheme ? `
+		${ !isFirstSection
+? `
+			${ setTheme === prevTheme
+? `
 				${ globals.verticalSpacing('padding-top', 0.5) }
-			` : `
+			`
+: `
 				${ globals.verticalSpacing('padding-top') }
 			` }
-		` : `
-			${ headerHeight('padding-top') }
+		`
+: `
+			${ headerHeight('padding-top', 1.5) }
 		` }
-		${ setTheme === nextTheme ? `
+		${ setTheme === nextTheme
+? `
 			${ globals.verticalSpacing('padding-bottom', 0.5) }
-		` : `
+		`
+: `
 			${ globals.verticalSpacing('padding-bottom') }
 		` }
 	` }

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Serializer = {
   types: {
-    block(props) {
+    block (props) {
       switch (props.node.style) {
         case 'h1':
           return <h1 className="">{props.children}</h1>
@@ -24,7 +24,7 @@ export const Serializer = {
 
         case 'blockquote':
           return <blockquote className="">{props.children}</blockquote>
-        
+
         case 'bodyLarge':
           if (props.listItem) return <strong>{props.children}</strong>
           else return <p className='large'>{props.children}</p>
@@ -42,26 +42,26 @@ export const Serializer = {
     }
   },
   marks: {
-    tick: (props) => (
+    tick: props => (
       <span className='tick'>{props.children}</span>
     ),
-    italic: (props) => (
+    italic: props => (
       <em>{props.children}</em>
     ),
-    strong: (props) => (
+    strong: props => (
       <span>{props.children}</span>
     ),
-    code: (props) => (
+    code: props => (
       <pre>{props.children}</pre>
     )
   },
-  list: (props) => {
-    const { type } = props;
-    const bullet = type === 'bullet';
+  list: props => {
+    const { type } = props
+    const bullet = type === 'bullet'
     if (bullet) {
-      return <ul>{props.children}</ul>;
+      return <ul>{props.children}</ul>
     }
-    return <ol>{props.children}</ol>;
+    return <ol>{props.children}</ol>
   },
-  listItem: (props) => <li>{props.children}</li>
+  listItem: props => <li>{props.children}</li>
 }

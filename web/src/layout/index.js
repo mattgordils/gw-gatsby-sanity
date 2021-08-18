@@ -36,7 +36,7 @@ const Layout = ({ children, location }) => (
 							</ScrollListener>
 						</AppProvider>
 					</IntersectionObserverPolyfill>
-				</>	
+				</>
 			)}
 		/>
 	</>

@@ -106,9 +106,11 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
   text-align: left;
   box-shadow: none;
   padding: 0 ${ inputVars[size] * 0.3 + 'px' } 0;
-  ${ icon ? `
+  ${ icon
+? `
   	${ util.responsiveStyles(('padding-' + iconPosition), inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
-	` : `` }
+	`
+: '' }
   padding-bottom: 1px;
   ${ util.fontSmoothing }
   transition: background ${ animations.mediumSpeed } ease-in-out,
@@ -123,8 +125,8 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
 	}
 	${ state === 'disabled' ? 'cursor: not-allowed;' : '' }
 	${ state === 'loading' ? 'cursor: wait;' : '' }
-	${ state === 'error' ? `border-color: ${ colors.alert };` : `` }
-	${ label ? `${ util.responsiveStyles('padding-top', 18, 16, 16, 14) }` : `` }
+	${ state === 'error' ? `border-color: ${ colors.alert };` : '' }
+	${ label ? `${ util.responsiveStyles('padding-top', 18, 16, 16, 14) }` : '' }
 `)
 
 const StyledInput = styled.input`

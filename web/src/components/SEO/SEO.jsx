@@ -16,7 +16,7 @@ function SEO ({
 		twitterImage,
 		twitterTitle
 	}) {
-	const { site, favicon, appleTouchIcon, socialShareImage, allSanitySiteGlobal, allSanitySiteSettings } = useStaticQuery(
+	const { site, appleTouchIcon, socialShareImage, allSanitySiteSettings } = useStaticQuery(
 		graphql`
 			query {
 				site {
@@ -80,15 +80,11 @@ function SEO ({
 		`
 	)
 
-	// const sanitySiteGlobals = allSanitySiteGlobal?.edges[0]?.node
 	const sanitySiteSettings = allSanitySiteSettings?.edges[0]?.node
-
-	console.log(sanitySiteSettings)
 
 	const metaDescription = description || sanitySiteSettings?.description
 	const host = process.env.GATSBY_SITE_URL
 
-	const metaFavicon = host + favicon.publicURL
 	const metaTouchIcon = host + appleTouchIcon.publicURL
 
 	let metaShareImage = host + socialShareImage.publicURL
@@ -98,7 +94,6 @@ function SEO ({
 
 	let metaKeywords = []
 	if (keywords && keywords.length > 0) {
-		console.log(keywords)
 		metaKeywords = keywords.join(', ')
 	} else if (sanitySiteSettings?.keywords) {
 		metaKeywords = sanitySiteSettings?.keywords.join(', ')

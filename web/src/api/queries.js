@@ -96,6 +96,5 @@
 //   ${productQuery}
 // }`
 
-
-// module.exports.pageQuery = pageQuery 
+// module.exports.pageQuery = pageQuery
 // module.exports.productQuery = productQuery

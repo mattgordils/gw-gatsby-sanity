@@ -10,8 +10,8 @@ const Page = ({ data }) => {
   const page = data?.sanityPage?.content?.main
   const menus = data?.allSanityMenus?.edges
   const pageMeta = data?.sanityPage?.content?.meta
-  const path = page?.slug?.current;
-  const modules = page?.modules;
+  const path = page?.slug?.current
+  const modules = page?.modules
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
   const siteTitle = data?.allSanitySiteSettings?.edges[0]?.node?.title
 
@@ -63,11 +63,11 @@ const Page = ({ data }) => {
           />
         )
       })}
-      {/*RenderModules(modules)*/}
+      {/* RenderModules(modules) */}
       <Footer title={siteTitle}/>
     </>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
   query ($id: String!) {
@@ -142,6 +142,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default Page;
+export default Page

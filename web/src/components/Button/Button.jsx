@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import * as util from 'src/styles/util'
@@ -35,29 +35,39 @@ const getState = (loading, error, success, disabled) => {
 const setButtonTheme = (theme, state) => `
 	color: ${ themes[theme].color };
 	background: ${ themes[theme].background };
-	${ theme.shadow ? `
+	${ theme.shadow
+? `
 		box-shadow: ${ theme.shadow };
-	` : `
+	`
+: `
 		box-shadow: none;
 	` }
-	${ themes[theme].borderColor ? `
+	${ themes[theme].borderColor
+? `
 		border-color: ${ themes[theme].borderColor };
-	` : `
+	`
+: `
 		border-color: ${ themes[theme].background };
 	` }
 	&:hover {
-		${ !state ? `
+		${ !state
+? `
 			color: ${ themes[theme].hoverColor };
 			background: ${ themes[theme].hoverBackground };
-			${ themes[theme].borderHoverColor ? `
+			${ themes[theme].borderHoverColor
+? `
 				border-color: ${ themes[theme].borderHoverColor };
-			` : `
+			`
+: `
 				border-color: ${ themes[theme].hoverBackground };
 			` }
-			${ theme.hoverShadow ? `
+			${ theme.hoverShadow
+? `
 				box-shadow: ${ theme.hoverShadow };
-			` : '' }
-		` : '' }
+			`
+: '' }
+		`
+: '' }
 	}
 `
 
@@ -71,9 +81,11 @@ const DisabledButtonStyles = () => `
 `
 
 const ButtonIcon = styled.div`
-	${ ({ position }) => position === 'left' ? `
+	${ ({ position }) => position === 'left'
+? `
 		margin-right: .5em;
-	` : `
+	`
+: `
 		margin-left: .5em;
 	` }
 	span,
@@ -113,17 +125,21 @@ const ButtonStyles = (state, shape, size, theme) => (`
 	${ state === 'error' || state === 'success' ? 'cursor: default; pointer-events: none;' : '' }
 
 	// Button Shapes
-	${ shape ? `
-		${ shape.includes('circle') || shape.includes('square') ? `
+	${ shape
+? `
+		${ shape.includes('circle') || shape.includes('square')
+? `
 			padding: 0 !important;
 			${ util.responsiveStyles('width', uiElementSizes[size] * 1.3, uiElementSizes[size], uiElementSizes[size], uiElementSizes[size]) }
 			${ util.responsiveStyles('min-width', uiElementSizes[size] * 1.3, uiElementSizes[size], uiElementSizes[size], uiElementSizes[size]) }
 			${ ButtonIcon } {
 				margin: 0;
 			}
-		` : '' }
+		`
+: '' }
 		${ shape === 'block' ? 'display: block; width: 100%;' : '' }
-	` : '' }
+	`
+: '' }
 	${ shape && shape.includes('circle') ? 'border-radius: 50%;' : '' }
 
 	// Button Themes

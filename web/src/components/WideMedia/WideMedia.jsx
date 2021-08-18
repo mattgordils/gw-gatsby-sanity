@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import Section from 'src/components/Section'
-import { GatsbyImage } from 'gatsby-plugin-image'
 import Image from 'src/components/Image'
 import Video from 'src/components/Video'
 import Grid from 'src/components/Grid'
@@ -15,9 +14,11 @@ import { use100vh } from 'react-div-100vh'
 
 const Wrapper = styled(Section)`
   position: relative;
-  ${ ({ overlayTextColor }) => overlayTextColor === 'dark' ? `
+  ${ ({ overlayTextColor }) => overlayTextColor === 'dark'
+? `
     color: ${ colors.textColor };
-  ` : `
+  `
+: `
     color: ${ colors.bgColor };
   ` }
 `
@@ -37,21 +38,26 @@ const MediaItem = styled.div`
   z-index: 1;
   width: 100%;
   overflow: hidden;
-  ${ ({ isFirstSection }) => isFirstSection ? css`
+  ${ ({ isFirstSection }) => isFirstSection
+? css`
     opacity: 0;
     will-change: opacity;
     transform: translateZ(0);
     animation: ${ animations.fadeIn } ${ animations.mediumSpeed } .1s ease-in-out forwards;
-  ` : `` }
-  ${ ({ overlay, height }) => (overlay && height !== 'auto') ? `
+  `
+: '' }
+  ${ ({ overlay, height }) => (overlay && height !== 'auto')
+? `
     position: absolute !important;
     top: 0;
     left: 0;
     height: 100%;
-  ` : `
+  `
+: `
     position: relative;
   ` }
-  ${ ({ height }) => height !== 'auto' ? `
+  ${ ({ height }) => height !== 'auto'
+? `
     height: 100%;
     min-height: ${ height };
     > div, 
@@ -78,7 +84,8 @@ const MediaItem = styled.div`
       height: 100%;
       min-height: ${ height };
     }
-  ` : `
+  `
+: `
     height: 100%;
   ` }
 `
@@ -91,9 +98,11 @@ const OverlayContent = styled.div`
   z-index: 5;
   display: flex;
   flex-direction: column;
-  ${ ({ height }) => height === 'auto' ? `
+  ${ ({ height }) => height === 'auto'
+? `
     position: absolute;
-  ` : `
+  `
+: `
     position: relative;
   ` }
   ${ ({ height }) => height !== 'auto' && `
@@ -196,9 +205,7 @@ const WideMedia = ({
 
   const fullWidth = width === 'fullWidth'
 
-  const getMediaType = type => {
-    return type.includes('video') ? 'video' : 'image'
-  }
+  const contentType = media.mediaType || 'image'
 
   const fullHeight = !isFirstSection ? winHeight : false
   // const fullHeight = false
@@ -221,9 +228,9 @@ const WideMedia = ({
     // }
     // console.log(mediaItem)
     if (mediaItem) {
-      const contentType = mediaItem.mediaType || 'image'
       if (contentType === 'video') {
         const media = mediaItem.video.asset
+        if (!media) return false
         return <MediaItem
           overlay={hasOverlay}
           src={media.url}
@@ -238,6 +245,7 @@ const WideMedia = ({
         />
       } else {
         const media = mediaItem.image.asset
+        if (!media) return false
         return <MediaItem
           overlay={hasOverlay}
           image={media.gatsbyImageData}
@@ -266,11 +274,11 @@ const WideMedia = ({
       <WideMediaWrap height={heightValues[height]} overlayTextColor={overlayTextColor}>
         <Grid small={fullWidth ? '[1]' : 'container'} medium={fullWidth ? '[1]' : 'container'} large={fullWidth ? '[1]' : 'container'}>
           <ContentWrap>
-            {/*<ResponsiveComponent
+            {/* <ResponsiveComponent
               small={renderMedia(mediaSmall, 'small', hasOverlay, height === 'auto')}
               medium={renderMedia(mediaMedium, 'medium', hasOverlay, height === 'auto')}
               large={renderMedia(media, 'large', hasOverlay, height === 'auto')}
-            />*/}
+            /> */}
 
             {renderMedia(media, 'large', hasOverlay, height === 'auto')}
             {hasOverlay && (

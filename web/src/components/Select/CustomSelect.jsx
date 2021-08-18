@@ -82,14 +82,16 @@ const Option = styled.label`
 	}) => InputStyles(getState(loading, error, success, disabled), size, icon, iconPosition, theme, label) }
 	border-top: none;
 	position: relative;
-	${ ({ lastItem, size }) => !lastItem ? `
+	${ ({ lastItem, size }) => !lastItem
+? `
 		border-bottom: none;
 		border-radius: 0;
 		${ util.responsiveStyles('height', (uiElementSizes[size] - inputVars.borderWidth * 2) * 1.3, (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2)) }
 		.icon {
 			${ util.responsiveStyles('width', (uiElementSizes[size] - inputVars.borderWidth * 2) * 1.3, (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2)) }
 		}
-	` : `
+	`
+: `
 		${ util.responsiveStyles('height', (uiElementSizes[size] - inputVars.borderWidth) * 1.3, (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth)) }
 		.icon {
 			${ util.responsiveStyles('width', (uiElementSizes[size] - inputVars.borderWidth) * 1.3, (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth)) }
@@ -100,11 +102,13 @@ const Option = styled.label`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	${ ({ disabled }) => disabled ? `
+	${ ({ disabled }) => disabled
+? `
 		cursor: not-allowed;
 		border-color: ${ colors.textColor };
 		color: ${ colors.lightTextColor };
-	` : `
+	`
+: `
 		cursor: pointer;
 		&:hover {
 			background: ${ colors.lightGrey };

@@ -1,18 +1,18 @@
-const path = require("path");
-require("dotenv").config({
-  path: `../.env.${process.env.NODE_ENV || "development"}`,
-});
+const path = require('path')
+require('dotenv').config({
+  path: `../.env.${ process.env.NODE_ENV || 'development' }`,
+})
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   siteMetadata: {
-    title: "GW Gatsby Sanity Base",
+    title: 'GW Gatsby Sanity Base',
     siteUrl: process.env.GATSBY_SITE_URL,
   },
   plugins: [
     {
-      resolve: "gatsby-source-sanity",
+      resolve: 'gatsby-source-sanity',
       options: {
         projectId: process.env.GATSBY_SANITY_PROJECT_ID,
         dataset: process.env.GATSBY_SANITY_DATASET,
@@ -22,15 +22,15 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-layout",
+      resolve: 'gatsby-plugin-layout',
       options: {
-        component: require.resolve("./src/layout/index.js"),
+        component: require.resolve('./src/layout/index.js'),
       },
     },
-    "gatsby-plugin-emotion",
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-image",
-    "gatsby-plugin-env-variables",
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-image',
+    'gatsby-plugin-env-variables',
     {
       resolve: 'gatsby-plugin-breakpoints',
       options: {
@@ -45,23 +45,23 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: process.env.GATSBY_GA_TRACKING_ID,
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: "src/assets/images/favicon.png",
+        icon: 'src/assets/images/favicon.png',
         legacy: false,
         include_favicon: false
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -78,10 +78,10 @@ module.exports = {
       }
     },
     {
-      resolve: "gatsby-plugin-root-import",
+      resolve: 'gatsby-plugin-root-import',
       options: {
-        src: path.join(__dirname, "src"),
+        src: path.join(__dirname, 'src'),
       },
     },
   ],
-};
+}

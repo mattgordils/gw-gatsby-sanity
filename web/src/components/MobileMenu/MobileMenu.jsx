@@ -60,43 +60,6 @@ const MainSection = styled.div`
 	padding: 5vw 0 0;
 `
 
-const BottomSection = styled.div`
-	flex-grow: 0;
-	flex-shrink: 0;
-	padding: 4vw 0 6vw;
-	p a {
-		border-color: transparent;
-	}
-	b {
-		color: ${ colors.mainColor };
-	}
-`
-
-const SubLinks = styled.ul`
-	margin-bottom: 20px;
-	padding-left: 0;
-	list-style: none;
-	margin-top: 3px;
-	li {
-		a {
-			display: block;
-			${ typography.bodyMedium }
-			font-weight: 600;
-			padding: 1px 0;
-		}
-		&:first-of-type {
-			a {
-				padding-top: 0;
-			}
-		}
-		&:last-of-type {
-			a {
-				padding-bottom: 0;
-			}
-		}
-	}
-`
-
 const MobileMenu = ({
 	open,
 	toggleMobileMenu,
@@ -105,56 +68,51 @@ const MobileMenu = ({
 	footerColumn2,
 	pathname
 }) => {
-  return (
-    <Transition
-      in={open}
-      timeout={{
-        enter: 1,
-        exit: timeout
-      }}
-      unmountOnExit
-      mountOnEnter
-    >
-      {transitionStatus => (
-        <Wrapper transitionStatus={transitionStatus}>
-          <MainSection>
-            <Grid small="1 [12] 1">
-              <ScrollEntrance>
-                {navLinks.map((item, index) => {
-                	let link = getSlugLink(item?.link)
-                  const externalLink = item.externalLink
-                	return (
-	                  <div>
-	                    <MobileNavLink
-	                    	external={externalLink}
-                        to={externalLink ? externalLink : link}
-                        active={'/' + pathname === link}
-                        key={link}
-                        type={item._type}
-	                    >
-	                    	<span onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>{item.title}</span>
-	                    </MobileNavLink>
-	                  </div>
-	                )
-                })}
-              </ScrollEntrance>
-            </Grid>
-          </MainSection>
-          {/*<BottomSection>
-            <Grid small="1 [12] 1" rowGap="3vw">
-							<div>Bottom Links</div>
-            </Grid>
-          </BottomSection>*/}
-        </Wrapper>
-      )}
-    </Transition>
-  )
+	return (
+		<Transition
+			in={open}
+			timeout={{
+				enter: 1,
+				exit: timeout
+			}}
+			unmountOnExit
+			mountOnEnter
+		>
+			{transitionStatus => (
+				<Wrapper transitionStatus={transitionStatus}>
+					<MainSection>
+						<Grid small="1 [12] 1">
+							<ScrollEntrance>
+								{navLinks.map((item, index) => {
+									const link = getSlugLink(item?.link)
+									const externalLink = item.externalLink
+									return (
+										<div>
+											<MobileNavLink
+												external={externalLink}
+												to={externalLink || link}
+												active={'/' + pathname === link}
+												key={link}
+												type={item._type}
+											>
+												<span onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>{item.title}</span>
+											</MobileNavLink>
+										</div>
+									)
+								})}
+							</ScrollEntrance>
+						</Grid>
+					</MainSection>
+				</Wrapper>
+			)}
+		</Transition>
+	)
 }
 
 MobileMenu.propTypes = {
-  /** Is the menu open or closed? */
-  open: PropTypes.bool,
-  navLinks: PropTypes.array
+	/** Is the menu open or closed? */
+	open: PropTypes.bool,
+	navLinks: PropTypes.array
 }
 
 export default MobileMenu

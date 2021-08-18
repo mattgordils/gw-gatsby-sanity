@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Router } from '@reach/router'
 
 import AuthWrapper from 'src/components/auth/authWrapper'
@@ -37,7 +37,7 @@ const Account = ({
   )
 }
 
-function PublicRoute(props: { children: React.ReactNode; path: string }) {
+function PublicRoute (props: { children: React.ReactNode; path: string }) {
   return <div>{props.children}</div>
 }
 

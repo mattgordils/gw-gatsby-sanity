@@ -10,13 +10,13 @@ import ScrollEntrance from 'src/components/ScrollEntrance'
 import { mq, globals } from 'src/styles'
 
 const FFSection = styled(Section)`
-  ${mq.largeAndBelow} {
+  ${ mq.largeAndBelow } {
     ${ globals.verticalSpacing('padding-bottom') }
   }
 `
 
 const ColumnWrapper = styled.div`
-  ${({ fullWidth }) => fullWidth && `
+  ${ ({ fullWidth }) => fullWidth && `
     height: 100%;
     // get to work for video also
     > div,
@@ -27,13 +27,13 @@ const ColumnWrapper = styled.div`
       height: 100%;
     }
     .video-wrapper > div > div {
-      padding-bottom: ${9 / 16 * 100}%;
+      padding-bottom: ${ 9 / 16 * 100 }%;
     }
     .video-wrapper video {
       position: absolute;
       object-fit: cover;
     }
-  `}
+  ` }
   h1, h2, h3 {
     max-width: 20em;
   }
@@ -49,12 +49,12 @@ const ColumnWrapper = styled.div`
 `
 
 const TextWrapper = styled.div`
-  ${({ fullWidth }) => fullWidth && `
-    ${mq.largerAndUp} {
+  ${ ({ fullWidth }) => fullWidth && `
+    ${ mq.largerAndUp } {
       ${ globals.verticalSpacing('padding-top') }
       ${ globals.verticalSpacing('padding-bottom') }
     }
-  `}
+  ` }
 `
 
 const arrangeMedia = {
@@ -108,7 +108,7 @@ const FiftyFifty = ({
 
   // set responsive image sizes
   let sizes = '100vw'
-  let imageSize = mediaSizes.default[mediaWidth]
+  const imageSize = mediaSizes.default[mediaWidth]
   sizes = '(min-width: ' + mq.mediumBreakpoint + 'px) ' + imageSize + 'vw, 86vw'
 
   const fullWidth = width === 'fullWidth'

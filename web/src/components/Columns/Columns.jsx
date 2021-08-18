@@ -39,11 +39,13 @@ const ColumnText = styled(TextLockup)`
 const MediaScrollEntrance = styled(ScrollEntrance)`
   display: inline-block;
   vertical-align: top;
-  ${ ({ imageSize }) => imageSize ? `
+  ${ ({ imageSize }) => imageSize
+? `
     width: ${ imageSizes[imageSize].width };
     min-width: ${ imageSizes[imageSize].min };
     max-width: ${ imageSizes[imageSize].max };
-  ` : `
+  `
+: `
     width: 100%;
   ` }
 `
@@ -56,7 +58,8 @@ const ColumnWrapper = styled.div`
 `
 
 const ColumnsGrid = styled.div`
-  ${ ({ alignment, vAlign, smallCols, mediumCols, largeCols, colGap, rowGap }) => alignment === 'center' ? `
+  ${ ({ alignment, vAlign, smallCols, mediumCols, largeCols, colGap, rowGap }) => alignment === 'center'
+? `
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -94,7 +97,8 @@ const ColumnsGrid = styled.div`
         margin-bottom: ${ rowGap[2] };
       }
     }
-  ` : '' }
+  `
+: '' }
 `
 
 const gridSetup = {

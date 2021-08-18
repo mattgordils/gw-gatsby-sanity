@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "description": "GW Gatsby Sanity Base",
-  "author": "Matt Gordils",
+  "author": "Gordils & Willis",
+  "license": "UNLICENSED",
   "keywords": [
     "gatsby"
   ],
@@ -12,7 +13,11 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "lint": "eslint \"**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,jsx}\"",
+    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
@@ -51,6 +56,22 @@
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
-    "plop": "^2.7.4"
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-webpack-plugin": "^2.5.4",
+    "gatsby-plugin-eslint": "^4.0.0",
+    "plop": "^2.7.4",
+    "prettier-eslint-cli": "^5.0.1"
   }
 }

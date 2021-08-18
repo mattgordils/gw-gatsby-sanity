@@ -46,9 +46,11 @@ const TextContainer = styled(ScrollEntrance)`
 
 const Eyebrow = styled.p`
 	${ typography.eyebrow }
-	${ ({ hasText }) => hasText ? `
+	${ ({ hasText }) => hasText
+? `
 		margin: 0 0 0.5em;
-	` : `
+	`
+: `
 		margin: 0;
 	` }
 `
@@ -145,7 +147,6 @@ const TextLockup = ({
 												setTheme={actionTheme}
 												to={action.externalLink || getSlugLink(action.link)}
 												external={action.externalLink}
-												target={action.newTab ? '_blank' : ''}
 												title={action.title}
 												name={action.title}
 											>

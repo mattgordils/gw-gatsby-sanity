@@ -14,7 +14,7 @@ import { getSlugLink } from 'src/utils/format'
 import { colors, typography, animations, mq, util } from 'src/styles'
 
 const showHide = false // show and hide header on scroll
-export const headerHeight = (attr = 'height', additionalHeight = 0) => util.responsiveStyles(attr, (140 + additionalHeight), (130 + additionalHeight), (110 + additionalHeight), (75 + additionalHeight))
+export const headerHeight = (attr = 'height', multiplier = 1) => util.responsiveStyles(attr, (140 * multiplier), (130 * multiplier), (110 * multiplier), (75 * multiplier))
 const headerHeightCollapsed = () => util.responsiveStyles('height', 80, 70, 66, 60)
 
 const Dropdown = styled.ul`
@@ -101,24 +101,30 @@ const HeaderWrapper = styled.div`
               background ${ animations.mediumSpeed } ease-in-out,
               transform ${ animations.mediumSpeed } ease-in-out,
               box-shadow ${ animations.mediumSpeed } ease-in-out;
-  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled ? `
+  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled
+? `
     ${ headerHeightCollapsed() }
     background: ${ colors.white };
     color: ${ colors.textColor };
     box-shadow: 0 1px 0 ${ rgba(colors.textColor, 0.1) };
     ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen ? `
+      ${ mobileMenuOpen
+? `
         background: transparent;
         box-shadow: none;
         ${ headerHeight() }
-      ` : '' }
+      `
+: '' }
     }
-  ` : `
+  `
+: `
     ${ headerHeight() }
     background: transparent;
-    ${ hasAtf ? `
+    ${ hasAtf
+? `
       color: ${ colors.bgColor };
-    ` : `
+    `
+: `
       color: ${ colors.textColor };
     ` }
   ` }
@@ -133,18 +139,24 @@ const HeaderLogo = styled(Logo)`
   ${ util.responsiveStyles('width', 80, 50, 50, 40) }
   height: auto;
   transition: color ${ animations.mediumSpeed } ease-in-out, width ${ animations.mediumSpeed } ease-in-out;
-  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled ? `
+  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled
+? `
     color: ${ colors.mainColor };
     ${ util.responsiveStyles('width', 50, 40, 40, 30) }
     ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen ? `
+      ${ mobileMenuOpen
+? `
         ${ util.responsiveStyles('width', 80, 50, 50, 40) }
-      ` : '' }
+      `
+: '' }
     }
-  ` : `
-    ${ !hasAtf ? `
+  `
+: `
+    ${ !hasAtf
+? `
       color: ${ colors.mainColor };
-    ` : `
+    `
+: `
       color: ${ colors.bgColor };
     ` }
   ` }
@@ -291,7 +303,7 @@ const Header = ({
                         }
                         medium={navigation && navigation.map((item, index) => {
                           // let link = item?.link?.content?.main?.slug?.current
-                          let link = getSlugLink(item?.link)
+                          const link = getSlugLink(item?.link)
                           const externalLink = item.externalLink
                           if (!item.title) {
                             return false
@@ -303,14 +315,14 @@ const Header = ({
                                 external={externalLink}
                                 scrolled={scrolled}
                                 hasAtf={pageHasAtf}
-                                to={externalLink ? externalLink : link}
+                                to={externalLink || link}
                                 active={'/' + pathname === link}
                                 key={link}
                                 // hasDropdown={link.dropdownLinks}
                               >
                                 {item.title}
                               </NavLink>
-                              {/*link.dropdownLinks && (
+                              {/* link.dropdownLinks && (
                                 <Dropdown>
                                   {link.dropdownLinks.map((dropdownLink, index) => (
                                     <li key={dropdownLink.id}>
@@ -318,7 +330,7 @@ const Header = ({
                                     </li>
                                   ))}
                                 </Dropdown>
-                              )*/}
+                              ) */}
                             </li>
                           )
                         })}

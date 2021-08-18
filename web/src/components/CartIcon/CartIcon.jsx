@@ -32,7 +32,7 @@ const CartCount = styled.span`
 	font-size: 12px;
 	font-weight: ${ typography.medium };
 	letter-spacing: 0;
-	${ ({ count }) => count > 9 ? `` : `` }
+	${ ({ count }) => count > 9 ? '' : '' }
 	line-height: 10px;
 `
 

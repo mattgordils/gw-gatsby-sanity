@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import BlockContent from "@sanity/block-content-to-react"
-import { Serializer } from "src/utils/serializer"
+import BlockContent from '@sanity/block-content-to-react'
+import { Serializer } from 'src/utils/serializer'
 
 const StyledBlockContent = styled(BlockContent)`
 	white-space: pre-wrap;
@@ -36,8 +36,7 @@ const StyledBlockContent = styled(BlockContent)`
 	}
 `
 
-const SanityRichText = ({text, className}) => {
-	console.log(text)
+const SanityRichText = ({ text, className }) => {
 	return (
 		<div className={className}>
 			<StyledBlockContent blocks={text?._rawText || text?.text || text} serializers={Serializer} />

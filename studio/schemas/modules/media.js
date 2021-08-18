@@ -29,10 +29,11 @@ export default {
       name: 'video',
       title: 'Video',
       type: 'file',
-      accept: 'video/mp4',
+      description: 'Only .mp4 files are supported',
       inputComponent: ConditionalField,
       options: {
-        hide: ({ parents }) => parents[0].mediaType !== 'video'
+        hide: ({ parents }) => parents[0].mediaType !== 'video',
+        accept: 'video/mp4',
       }
     }
   ]

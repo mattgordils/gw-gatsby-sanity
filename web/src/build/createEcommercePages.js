@@ -51,7 +51,7 @@
 
 //   try {
 
-//     // Collections 
+//     // Collections
 //     collections && collections.forEach(collection => {
 //       actions.createPage({
 //         path: `/collections/${collection.slug}`,
