@@ -7,7 +7,7 @@ export default {
   name: 'siteGlobal',
   _id: 'siteGlobal',
   title: 'Global',
-  type: 'document',
+  type: 'object',
   description: 'Handles general global settings',
   fields: [
     {

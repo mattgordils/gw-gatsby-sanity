@@ -15,7 +15,7 @@ import page from './types/page'
 import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
-import doc from './types/doc'
+
 // Ecommerce Types
 // import product from './types/ecommerce/product'
 // import variant from './types/ecommerce/variant'
@@ -73,9 +73,8 @@ export default createSchema({
     siteSettings,
     siteGlobal,
     page,
-    post,
-    doc,
     menus,
+    // post,
     // collection,
     // product,
     // variant,

@@ -25,7 +25,7 @@ export default {
     },
     prepare (selection) {
       return Object.assign({}, selection, {
-        media: <SectionIcon><MdInsertDriveFile/></SectionIcon>
+        media: <MdInsertDriveFile size='24px'/>
       })
     }
   }

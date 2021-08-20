@@ -55,7 +55,7 @@ export default {
       return Object.assign({}, selection, {
         title: 'Columns Section',
         subtitle: columns && columns.length + ' columns',
-        media: <SectionIcon><MdViewWeek/></SectionIcon>
+        media: <SectionIcon><MdViewWeek size='24px'/></SectionIcon>
       })
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { FiAlignCenter, FiAlignLeft } from "react-icons/fi";
-import SectionIcon from "../../components/SectionIcon";
+import { FiAlignCenter, FiAlignLeft } from "react-icons/fi"
+import SectionIcon from "../../components/SectionIcon"
 
 export default {
   title: "Text Section",
@@ -33,17 +33,25 @@ export default {
       title: "Theme",
       type: "theme",
     },
+    {
+      name: "hidden",
+      title: "Hidden",
+      initialValue: "false",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {
       subtitle: "text.eyebrow",
       alignment: "alignment",
+      hidden: "hidden"
     },
     prepare(selection) {
-      const { alignment } = selection;
+      const { alignment, subtitle, hidden } = selection;
       return Object.assign({}, selection, {
         title: "Text Section",
-        media: alignment === "left" ? <SectionIcon><FiAlignLeft/></SectionIcon> : <SectionIcon><FiAlignCenter/></SectionIcon>,
+        subtitle: hidden ? 'Hidden' : subtitle,
+        media: alignment === "left" ? <SectionIcon hidden={hidden}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
       });
     },
   },

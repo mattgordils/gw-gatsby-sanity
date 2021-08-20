@@ -1,8 +1,12 @@
 import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
 import Emoji from 'a11y-react-emoji'
+import { MdList, MdSettings } from 'react-icons/md'
+import SectionIcon from '../components/SectionIcon'
 
 const ConfigIcon = () => <Emoji style={{ fontSize: '2rem' }} symbol='⚙️' />
+const MenusIcon = () => <MdList size='24px'/>
+const SettingsIcon = () => <MdSettings size='24px'/>
 
 export const ConfigMenu = S.listItem()
   .title('Settings')
@@ -11,23 +15,14 @@ export const ConfigMenu = S.listItem()
     S.list()
       .title('Settings')
       .items([
-        // S.listItem()
-        //   .title('Site Settings')
-        //   .id('siteSettings')
-        //   .child(
-        //     S.documentTypeList('siteSettings')
-        //       .title('Site Settings')
-        //       .filter('_type == $type')
-        //       .params({ type: 'siteSettings' })
-        //   ),
         S.documentListItem('siteSettings')
           .title('Site Settings')
+          .icon(SettingsIcon)
           .id('siteSettings')
           .schemaType('siteSettings'),
-          // .filter('_type == $type')
-          // .params({ type: 'siteSettings' }),
         S.listItem()
           .title('Menus')
+          .icon(MenusIcon)
           .child(
             S.documentTypeList('menus')
               .title('Menus')

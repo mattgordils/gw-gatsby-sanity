@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { MdArtTrack, MdSlideshow } from 'react-icons/md'
-import SectionIcon from "../../components/SectionIcon";
+import SectionIcon from "../../components/SectionIcon"
 
 export default {
   title: 'Fifty Fifty',
@@ -67,19 +67,26 @@ export default {
       options: {
         list: ['center', 'top', 'bottom']
       },
-    }
+    },
+    {
+      name: "hidden",
+      title: "Hidden",
+      initialValue: "false",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {
       subtitle: 'text.eyebrow',
-      media: 'media'
+      media: 'media',
+      hidden: 'hidden'
     },
     prepare (selection) {
-      const { title, subtitle, media } = selection
+      const { title, subtitle, media, hidden } = selection
       return Object.assign({}, selection, {
         title: 'Fifty Fifty',
-        subtitle: subtitle,
-        media: media.mediaType === 'video' ? <SectionIcon><MdSlideshow/></SectionIcon> : media.image
+        subtitle: hidden ? 'Hidden' : subtitle,
+        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdSlideshow size='24px'/></SectionIcon> : media.image
       })
     }
   }

@@ -75,23 +75,31 @@ export default {
       options: {
         list: [
           {title: 'Full Width', value: 'fullWidth'},
-          {title: 'Margins', value: 'Margins'}
+          {title: 'Margins', value: 'margins'}
         ],
         layout: 'dropdown',
       }
-    }
+    },
+    {
+      name: "hidden",
+      title: "Hidden",
+      initialValue: "false",
+      type: "boolean",
+    },
   ],
   preview: {
     select: {
       subtitle: 'width',
-      media: 'media'
+      media: 'media',
+      hidden: 'hidden'
     },
     prepare (selection) {
-      const { title, subtitle, media } = selection
+      const { title, subtitle, media, hidden } = selection
+      console.log(subtitle)
       return Object.assign({}, selection, {
         title: 'Wide Media',
-        subtitle: subtitle,
-        media: media.mediaType === 'video' ? <SectionIcon><MdSlideshow/></SectionIcon> : media.image
+        subtitle: hidden ? 'Hidden' : subtitle,
+        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdSlideshow size='24px'/></SectionIcon> : media.image
       })
     }
   }

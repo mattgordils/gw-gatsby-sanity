@@ -11,7 +11,9 @@ const Page = ({ data }) => {
   const menus = data?.allSanityMenus?.edges
   const pageMeta = data?.sanityPage?.content?.meta
   const path = page?.slug?.current
-  const modules = page?.modules
+  let modules = page?.modules
+    // Filter out hidden modules
+    modules = modules.filter(module => !module.hidden)
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
   const siteTitle = data?.allSanitySiteSettings?.edges[0]?.node?.title
 
