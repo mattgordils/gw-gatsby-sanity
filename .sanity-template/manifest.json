@@ -20,19 +20,6 @@
     }
   ],
   "deployment": {
-    "provider": "vercel",
-    "studio": {
-      "basePath": "/"
-    },
-    "envVars": {
-      "dataset": ["SANITY_PROJECT_DATASET"],
-      "projectId": ["SANITY_PROJECT_ID"]
-    },
-    "corsOrigins": [
-      {
-        "origin": "http://localhost:8000",
-        "allowCredentials": true
-      }
-    ]
+    "provider": "netlify"
   }
 }
