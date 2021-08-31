@@ -15,8 +15,26 @@
     }
   ],
   "deployment": {
-    "provider": "vercel",
+    "provider": "netlify",
     "sites": [
+      {
+        "id": "studio",
+        "type": "studio",
+        "title": "GW Gatsby Sanity Base Studio",
+        "description": "GW Gatsby Sanity Base Studio",
+        "dir": "./studio",
+        "previewMedia": {
+          "type": "image",
+          "src": "assets/frontend.jpg",
+          "alt": "Preview Image"
+        },
+        "buildSettings": {
+          "base": "/",
+          "dir": "/studio/dist",
+          "cmd": "yarn build-studio"
+        },
+        "requirements": ["build-hook"]
+      },
       {
         "id": "web",
         "type": "web",
@@ -50,13 +68,6 @@
         ]
       }
     ],
-    "studio": {
-      "basePath": "/studio"
-    },
-    "envVars": {
-      "dataset": ["SANITY_PROJECT_DATASET"],
-      "projectId": ["SANITY_PROJECT_ID"]
-    },
     "corsOrigins": [
       {
         "origin": "http://localhost:8000",
