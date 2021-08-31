@@ -9,11 +9,6 @@
   },
   "technologies": [
     {
-      "id": "vercel",
-      "name": "Vercel",
-      "url": "https://vercel.com/"
-    },
-    {
       "id": "gatsbyjs",
       "name": "Gatsby",
       "url": "https://gatsbyjs.com"
