@@ -3,5 +3,5 @@
 /node_modules
 wrangler.toml
 workers-site
-# .env.development
-# .env.production
+.env.development
+.env.production
