@@ -28,6 +28,9 @@ import media from './modules/media'
 import actions from './modules/actions'
 import link from './modules/link'
 import button from './modules/button'
+import youTubeEmbed from './modules/youTubeEmbed'
+import embed from './modules/embed'
+import video from './modules/video'
 
 // Modules
 import textSection from './modules/textSection'
@@ -84,6 +87,9 @@ export default createSchema({
     actions,
     link,
     button,
+    youTubeEmbed,
+    embed,
+    video,
     media,
     // Modules
     textSection,

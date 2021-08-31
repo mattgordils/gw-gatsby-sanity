@@ -60,7 +60,12 @@ module.exports = {
         include_favicon: false
       },
     },
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaultQuality: 80
+      }
+    },
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',

@@ -8,6 +8,12 @@ const StyledBlockContent = styled(BlockContent)`
 	* {
 		white-space: pre-wrap;
 	}
+	.embeded-content {
+		display: inline-block;
+		vertical-align: top;
+		margin: 20px 0;
+		max-width: 800px;
+	}
 	h1, h2 {
 		margin-top: 1.5em;
 	}
@@ -39,7 +45,7 @@ const StyledBlockContent = styled(BlockContent)`
 const SanityRichText = ({ text, className }) => {
 	return (
 		<div className={className}>
-			<StyledBlockContent blocks={text?._rawText || text?.text || text} serializers={Serializer} />
+			<StyledBlockContent blocks={text?._rawText || text?.text || text } serializers={Serializer} />
 		</div>
 	)
 }

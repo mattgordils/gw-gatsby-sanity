@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import ReactPlayer from 'react-player/file'
+import ReactPlayer from 'react-player/youtube'
 
 const Wrapper = styled.div`
 	video {
@@ -78,8 +78,7 @@ const StyledVideo = styled(ReactPlayer)`
 	` }
 `
 
-const Video = ({
-  video,
+const YoutubeVideo = ({
 	loop,
 	cover,
 	muted,
@@ -88,16 +87,16 @@ const Video = ({
 	playing,
 	src
 }) => {
-	if (!src && !video && !video.file && !video.file.url) {
+	if (!src) {
 		return false
 	}
 
 	return (
-		<Wrapper className={'video-wrapper ' + className} cover={cover}>
+		<Wrapper className={'youtube-video-wrapper ' + className} cover={cover}>
 			<VideoWrapper cover={cover}>
 				<StyledVideo
 					cover={cover}
-					url={src || video.file.url}
+					url={src}
 					playing={playing}
 					loop={loop}
 					muted={muted}
@@ -108,14 +107,14 @@ const Video = ({
 	)
 }
 
-Video.defaultProps = {
+YoutubeVideo.defaultProps = {
 	playing: true,
 	loop: true,
 	muted: true,
 	autoplay: true
 }
 
-Video.propTypes = {
+YoutubeVideo.propTypes = {
 	/** URL of mp4 video asset */
 	src: PropTypes.string,
 	loop: PropTypes.bool,
@@ -125,4 +124,4 @@ Video.propTypes = {
 	playing: PropTypes.bool,
 }
 
-export default Video
+export default YoutubeVideo

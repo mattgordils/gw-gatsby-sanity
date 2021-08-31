@@ -1,5 +1,3 @@
-import ConditionalField from 'sanity-plugin-conditional-field'
-
 export default {
   title: 'Media',
   name: 'media',
@@ -19,9 +17,8 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
-      inputComponent: ConditionalField,
+      hidden: ({ parent }) => parent.mediaType !== 'image',
       options: {
-        hide: ({ parents }) => parents[0].mediaType !== 'image',
         hotspot: true
       }
     },
@@ -30,9 +27,8 @@ export default {
       title: 'Video',
       type: 'file',
       description: 'Only .mp4 files are supported',
-      inputComponent: ConditionalField,
+      hidden: ({ parent }) => parent.mediaType !== 'video',
       options: {
-        hide: ({ parents }) => parents[0].mediaType !== 'video',
         accept: 'video/mp4',
       }
     }

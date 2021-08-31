@@ -24,13 +24,13 @@ const Layout = ({ children, location }) => (
 			`}
 			render={data => (
 				<>
+					<Global
+						styles={css`${ globalStyles }`}
+					/>
 					<IntersectionObserverPolyfill>
 						<AppProvider>
 			        <ScrollListener>
 								<PageTransition location={location || { pathName: '/' }}>
-									<Global
-										styles={css`${ globalStyles }`}
-									/>
 									{children}
 								</PageTransition>
 							</ScrollListener>

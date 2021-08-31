@@ -20,7 +20,7 @@ export default {
   preview: {
     select: {
       title: 'content.main.title',
-      subtitle: 'heroText',
+      subtitle: 'content.main.slug.current',
       media: 'mainImage'
     },
     prepare (selection) {

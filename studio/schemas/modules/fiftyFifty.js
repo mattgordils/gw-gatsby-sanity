@@ -71,7 +71,7 @@ export default {
     {
       name: "hidden",
       title: "Hidden",
-      initialValue: "false",
+      initialValue: false,
       type: "boolean",
     },
   ],

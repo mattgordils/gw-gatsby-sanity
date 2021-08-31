@@ -39,33 +39,6 @@ function SEO ({
 			      }
 			    }
 			  }
-				allSanitySiteGlobal {
-			    edges {
-			      node {
-			        content {
-			          meta {
-			            openImage {
-			              asset {
-			                url
-			              }
-			            }
-			            metaTitle
-			            metaDescription
-			            metaKeywords
-			            openGraphDescription
-			            openTitle
-			            twitterDescription
-			            twitterTitle
-			            twitterImage {
-			              asset {
-			                url
-			              }
-			            }
-			          }
-			        }
-			      }
-			    }
-			  }
 				favicon: file(relativePath:{eq: "images/favicon.png"}) {
 					publicURL
 				}

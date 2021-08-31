@@ -28,18 +28,7 @@ export const query = graphql`
     }
     text {
       eyebrow
-      text {
-        _type
-        _key
-        children {
-          _type
-          _key
-          text
-          marks
-        }
-        style
-        list
-      }
+      _rawText(resolveReferences: {maxDepth: 10})
     }
     actions {
       ...Button

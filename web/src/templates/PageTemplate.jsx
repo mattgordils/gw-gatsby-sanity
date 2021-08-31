@@ -25,7 +25,7 @@ const Page = ({ data }) => {
         pagePath={path}
         title={pageMeta?.metaTitle || page.title}
         description={pageMeta?.metaDescription}
-        keywords={pageMeta?.metaKeywords}
+        keywords={pageMeta?.keywords}
         ogTitle={pageMeta?.openTitle}
         ogImage={pageMeta?.openImage?.asset?.url}
         ogDescription={pageMeta?.openGraphDescription}
@@ -125,7 +125,7 @@ export const pageQuery = graphql`
         meta {
           metaTitle
           metaDescription
-          metaKeywords
+          keywords
           openGraphDescription
           openImage {
             asset {

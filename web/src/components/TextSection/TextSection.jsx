@@ -40,10 +40,10 @@ const TextSection = ({
   isFirstSection,
   id
 }) => {
-  // console.log(text)
   if (!text && !text.eyebrow && !actions) {
     return false
   }
+
   const align = {
     // same as in WideMedia.jsx
     left: {

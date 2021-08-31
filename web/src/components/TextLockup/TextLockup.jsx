@@ -102,7 +102,7 @@ const TextLockup = ({
 		listType
 	}) => {
 	eyebrow = eyebrow || text?.eyebrow
-	text = text?.text
+	text = text?._rawText || text?.text || text
 	return (
 		<Wrapper className={className} alignment={alignment}>
 			<div>

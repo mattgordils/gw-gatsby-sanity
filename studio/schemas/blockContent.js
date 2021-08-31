@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { MdLink } from 'react-icons/md'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -42,7 +42,10 @@ export default {
         { title: 'H4', value: 'h4' },
         { title: 'Quote', value: 'blockquote' }
       ],
-      lists: [{ title: 'Bullet', value: 'bullet' }],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' }
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -55,11 +58,19 @@ export default {
             name: 'link',
             type: 'object',
             blockEditor: {
-              icon: FaExternalLinkAlt
+              icon: MdLink
             },
             fields: [
               {
-                title: 'URL',
+                name: 'page',
+                title: 'Page Link',
+                type: 'reference',
+                to: [
+                  { type: 'page' }
+                ]
+              },
+              {
+                title: 'External Link (URL)',
                 name: 'href',
                 type: 'url',
                 validation: Rule =>
@@ -71,13 +82,41 @@ export default {
               {
                 title: 'Open in new tab',
                 name: 'blank',
-                description: 'Read https://css-tricks.com/use-target_blank/',
                 type: 'boolean'
               }
             ]
           }
         ]
       }
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true
+      }
+    },
+    // {
+    //   name: 'video',
+    //   title: 'Video',
+    //   type: 'file',
+    //   description: 'Only .mp4 files are supported',
+    //   options: {
+    //     accept: 'video/mp4',
+    //   }
+    // },
+    {
+      type: 'video',
+      title: 'Video'
+    },
+    {
+      type: 'youTube',
+      title: 'YouTube'
+    },
+    {
+      type: 'embed',
+      title: 'Embed'
     },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
