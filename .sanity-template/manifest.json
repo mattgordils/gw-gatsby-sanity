@@ -1,7 +1,7 @@
 {
   "version": 2,
   "title": "GW Gatsby Sanity Base",
-  "description": "Hot sites",
+  "description": "For hot sites",
   "previewMedia": {
     "type": "image",
     "src": ".sanity-template/assets/frontend.png",
@@ -9,65 +9,25 @@
   },
   "technologies": [
     {
-      "id": "gatsby",
+      "id": "vercel",
+      "name": "Vercel",
+      "url": "https://vercel.com/"
+    },
+    {
+      "id": "gatsbyjs",
       "name": "Gatsby",
-      "url": "https://www.gatsbyjs.org"
+      "url": "https://gatsbyjs.com"
     }
   ],
   "deployment": {
-    "provider": "netlify",
-    "sites": [
-      {
-        "id": "studio",
-        "type": "studio",
-        "title": "GW Gatsby Sanity Base Studio",
-        "description": "GW Gatsby Sanity Base Studio",
-        "dir": "./studio",
-        "previewMedia": {
-          "type": "image",
-          "src": "assets/frontend.jpg",
-          "alt": "Preview Image"
-        },
-        "buildSettings": {
-          "base": "/",
-          "dir": "/studio/dist",
-          "cmd": "yarn build-studio"
-        },
-        "requirements": ["build-hook"]
-      },
-      {
-        "id": "web",
-        "type": "web",
-        "title": "GW Gatsby Sanity Base",
-        "description": "Hot sites",
-        "previewMedia": {
-          "type": "image",
-          "src": "assets/frontend.jpg",
-          "alt": "Preview Image"
-        },
-        "buildSettings": {
-          "base": "/",
-          "dir": "/web/public",
-          "cmd": "npm run build-web"
-        },
-        "dir": "./web",
-        "requiredCorsOrigins": [
-          {
-            "origin": "http://localhost:8000",
-            "allowCredentials": false
-          }
-        ],
-        "requiredTokens": [
-          {
-            "role": "deploy-studio",
-            "label": "GraphQL API Deployer"
-          }
-        ],
-        "requirements": [
-          "build-hook"
-        ]
-      }
-    ],
+    "provider": "vercel",
+    "studio": {
+      "basePath": "/"
+    },
+    "envVars": {
+      "dataset": ["SANITY_PROJECT_DATASET"],
+      "projectId": ["SANITY_PROJECT_ID"]
+    },
     "corsOrigins": [
       {
         "origin": "http://localhost:8000",
