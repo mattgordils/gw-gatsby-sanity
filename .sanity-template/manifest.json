@@ -1,28 +1,57 @@
 {
   "version": 2,
-  "title": "Gatsby Barebones Starter",
-  "description": "Minimal and barebones example of a starter for deployment on Vercel with Gatsby",
+  "title": "GW Gatsby Sanity Base",
+  "description": "Hot sites",
   "previewMedia": {
     "type": "image",
     "src": ".sanity-template/assets/frontend.png",
-    "alt": "Gatsby frontend with Sanity data displaying"
+    "alt": "Preview Image"
   },
   "technologies": [
     {
-      "id": "vercel",
-      "name": "Vercel",
-      "url": "https://vercel.com/"
-    },
-    {
-      "id": "gatsbyjs",
+      "id": "gatsby",
       "name": "Gatsby",
-      "url": "https://gatsbyjs.com"
+      "url": "https://www.gatsbyjs.org"
     }
   ],
   "deployment": {
-    "provider": "vercel",
+    "provider": "gatsby",
+    "sites": [
+      {
+        "id": "web",
+        "type": "web",
+        "title": "GW Gatsby Sanity Base",
+        "description": "Hot sites",
+        "previewMedia": {
+          "type": "image",
+          "src": "assets/frontend.jpg",
+          "alt": "Preview Image"
+        },
+        "buildSettings": {
+          "base": "/",
+          "dir": "/web/public",
+          "cmd": "npm run build-web"
+        },
+        "dir": "./web",
+        "requiredCorsOrigins": [
+          {
+            "origin": "http://localhost:8000",
+            "allowCredentials": false
+          }
+        ],
+        "requiredTokens": [
+          {
+            "role": "deploy-studio",
+            "label": "GraphQL API Deployer"
+          }
+        ],
+        "requirements": [
+          "build-hook"
+        ]
+      }
+    ],
     "studio": {
-      "basePath": "/"
+      "basePath": "/studio"
     },
     "envVars": {
       "dataset": ["SANITY_PROJECT_DATASET"],
