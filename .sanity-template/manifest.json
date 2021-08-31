@@ -15,7 +15,7 @@
     }
   ],
   "deployment": {
-    "provider": "gatsby",
+    "provider": "vercel",
     "sites": [
       {
         "id": "web",
