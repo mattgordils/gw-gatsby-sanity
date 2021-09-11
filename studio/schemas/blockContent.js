@@ -1,5 +1,6 @@
 import React from 'react'
-import { MdLink } from 'react-icons/md'
+import { MdLink, MdPlayArrow, MdCode, MdImage } from 'react-icons/md'
+import { FaYoutube } from 'react-icons/fa'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -93,6 +94,7 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
+      icon: MdImage,
       options: {
         hotspot: true
       }
@@ -108,15 +110,18 @@ export default {
     // },
     {
       type: 'video',
-      title: 'Video'
+      title: 'Video',
+      icon: MdPlayArrow
     },
     {
       type: 'youTube',
-      title: 'YouTube'
+      title: 'YouTube',
+      icon: FaYoutube
     },
     {
       type: 'embed',
-      title: 'Embed'
+      title: 'Embed',
+      icon: MdCode
     },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array

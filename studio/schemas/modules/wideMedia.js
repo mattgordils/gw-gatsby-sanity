@@ -10,6 +10,12 @@ export default {
   hidden: true,
   fields: [
     {
+      name: 'internalName',
+      title: 'Internal Name',
+      type: 'string',
+      validation: Rule => Rule.required()
+    },
+    {
       name: 'media',
       title: 'Media',
       type: 'media',
@@ -89,6 +95,7 @@ export default {
   ],
   preview: {
     select: {
+      title: 'internalName',
       subtitle: 'width',
       media: 'media',
       hidden: 'hidden'
@@ -96,7 +103,6 @@ export default {
     prepare (selection) {
       const { title, subtitle, media, hidden } = selection
       return Object.assign({}, selection, {
-        title: 'Wide Media',
         subtitle: hidden ? 'Hidden' : subtitle,
         media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdSlideshow size='24px'/></SectionIcon> : media.image
       })

@@ -177,7 +177,7 @@ const StyledGrid = styled.div`
 
 class Grid extends Component {
 	render () {
-		let { small, medium, large, larger, extraLarge, colGap, rowGap, children, vAlign, gridDirection, className, as } = this.props
+		let { small, medium, large, larger, extraLarge, colGap, rowGap, children, vAlign, gridDirection, className, as, ...rest } = this.props
 
 		if (small === 'container') {
 			small = containerSmall
@@ -217,6 +217,7 @@ class Grid extends Component {
 				rowGap={rowGap}
 				vAlign={vAlignMap[vAlign]}
 				gridDirection={gridDirection}
+				{...rest}
 			>
 				{children}
 			</StyledGrid>

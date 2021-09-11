@@ -5,6 +5,7 @@ import SEO from 'src/components/SEO'
 import Header from 'src/components/Header'
 import Footer from 'src/components/Footer'
 import ComponentRenderer from 'src/components/ComponentRenderer'
+import { getBackupShareImage } from 'src/utils/getBackupShareImage'
 
 const Page = ({ data }) => {
   const page = data?.sanityPage?.content?.main
@@ -16,7 +17,6 @@ const Page = ({ data }) => {
     modules = modules.filter(module => !module.hidden)
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
   const siteTitle = data?.allSanitySiteSettings?.edges[0]?.node?.title
-
   const mainNavigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
   return (
@@ -27,10 +27,10 @@ const Page = ({ data }) => {
         description={pageMeta?.metaDescription}
         keywords={pageMeta?.keywords}
         ogTitle={pageMeta?.openTitle}
-        ogImage={pageMeta?.openImage?.asset?.url}
+        ogImage={pageMeta?.openImage?.asset?.url || getBackupShareImage(modules)}
         ogDescription={pageMeta?.openGraphDescription}
         twitterDescription={pageMeta?.twitterDescription}
-        twitterImage={pageMeta?.twitterImage?.asset?.url}
+        twitterImage={pageMeta?.twitterImage?.asset?.url || getBackupShareImage(modules)}
         twitterTitle={pageMeta?.twitterTitle}
       />
       <Header

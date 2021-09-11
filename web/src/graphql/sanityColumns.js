@@ -6,6 +6,14 @@ export const query = graphql`
     _type
     theme
     alignment
+    introText {
+      eyebrow
+      _rawText
+    }
+    actions {
+      ...Button
+      ...Link
+    }
     columns {
       icon {
         asset {

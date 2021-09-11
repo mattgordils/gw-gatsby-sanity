@@ -6,7 +6,7 @@ import Grid from 'src/components/Grid'
 import ScrollEntrance from 'src/components/ScrollEntrance'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import TextLockup from 'src/components/TextLockup'
-import { mq } from 'src/styles'
+import { mq, globals } from 'src/styles'
 
 const imageSizes = {
   large: {
@@ -28,6 +28,10 @@ const imageSizes = {
 
 const Wrapper = styled(Section)`
   text-align: ${ ({ alignment }) => alignment };
+`
+
+const IntroTextWrapper = styled(Grid)`
+  ${ globals.verticalSpacing('padding-bottom', 0.5) }
 `
 
 const ColumnText = styled(TextLockup)`
@@ -119,6 +123,8 @@ const Columns = ({
   alignment,
   verticalAlignment = 'top',
   id,
+  introText,
+  actions,
   desktopColumnCount,
   tabletColumnCount,
   mobileColumnCount,
@@ -133,7 +139,13 @@ const Columns = ({
       nextTheme={nextTheme}
       alignment={alignment === null ? 'left' : alignment}
     >
-      <Grid small="container" medium="container" large="container">
+      <Grid small="container" medium="container" large="container" larger="container">
+        <IntroTextWrapper small='[1]'>
+          <TextLockup
+            eyebrow={introText.eyebrow}
+            text={introText._rawText}
+          />
+        </IntroTextWrapper>
         <ColumnsGrid
           small={gridSetup[mobileColumnCount] || gridSetup[1]}
           medium={gridSetup[tabletColumnCount] || gridSetup[2]}
@@ -163,7 +175,8 @@ const Columns = ({
                 )}
                 <ColumnText
                   entranceDelay={column.media ? index + 1 : index}
-                  text={column.text}
+                  eyebrow={column.text.eyebrow}
+                  text={column.text._rawText}
                   textSize={paragraphSize}
                   theme={theme}
                   alignment={alignment}

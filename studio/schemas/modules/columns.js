@@ -9,6 +9,12 @@ export default {
   type: 'object',
   fields: [
     {
+      name: 'internalName',
+      title: 'Internal Name',
+      type: 'string',
+      validation: Rule => Rule.required()
+    },
+    {
       name: 'introText',
       title: 'Intro Text',
       type: 'textLockup'
@@ -47,13 +53,12 @@ export default {
   ],
   preview: {
     select: {
-      title: 'introText.eyebrow',
+      title: 'internalName',
       columns: 'columns'
     },
     prepare (selection) {
       const { columns } = selection
       return Object.assign({}, selection, {
-        title: 'Columns Section',
         subtitle: columns && columns.length + ' columns',
         media: <SectionIcon><MdViewWeek size='24px'/></SectionIcon>
       })

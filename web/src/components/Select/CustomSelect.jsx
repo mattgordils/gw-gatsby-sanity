@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { rgba } from 'polished'
 import MaterialIcon from 'src/components/MaterialIcon'
 import { isEmoji } from 'src/utils/validations'
-import { uiElementSizes } from 'src/styles/globals'
+import { uiElementSizes, responsiveUiSizes } from 'src/styles/globals'
 import { colors, util, mq, animations } from 'src/styles'
 import { InputWrap, InputStyles, InputIcon, getState, inputVars } from 'src/components/Input'
 import { Transition } from 'react-transition-group'
@@ -86,15 +86,39 @@ const Option = styled.label`
 ? `
 		border-bottom: none;
 		border-radius: 0;
-		${ util.responsiveStyles('height', (uiElementSizes[size] - inputVars.borderWidth * 2) * 1.3, (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2)) }
+		${ util.responsiveStyles(
+				'height',
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.huge,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.large,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.medium,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.small
+			) }
 		.icon {
-			${ util.responsiveStyles('width', (uiElementSizes[size] - inputVars.borderWidth * 2) * 1.3, (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2), (uiElementSizes[size] - inputVars.borderWidth * 2)) }
+			${ util.responsiveStyles(
+				'width',
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.huge,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.large,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.medium,
+				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.small
+			) }
 		}
 	`
 : `
-		${ util.responsiveStyles('height', (uiElementSizes[size] - inputVars.borderWidth) * 1.3, (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth)) }
+		${ util.responsiveStyles(
+			'height',
+			(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.huge,
+			(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.large,
+			(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.medium,
+			(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.small
+		) }
 		.icon {
-			${ util.responsiveStyles('width', (uiElementSizes[size] - inputVars.borderWidth) * 1.3, (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth), (uiElementSizes[size] - inputVars.borderWidth)) }
+			${ util.responsiveStyles(
+				'width',
+				(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.huge,
+				(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.large,
+				(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.medium,
+				(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.small
+			) }
 		}
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;

@@ -12,7 +12,6 @@ import siteSettings from './siteSettings'
 
 // Content Types
 import page from './types/page'
-import siteGlobal from './types/siteGlobal'
 import menus from './types/menus'
 import post from './types/post'
 
@@ -74,7 +73,6 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    siteGlobal,
     page,
     menus,
     // post,

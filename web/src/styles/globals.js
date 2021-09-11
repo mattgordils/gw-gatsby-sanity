@@ -13,3 +13,10 @@ export const uiElementSizes = {
 	medium: 50,
 	large: 60
 }
+
+export const responsiveUiSizes = {
+	small: 1,
+	medium: 1,
+	large: 1,
+	huge: 1.3
+}

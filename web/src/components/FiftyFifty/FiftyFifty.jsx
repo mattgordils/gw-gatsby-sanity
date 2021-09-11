@@ -59,9 +59,9 @@ const TextWrapper = styled.div`
 
 const arrangeMedia = {
   default: {
-    normal: '2 [11] 2 [11] 2',
-    large: '2 [12] 2 [10] 2',
-    extraLarge: '2 [13] 2 [9] 2'
+    normal: '[11] 2 [11]',
+    large: '[12] 2 [10]',
+    extraLarge: '[13] 2 [9]'
   },
   fullWidth: {
     normal: '[13] 2 [11] 2',
@@ -122,49 +122,58 @@ const FiftyFifty = ({
       padded={!fullWidth}
     >
       <Grid
-        small={fullWidth ? '[1]' : '1 [12] 1'}
-        large={arrangeMedia[width || 'default'][mediaWidth || 'normal']}
-        rowGap={['6vw', '4vw', '80px']}
-        vAlign={verticalAlignment}
-        gridDirection={mediaPlacement?.includes('right') ? 'rtl' : 'ltr'}
+        small={fullWidth ? '[1]' : 'container'}
+        medium={fullWidth ? '[1]' : 'container'}
+        large={fullWidth ? '[1]' : 'container'}
+        larger={fullWidth ? '[1]' : 'container'}
       >
-        {media && (
-          <ColumnWrapper fullWidth={fullWidth}>
-            {media.mediaType === 'video' && (
-              <ScrollEntrance>
-                <Video src={video.url} />
-              </ScrollEntrance>
-            )}
-            {media.mediaType === 'image' && (
-              <ScrollEntrance>
-                <GatsbyImage
-                  image={image.gatsbyImageData}
-                  loading={isFirstSection ? 'eager' : 'lazy'}
-                  alt={text?.eyebrow || media.originalFilename}
-                  sizes={sizes}
-                  format={['auto', 'avif', 'webp']}
-                />
-              </ScrollEntrance>
-            )}
-          </ColumnWrapper>
-        )}
+        <Grid
+          small='[1]'
+          large={arrangeMedia[width || 'default'][mediaWidth || 'normal']}
+          rowGap={['6vw', '4vw', '80px']}
+          vAlign={verticalAlignment}
+          gridDirection={mediaPlacement?.includes('right') ? 'rtl' : 'ltr'}
+        >
+          {media && (
+            <ColumnWrapper fullWidth={fullWidth}>
+              {media.mediaType === 'video' && (
+                <ScrollEntrance>
+                  <Video src={video.url} />
+                </ScrollEntrance>
+              )}
+              {media.mediaType === 'image' && (
+                <ScrollEntrance>
+                  <GatsbyImage
+                    image={image.gatsbyImageData}
+                    loading={isFirstSection ? 'eager' : 'lazy'}
+                    alt={text?.eyebrow || media.originalFilename}
+                    sizes={sizes}
+                    format={['auto', 'avif', 'webp']}
+                  />
+                </ScrollEntrance>
+              )}
+            </ColumnWrapper>
+          )}
 
-        <ColumnWrapper fullWidth={fullWidth}>
-          <Grid
-            small={fullWidth ? '1 [12] 1' : '[1]'}
-            large='[1]'
-          >
-            <TextWrapper fullWidth={fullWidth}>
-              <TextLockup
-                entranceDelay={1}
-                text={text}
-                actions={actions}
-                theme={theme}
-                listType={listType}
-              />
-            </TextWrapper>
-          </Grid>
-        </ColumnWrapper>
+          <ColumnWrapper fullWidth={fullWidth}>
+            <Grid
+              small={fullWidth ? 'container' : '[1]'}
+              medium={fullWidth ? 'container' : '[1]'}
+              large='[1]'
+            >
+              <TextWrapper fullWidth={fullWidth}>
+                <TextLockup
+                  entranceDelay={1}
+                  eyebrow={text.eyebrow}
+                  text={text._rawText}
+                  actions={actions}
+                  theme={theme}
+                  listType={listType}
+                />
+              </TextWrapper>
+            </Grid>
+          </ColumnWrapper>
+        </Grid>
       </Grid>
     </FFSection>
   )

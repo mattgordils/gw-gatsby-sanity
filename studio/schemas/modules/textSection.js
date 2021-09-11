@@ -9,6 +9,12 @@ export default {
   type: "object",
   fields: [
     {
+      name: 'internalName',
+      title: 'Internal Name',
+      type: 'string',
+      validation: Rule => Rule.required()
+    },
+    {
       name: "text",
       title: "Text",
       type: "textLockup",
@@ -42,6 +48,7 @@ export default {
   ],
   preview: {
     select: {
+      title: 'internalName',
       subtitle: "text.eyebrow",
       alignment: "alignment",
       hidden: "hidden"
@@ -49,7 +56,6 @@ export default {
     prepare(selection) {
       const { alignment, subtitle, hidden } = selection;
       return Object.assign({}, selection, {
-        title: "Text Section",
         subtitle: hidden ? 'Hidden' : subtitle,
         media: alignment === "left" ? <SectionIcon hidden={hidden}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
       });

@@ -12,9 +12,23 @@ export default {
       type: 'string'
     },
     {
+      name: 'type',
+      title: 'Button Type',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      initialValue: 'pageLink',
+      options: {
+        list: [
+          { title: 'To Page', value: 'pageLink' },
+          { title: 'External Link', value: 'externalLink' }
+        ]
+      }
+    },
+    {
       name: 'link',
       title: 'Link',
       type: 'reference',
+      hidden: ({ parent }) => parent.type !== 'pageLink',
       to: [
         { type: 'page' },
         // { type: 'product' }
@@ -24,7 +38,8 @@ export default {
       name: 'externalLink',
       title: 'External Link',
       type: 'string',
-      description: 'There is no `link` validation on this so please type accurate urls with https://, mailto:, tel: etc.'
+      description: 'There is no `link` validation on this so please type accurate urls with https://, mailto:, tel: etc.',
+      hidden: ({ parent }) => parent.type !== 'externalLink',
     },
     {
       name: 'theme',
@@ -46,7 +61,7 @@ export default {
     select: {
       title: 'title',
       subtitle: 'externalLink',
-      link: 'link'
+      link: 'link',
     },
     prepare (selection) {
       const { subtitle, link } = selection

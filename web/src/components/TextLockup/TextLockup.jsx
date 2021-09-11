@@ -101,6 +101,9 @@ const TextLockup = ({
 		transitionIn,
 		listType
 	}) => {
+	if (!text && !actions) {
+		return false
+	}
 	eyebrow = eyebrow || text?.eyebrow
 	text = text?._rawText || text?.text || text
 	return (
@@ -110,7 +113,7 @@ const TextLockup = ({
 
 					{eyebrow && (
 						<div>
-							<Eyebrow hasText={headline || text} alignment={alignment}>{eyebrow}</Eyebrow>
+							<Eyebrow className='eyebrow' hasText={headline || text} alignment={alignment}>{eyebrow}</Eyebrow>
 						</div>
 					)}
 

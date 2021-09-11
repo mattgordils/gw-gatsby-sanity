@@ -1,7 +1,7 @@
 import Tabs from 'sanity-plugin-tabs'
 import React from 'react'
 
-import { MdInsertDriveFile } from 'react-icons/md'
+import { MdInsertDriveFile, MdHome } from 'react-icons/md'
 import SectionIcon from "../../components/SectionIcon"
 
 export default {
@@ -24,8 +24,12 @@ export default {
       media: 'mainImage'
     },
     prepare (selection) {
+      let isHome = false
+      if (selection.subtitle === 'home' || selection.subtitle === '/') {
+        isHome = true
+      }
       return Object.assign({}, selection, {
-        media: <MdInsertDriveFile size='24px'/>
+        media: isHome ? <MdHome size='24px'/> : <MdInsertDriveFile size='24px'/>
       })
     }
   }

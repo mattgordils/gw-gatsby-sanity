@@ -5,7 +5,7 @@ import { colors, typography, animations, util } from 'src/styles'
 import MaterialIcon from 'src/components/MaterialIcon'
 import { isEmoji } from 'src/utils/validations'
 import { inputThemes as themes } from 'src/styles/themes'
-import { baseBorderRadius, uiElementSizes } from 'src/styles/globals'
+import { baseBorderRadius, uiElementSizes, responsiveUiSizes } from 'src/styles/globals'
 
 export const inputVars = {
 	tiny: uiElementSizes.tiny,
@@ -92,7 +92,13 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
   background: ${ inputVars.backgroundColor };
   border: ${ inputVars.borderWidth + 'px' } solid;
   // height: ${ inputVars[size] };
-  ${ util.responsiveStyles('height', inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
+  ${ util.responsiveStyles(
+		'height',
+		inputVars[size] * responsiveUiSizes.huge,
+		inputVars[size] * responsiveUiSizes.large,
+		inputVars[size] * responsiveUiSizes.medium,
+		inputVars[size] * responsiveUiSizes.small
+	) }
   line-height: 1em;
   text-transform: inherit;
   letter-spacing: 0;
@@ -108,7 +114,13 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
   padding: 0 ${ inputVars[size] * 0.3 + 'px' } 0;
   ${ icon
 ? `
-  	${ util.responsiveStyles(('padding-' + iconPosition), inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
+		${ util.responsiveStyles(
+			('padding-' + iconPosition),
+			inputVars[size] * responsiveUiSizes.huge,
+			inputVars[size] * responsiveUiSizes.large,
+			inputVars[size] * responsiveUiSizes.medium,
+			inputVars[size] * responsiveUiSizes.small
+		) }
 	`
 : '' }
   padding-bottom: 1px;
@@ -159,8 +171,20 @@ export const InputIcon = styled.div`
 	` }
 	${ ({ iconPosition }) => iconPosition }: ${ inputVars.borderWidth + 'px' };
 	${ ({ size }) => `
-		${ util.responsiveStyles('width', inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
-		${ util.responsiveStyles('height', inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
+		${ util.responsiveStyles(
+			'width',
+			inputVars[size] * responsiveUiSizes.huge,
+			inputVars[size] * responsiveUiSizes.large,
+			inputVars[size] * responsiveUiSizes.medium,
+			inputVars[size] * responsiveUiSizes.small
+		) }
+		${ util.responsiveStyles(
+			'height',
+			inputVars[size] * responsiveUiSizes.huge,
+			inputVars[size] * responsiveUiSizes.large,
+			inputVars[size] * responsiveUiSizes.medium,
+			inputVars[size] * responsiveUiSizes.small
+		) }
 	` }
 	span, svg {
 		display: block;
@@ -191,8 +215,20 @@ export const InputLabel = styled.label`
 		color: ${ themes[props.theme].color };
 	` }
 	${ ({ icon, iconPosition, size }) => icon && `
-		${ util.responsiveStyles('height', inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
-		${ util.responsiveStyles(('margin-' + iconPosition), inputVars[size] * 1.3, inputVars[size], inputVars[size], inputVars[size]) }
+		${ util.responsiveStyles(
+			'height',
+			inputVars[size] * responsiveUiSizes.huge,
+			inputVars[size] * responsiveUiSizes.large,
+			inputVars[size] * responsiveUiSizes.medium,
+			inputVars[size] * responsiveUiSizes.small
+		) }
+		${ util.responsiveStyles(
+			('margin-' + iconPosition),
+			inputVars[size] * responsiveUiSizes.huge,
+			inputVars[size] * responsiveUiSizes.large,
+			inputVars[size] * responsiveUiSizes.medium,
+			inputVars[size] * responsiveUiSizes.small
+		) }
 	` }
 `
 

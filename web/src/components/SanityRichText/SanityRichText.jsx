@@ -3,6 +3,20 @@ import styled from '@emotion/styled'
 import BlockContent from '@sanity/block-content-to-react'
 import { Serializer } from 'src/utils/serializer'
 
+const Wrapper = styled.div`
+	> * {
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+			&:empty {
+				display: none;
+			}
+		}
+	}
+`
+
 const StyledBlockContent = styled(BlockContent)`
 	white-space: pre-wrap;
 	* {
@@ -44,9 +58,9 @@ const StyledBlockContent = styled(BlockContent)`
 
 const SanityRichText = ({ text, className }) => {
 	return (
-		<div className={className}>
-			<StyledBlockContent blocks={text?._rawText || text?.text || text } serializers={Serializer} />
-		</div>
+		<Wrapper className={className}>
+		<StyledBlockContent className={className} blocks={text?._rawText || text?.text || text } serializers={Serializer} />
+		</Wrapper>
 	)
 }
 

@@ -77,13 +77,14 @@ const TextSection = ({
       isFirstSection={isFirstSection}
     >
       <Grid
-        small="1 [12] 1"
+        small="container"
         medium={align[alignment].medium}
         large={align[alignment].large}
         larger={align[alignment].larger}
       >
         <TextLockup
-          text={text}
+          eyebrow={text.eyebrow}
+          text={text._rawText}
           // textSize={paragraphSize}
           actions={actions}
           theme={theme}

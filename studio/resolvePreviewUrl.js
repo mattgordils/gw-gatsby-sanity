@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV || 'development'
 
 export default function resolvePreviewUrl(document) {
-  const baseUrl = env === 'development' ? 'http://localhost:8000' : 'PREVIEW_URL'
+  const baseUrl = env === 'development' ? 'http://localhost:8000' : process.env.GATSBY_PREVIEW_URL
   let slug = document?.content?.main?.slug?.current
   if (slug === 'home') {
     slug = ''

@@ -4,7 +4,7 @@ import Emoji from 'a11y-react-emoji'
 import { MdList, MdSettings } from 'react-icons/md'
 import SectionIcon from '../components/SectionIcon'
 
-const ConfigIcon = () => <Emoji style={{ fontSize: '2rem' }} symbol='⚙️' />
+const ConfigIcon = () => <Emoji style={{ fontSize: '1.5rem' }} symbol='⚙️' />
 const MenusIcon = () => <MdList size='24px'/>
 const SettingsIcon = () => <MdSettings size='24px'/>
 
@@ -28,10 +28,6 @@ export const ConfigMenu = S.listItem()
               .title('Menus')
               .filter('_type == $type')
               .params({ type: 'menus' })
-          ),
-        S.documentListItem()
-          .title('Global')
-          .id('siteGlobal')
-          .schemaType('siteGlobal')
+          )
       ])
   )

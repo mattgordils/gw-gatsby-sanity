@@ -158,9 +158,9 @@ function getHorizontalPlacementGridValues ({ fullWidth, overlayPlacementHorizont
   } else {
     return {
       left: {
-        medium: '1 [12] 1',
-        large: '1 [12] 1',
-        larger: '1 [12] 1'
+        medium: 'container',
+        large: 'container',
+        larger: 'container'
       },
       center: {
         medium: '2 [10] 2',
@@ -218,7 +218,7 @@ const WideMedia = ({
   }
 
   const overlayGridSettings = getHorizontalPlacementGridValues({ fullWidth, overlayPlacementHorizontal })
-  const hasOverlay = text.text || actions
+  const hasOverlay = text._rawText !== null || actions.length > 0
 
   const renderMedia = (mediaItem, size, hasOverlay, autoHeight) => {
     // if (size === 'small' && !mediaItem) {
@@ -293,15 +293,17 @@ const WideMedia = ({
                     small='container'
                     medium='container'
                     large='container'
-                    {...overlayGridSettings}
                   >
-                    <TextLockup
-                      text={text}
-                      textSize={paragraphSize}
-                      actions={actions}
-                      alignment={alignment}
-                      transitionIn={!isFirstSection}
-                    />
+                    <Grid small='[1]' {...overlayGridSettings}>
+                      <TextLockup
+                        eyebrow={text.eyebrow}
+                        text={text._rawText}
+                        textSize={paragraphSize}
+                        actions={actions}
+                        alignment={alignment}
+                        transitionIn={!isFirstSection}
+                      />
+                    </Grid>
                   </Grid>
                 </OverlaySection>
               </OverlayContent>

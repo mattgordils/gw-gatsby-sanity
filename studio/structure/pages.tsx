@@ -3,7 +3,7 @@ import S from '@sanity/desk-tool/structure-builder';
 import Emoji from 'a11y-react-emoji'
 import PreviewIFrame from '../src/components/previewIFrame'
 
-const Icon = () => <Emoji style={{ fontSize: '2rem' }} symbol='📄' />
+const Icon = () => <Emoji style={{ fontSize: '1.5rem' }} symbol='📄' />
 
 export const PageMenuItem = S.listItem()
   .title('Pages')

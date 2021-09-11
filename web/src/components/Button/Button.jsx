@@ -7,7 +7,7 @@ import { buttonThemes as themes } from 'src/styles/themes'
 import MaterialIcon from 'src/components/MaterialIcon'
 import Spinner from 'react-spinner-material'
 import { MdCheck, MdClose } from 'react-icons/md'
-import { baseBorderRadius, uiElementSizes } from 'src/styles/globals'
+import { baseBorderRadius, uiElementSizes, responsiveUiSizes } from 'src/styles/globals'
 import Link from 'src/components/Link'
 
 const buttonSettings = {
@@ -35,9 +35,9 @@ const getState = (loading, error, success, disabled) => {
 const setButtonTheme = (theme, state) => `
 	color: ${ themes[theme].color };
 	background: ${ themes[theme].background };
-	${ theme.shadow
+	${ themes[theme].shadow
 ? `
-		box-shadow: ${ theme.shadow };
+		box-shadow: ${ themes[theme].shadow };
 	`
 : `
 		box-shadow: none;
@@ -61,9 +61,9 @@ const setButtonTheme = (theme, state) => `
 : `
 				border-color: ${ themes[theme].hoverBackground };
 			` }
-			${ theme.hoverShadow
+			${ themes[theme].hoverShadow
 ? `
-				box-shadow: ${ theme.hoverShadow };
+				box-shadow: ${ themes[theme].hoverShadow };
 			`
 : '' }
 		`
@@ -77,6 +77,7 @@ const DisabledButtonStyles = () => `
 		opacity: .3;
 		mix-blend-mode: luminosity;
 		cursor: not-allowed;
+		pointer-events: none;
 	}
 `
 
@@ -103,7 +104,13 @@ const ButtonStyles = (state, shape, size, theme) => (`
 	display: inline-block;
 	vertical-align: middle;
 	border: ${ buttonSettings.border };
-	${ util.responsiveStyles('height', uiElementSizes[size] * 1.3, uiElementSizes[size], uiElementSizes[size], uiElementSizes[size]) }
+	${ util.responsiveStyles(
+		'height',
+		uiElementSizes[size] * responsiveUiSizes.huge,
+		uiElementSizes[size] * responsiveUiSizes.large,
+		uiElementSizes[size] * responsiveUiSizes.medium,
+		uiElementSizes[size] * responsiveUiSizes.small
+	) }
 	padding: 0 calc(${ uiElementSizes[size] }px * .5) ${ buttonSettings.verticalOffset };
 	min-width: calc(${ uiElementSizes[size] }px * 2);
 	text-transform: none;
@@ -119,27 +126,36 @@ const ButtonStyles = (state, shape, size, theme) => (`
 							border ${ buttonSettings.transitionSpeed } ease-in-out,
 							box-shadow ${ buttonSettings.transitionSpeed } ease-in-out,
 							transform ${ buttonSettings.transitionSpeed } ease-in-out,
-							opacity ${ buttonSettings.transitionSpeed } ease-in-out;
+							opacity ${ buttonSettings.transitionSpeed } ease-in-out,
+							mix-blend-mode ${ buttonSettings.transitionSpeed } ease-in-out;
 	// Button States
 	${ state === 'loading' ? 'cursor: wait; pointer-events: none;' : '' }
 	${ state === 'error' || state === 'success' ? 'cursor: default; pointer-events: none;' : '' }
 
 	// Button Shapes
-	${ shape
-? `
-		${ shape.includes('circle') || shape.includes('square')
-? `
+	${ shape ? `
+		${ shape.includes('circle') || shape.includes('square') ? `
 			padding: 0 !important;
-			${ util.responsiveStyles('width', uiElementSizes[size] * 1.3, uiElementSizes[size], uiElementSizes[size], uiElementSizes[size]) }
-			${ util.responsiveStyles('min-width', uiElementSizes[size] * 1.3, uiElementSizes[size], uiElementSizes[size], uiElementSizes[size]) }
+			${ util.responsiveStyles(
+				'width',
+				uiElementSizes[size] * responsiveUiSizes.huge,
+				uiElementSizes[size] * responsiveUiSizes.large,
+				uiElementSizes[size] * responsiveUiSizes.medium,
+				uiElementSizes[size] * responsiveUiSizes.small
+			) }
+			${ util.responsiveStyles(
+				'min-width',
+				uiElementSizes[size] * responsiveUiSizes.huge,
+				uiElementSizes[size] * responsiveUiSizes.large,
+				uiElementSizes[size] * responsiveUiSizes.medium,
+				uiElementSizes[size] * responsiveUiSizes.small
+			) }
 			${ ButtonIcon } {
 				margin: 0;
 			}
-		`
-: '' }
+		` : '' }
 		${ shape === 'block' ? 'display: block; width: 100%;' : '' }
-	`
-: '' }
+	` : '' }
 	${ shape && shape.includes('circle') ? 'border-radius: 50%;' : '' }
 
 	// Button Themes
@@ -195,28 +211,28 @@ const Button = ({
 	const renderIcon = (icon, position, shape, size) => {
 		let renderedIcon = false
 		if (typeof icon === 'string') {
-			renderedIcon = <ButtonIcon size={size} position={position} shape={shape}><MaterialIcon size={size === 'tiny' ? '18px' : '24px'}>{icon}</MaterialIcon></ButtonIcon>
+			renderedIcon = <ButtonIcon className='button-icon' size={size} position={position} shape={shape}><MaterialIcon size={size === 'tiny' ? '18px' : '24px'}>{icon}</MaterialIcon></ButtonIcon>
 		} else {
-			renderedIcon = <ButtonIcon size={size} position={position} shape={shape}>{icon}</ButtonIcon>
+			renderedIcon = <ButtonIcon className='button-icon' size={size} position={position} shape={shape}>{icon}</ButtonIcon>
 		}
 		return renderedIcon
 	}
 
 	const renderButtonContent = () => {
 		if (loading) {
-			return <ButtonContent>
+			return <ButtonContent className='button-content'>
 				<Spinner radius={18} color='inherit' stroke={2} />
 			</ButtonContent>
 		} else if (error) {
-			return <ButtonContent>
+			return <ButtonContent className='button-content'>
 				<MdClose size={'1.5em'} />
 			</ButtonContent>
 		} else if (success) {
-			return <ButtonContent>
+			return <ButtonContent className='button-content'>
 				<MdCheck size={'1.5em'} />
 			</ButtonContent>
 		} else {
-			return <ButtonContent>
+			return <ButtonContent className='button-content'>
 				{icon && iconPosition !== 'right' ? renderIcon(icon, iconPosition, shape, size) : false}
 				{children || label}
 				{icon && iconPosition === 'right' ? renderIcon(icon, iconPosition, shape, size) : false}

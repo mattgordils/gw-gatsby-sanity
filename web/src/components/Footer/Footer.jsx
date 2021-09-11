@@ -62,38 +62,42 @@ const Footer = ({ title }) => {
 	return (
 		<Wrapper setTheme="textColor">
 			<Section>
-				<Grid
-					small="1 [12] 1"
-					medium="1 [4] [4] [4] 1"
-					large="1 [4] [4] [4] 1"
-					rowGap="7vw"
-				>
-					<div>
-						<ListHeader>List Header</ListHeader>
-						Footer Links
-					</div>
-					<div>
-						<ListHeader>List Header</ListHeader>
-						Footer Links
-					</div>
-					<div>
-						<ListHeader>List Header</ListHeader>
-						Newsletter
-					</div>
+				<Grid small='container' medium='container' large='container' larger='container'>
+					<Grid
+						small="[1]"
+						medium="[4] [4] [4]"
+						large="[4] [4] [4]"
+						rowGap="7vw"
+					>
+						<div>
+							<ListHeader>List Header</ListHeader>
+							Footer Links
+						</div>
+						<div>
+							<ListHeader>List Header</ListHeader>
+							Footer Links
+						</div>
+						<div>
+							<ListHeader>List Header</ListHeader>
+							Newsletter
+						</div>
+					</Grid>
 				</Grid>
 			</Section>
 			<FooterBottom setTheme="textColor">
-				<Grid
-					small="1 [7] [5] 1"
-					medium="1 [8] [4] 1"
-					large="1 [8] [4] 1"
-					vAlign="center"
-				>
-					<Copyright>
-						<FooterLogo />
-						<p className="sm">© <span className="mobile-hide">{title}</span> {new Date().getFullYear()}</p>
-					</Copyright>
-					<SiteCredit><p className="sm"><Link to="https://gordilsandwillis.com/" target="_blank" external>Site Credit</Link></p></SiteCredit>
+				<Grid small='container' medium='container' large='container' larger='container'>
+					<Grid
+						small="[7] [5]"
+						medium="[8] [4]"
+						large="[8] [4]"
+						vAlign="center"
+					>
+						<Copyright>
+							<FooterLogo />
+							<p className="sm">© <span className="mobile-hide">{title}</span> {new Date().getFullYear()}</p>
+						</Copyright>
+						<SiteCredit><p className="sm"><Link to="https://gordilsandwillis.com/" target="_blank" external>Site Credit</Link></p></SiteCredit>
+					</Grid>
 				</Grid>
 			</FooterBottom>
 		</Wrapper>

@@ -81,7 +81,7 @@ const MobileMenu = ({
 			{transitionStatus => (
 				<Wrapper transitionStatus={transitionStatus}>
 					<MainSection>
-						<Grid small="1 [12] 1">
+						<Grid small="container">
 							<ScrollEntrance>
 								{navLinks.map((item, index) => {
 									const link = getSlugLink(item?.link)

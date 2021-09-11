@@ -14,25 +14,17 @@ export default {
       name: 'text',
       title: 'text',
       type: 'textLockup'
-    },
-    {
-      name: "hidden",
-      title: "Hidden",
-      initialValue: false,
-      type: "boolean",
-    },
+    }
   ],
   preview: {
     select: {
       media: 'icon',
-      subtitle: 'text.eyebrow',
-      hidden: 'hidden'
+      title: 'text.eyebrow',
     },
     prepare (selection) {
-      const { media, hidden } = selection
+      const { media, title } = selection
       return Object.assign({}, selection, {
-        title: 'Column',
-        subtitle: columns && !hidden ? columns.length + ' columns' : (hidden && 'Hidden'),
+        title: title || 'Column',
         media: media || FiAlignLeft
       })
     }
