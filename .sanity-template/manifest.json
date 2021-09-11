@@ -19,5 +19,7 @@
       "url": "https://gatsbyjs.com"
     }
   ],
-  "deployment": {}
+  "deployment": {
+    "provider": "vercel"
+  }
 }
