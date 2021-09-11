@@ -140,37 +140,37 @@ function getHorizontalPlacementGridValues ({ fullWidth, overlayPlacementHorizont
   if (!fullWidth) {
     return {
       left: {
-        medium: '2 [10] 2',
-        large: '2 [8] 4',
-        larger: '2 [6] 6'
+        medium: '[10] 2',
+        large: '[8] 3',
+        larger: '[6] 6'
       },
       center: {
-        medium: '2 [10] 2',
-        large: '3 [8] 3',
-        larger: '4 [6] 4'
+        medium: '1 [10] 1',
+        large: '2 [8] 2',
+        larger: '3 [6] 3'
       },
       right: {
-        medium: '7 [5] 2',
-        large: '7 [5] 2',
-        larger: '7 [5] 2'
+        medium: '6 [5] 1',
+        large: '6 [5] 1',
+        larger: '6 [5] 1'
       }
     }[overlayPlacementHorizontal]
   } else {
     return {
       left: {
-        medium: 'container',
-        large: 'container',
-        larger: 'container'
+        medium: '[1]',
+        large: '[1]',
+        larger: '[1]'
       },
       center: {
-        medium: '2 [10] 2',
-        large: '2 [10] 2',
-        larger: '2 [10] 2'
+        medium: '1 [10] 1',
+        large: '1 [10] 1',
+        larger: '1 [10] 1'
       },
       right: {
-        medium: '7 [6] 1',
-        large: '7 [6] 1',
-        larger: '7 [6] 1'
+        medium: '6 [6]',
+        large: '6 [6]',
+        larger: '6 [6]'
       }
     }[overlayPlacementHorizontal]
   }

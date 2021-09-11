@@ -35,39 +35,29 @@ const getState = (loading, error, success, disabled) => {
 const setButtonTheme = (theme, state) => `
 	color: ${ themes[theme].color };
 	background: ${ themes[theme].background };
-	${ themes[theme].shadow
-? `
+	${ themes[theme].shadow ? `
 		box-shadow: ${ themes[theme].shadow };
-	`
-: `
+	` : `
 		box-shadow: none;
 	` }
-	${ themes[theme].borderColor
-? `
+	${ themes[theme].borderColor ? `
 		border-color: ${ themes[theme].borderColor };
-	`
-: `
+	` : `
 		border-color: ${ themes[theme].background };
 	` }
 	&:hover {
-		${ !state
-? `
+		${ !state ? `
 			color: ${ themes[theme].hoverColor };
 			background: ${ themes[theme].hoverBackground };
-			${ themes[theme].borderHoverColor
-? `
+			${ themes[theme].borderHoverColor ? `
 				border-color: ${ themes[theme].borderHoverColor };
-			`
-: `
+			` : `
 				border-color: ${ themes[theme].hoverBackground };
 			` }
-			${ themes[theme].hoverShadow
-? `
+			${ themes[theme].hoverShadow ? `
 				box-shadow: ${ themes[theme].hoverShadow };
-			`
-: '' }
-		`
-: '' }
+			` : '' }
+		` : '' }
 	}
 `
 
