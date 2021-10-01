@@ -59,7 +59,7 @@ export default {
       const { link, externalLink } = selection
       return Object.assign({}, selection, {
         media: externalLink ? <MdOpenInNew size='24px' /> : <MdLink size='24px' />,
-        subtitle: externalLink ? 'To ' + externalLink : 'To page'
+        subtitle: externalLink ? 'Link to ' + externalLink : 'Link to page'
       })
     }
   }

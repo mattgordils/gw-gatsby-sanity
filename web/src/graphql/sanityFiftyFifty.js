@@ -4,7 +4,9 @@ export const query = graphql`
   fragment FiftyFifty on SanityFiftyFifty {
     _key
     _type
-    theme
+    theme {
+      title
+    }
     mediaPlacement
     mediaWidth
     width

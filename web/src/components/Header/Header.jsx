@@ -62,7 +62,7 @@ const Dropdown = styled.ul`
   }
 `
 
-const NavLinkStyle = (scrolled, active, hasAtf, dropdown) => `
+const NavLink = styled(Link)`
   display: block;
   ${ typography.h6 }
   line-height: 1em;
@@ -71,7 +71,7 @@ const NavLinkStyle = (scrolled, active, hasAtf, dropdown) => `
                 background ${ animations.mediumSpeed } ease-in-out,
                 opacity ${ animations.mediumSpeed } ease-in-out,
                 color ${ animations.mediumSpeed } ease-in-out;
-  ${ hasAtf
+  ${ ({ hasAtf, active }) => hasAtf
     ? `
       color: inherit;
       ${ !active && '&:hover { opacity: .6; }' }
@@ -80,10 +80,6 @@ const NavLinkStyle = (scrolled, active, hasAtf, dropdown) => `
       color: inherit;
       ${ !active && `&:hover { color: ${ colors.mainColor }; }` }
   ` }
-`
-
-const NavLink = styled(Link)`
-  ${ props => NavLinkStyle(props.scrolled, props.active, props.hasAtf, props.hasDropdown) }
 `
 
 const Wrapper = styled.header`
@@ -101,30 +97,24 @@ const HeaderWrapper = styled.div`
               background ${ animations.mediumSpeed } ease-in-out,
               transform ${ animations.mediumSpeed } ease-in-out,
               box-shadow ${ animations.mediumSpeed } ease-in-out;
-  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled
-? `
+  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled ? `
     ${ headerHeightCollapsed() }
     background: ${ colors.white };
     color: ${ colors.textColor };
     box-shadow: 0 1px 0 ${ rgba(colors.textColor, 0.1) };
     ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen
-? `
+      ${ mobileMenuOpen ? `
         background: transparent;
         box-shadow: none;
         ${ headerHeight() }
-      `
-: '' }
+      ` : '' }
     }
-  `
-: `
+  ` : `
     ${ headerHeight() }
     background: transparent;
-    ${ hasAtf
-? `
+    ${ hasAtf ? `
       color: ${ colors.bgColor };
-    `
-: `
+    ` : `
       color: ${ colors.textColor };
     ` }
   ` }
@@ -318,19 +308,25 @@ const Header = ({
                                 to={externalLink || link}
                                 active={'/' + pathname === link}
                                 key={link}
-                                // hasDropdown={link.dropdownLinks}
-                              >
-                                {item.title}
-                              </NavLink>
-                              {/* link.dropdownLinks && (
-                                <Dropdown>
-                                  {link.dropdownLinks.map((dropdownLink, index) => (
-                                    <li key={dropdownLink.id}>
-                                      <Link to={'/' + dropdownLink.to.slug}>{dropdownLink.label}</Link>
-                                    </li>
-                                  ))}
-                                </Dropdown>
-                              ) */}
+                                hasDropdown={item?.sublinks?.length > 0}
+                                >
+                                  {item.title}
+                                </NavLink>
+                                {item.sublinks && item?.sublinks?.length > 0 && (
+                                  <Dropdown>
+                                    {item.sublinks.map((dropdownLink, index) => (
+                                      <li key={dropdownLink._key}>
+                                        <Link
+                                          target={dropdownLink.newTab ? '_blank' : ''}
+                                          external={dropdownLink.externalLink}
+                                          to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
+                                        >
+                                          {dropdownLink.title}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </Dropdown>
+                                )}
                             </li>
                           )
                         })}

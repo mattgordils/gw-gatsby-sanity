@@ -10,7 +10,7 @@ export default {
   ],
   fields: [
     {
-      type: "metaCard",
+      type: "seo",
       name: "meta",
       description: "Handles the default meta information for all content types",
       fieldset: "defaultMeta"

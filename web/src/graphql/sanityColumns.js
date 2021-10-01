@@ -4,7 +4,9 @@ export const query = graphql`
   fragment Columns on SanityColumns {
     _key
     _type
-    theme
+    theme {
+      title
+    }
     alignment
     introText {
       eyebrow
@@ -15,7 +17,7 @@ export const query = graphql`
       ...Link
     }
     columns {
-      icon {
+      image {
         asset {
           gatsbyImageData(placeholder: NONE)
           url

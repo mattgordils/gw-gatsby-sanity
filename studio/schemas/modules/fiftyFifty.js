@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { MdArtTrack, MdSlideshow } from 'react-icons/md'
+import { MdArtTrack, MdPlayArrow, MdVerticalAlignBottom, MdVerticalAlignCenter, MdVerticalAlignTop } from 'react-icons/md'
 import SectionIcon from "../../components/SectionIcon"
+import IconUI from '../../components/IconUI'
 
 export default {
   title: 'Fifty Fifty',
@@ -70,9 +71,14 @@ export default {
       title: 'Vertical Alignment',
       type: 'string',
       initialValue: 'center',
+      inputComponent: IconUI,
       options: {
-        list: ['center', 'top', 'bottom']
-      },
+        list: [
+          { title: 'Top', value: 'top', icon: <MdVerticalAlignTop/> },
+          { title: 'Center', value: 'center', icon: <MdVerticalAlignCenter/> },
+          { title: 'Bottom', value: 'bottom', icon: <MdVerticalAlignBottom/> }
+        ]
+      }
     },
     {
       name: "hidden",
@@ -91,8 +97,8 @@ export default {
     prepare (selection) {
       const { title, subtitle, media, hidden } = selection
       return Object.assign({}, selection, {
-        subtitle: hidden ? 'Hidden' : subtitle,
-        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdSlideshow size='24px'/></SectionIcon> : media.image
+        subtitle: hidden ? 'Hidden' : subtitle || 'Fifty Fifty',
+        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdPlayArrow size='24px'/></SectionIcon> : media.image
       })
     }
   }

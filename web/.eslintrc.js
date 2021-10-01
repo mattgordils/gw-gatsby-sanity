@@ -7,7 +7,7 @@ module.exports = {
   },
   root: true,
   extends: ['standard'],
-  plugins: ['standard', 'react'],
+  plugins: ['standard', 'react', '@emotion'],
   rules: {
     'no-console': 'warn',
     'no-var': 'error', // optional, recommended when using es6+

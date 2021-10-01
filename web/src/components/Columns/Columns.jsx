@@ -168,9 +168,9 @@ const Columns = ({
                 colCount={columns.length}
                 key={column.id + '-' + index + '-' + id}
               >
-                {column.icon && (
+                {column.image && (
                   <MediaScrollEntrance delay={index} imageSize={imageSize || 'small'}>
-                    <GatsbyImage image={column?.icon?.asset?.gatsbyImageData} alt={column?.icon?.altText || column?.text?.eyebrow || column?.icon?.originalFilename} sizes={sizes} format={['auto', 'avif', 'webp']}/>
+                    <GatsbyImage image={column?.image?.asset?.gatsbyImageData} alt={column?.image?.altText || column?.text?.eyebrow || column?.image?.originalFilename} sizes={sizes} format={['auto', 'avif', 'webp']}/>
                   </MediaScrollEntrance>
                 )}
                 <ColumnText

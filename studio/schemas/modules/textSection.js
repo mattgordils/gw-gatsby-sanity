@@ -1,5 +1,5 @@
 import React from 'react'
-
+import IconUI from '../../components/IconUI'
 import { FiAlignCenter, FiAlignLeft } from "react-icons/fi"
 import SectionIcon from "../../components/SectionIcon"
 
@@ -30,8 +30,12 @@ export default {
       title: "Alignment",
       type: "string",
       initialValue: "center",
+      inputComponent: IconUI,
       options: {
-        list: ["left", "center"],
+        list: [
+          { title: "Left", value: "left", icon: <FiAlignLeft />},
+          { title: "Center", value: "center", icon: <FiAlignCenter />}
+        ],
       },
     },
     {
@@ -56,7 +60,7 @@ export default {
     prepare(selection) {
       const { alignment, subtitle, hidden } = selection;
       return Object.assign({}, selection, {
-        subtitle: hidden ? 'Hidden' : subtitle,
+        subtitle: hidden ? 'Hidden' : subtitle || 'Text Section',
         media: alignment === "left" ? <SectionIcon hidden={hidden}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
       });
     },

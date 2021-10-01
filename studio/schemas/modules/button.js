@@ -67,7 +67,7 @@ export default {
       const { subtitle, link } = selection
       return Object.assign({}, selection, {
         media: subtitle ? MdOpenInNew : MdLink,
-        subtitle: subtitle ? 'To ' + subtitle : 'To page'
+        subtitle: subtitle ? 'Button to ' + subtitle : 'Button to page'
       })
     }
   }

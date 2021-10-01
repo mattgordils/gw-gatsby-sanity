@@ -21,7 +21,7 @@ export default {
       fieldset: "shopify"
     },
     {
-      type: "metaCard",
+      type: "seo",
       name: "meta",
       fieldset: "defaultMeta"
     }

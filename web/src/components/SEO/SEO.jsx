@@ -9,6 +9,7 @@ function SEO ({
 		title,
 		description,
 		keywords,
+		shareImage,
 		ogTitle,
 		ogImage,
 		ogDescription,
@@ -16,7 +17,7 @@ function SEO ({
 		twitterImage,
 		twitterTitle
 	}) {
-	const { site, appleTouchIcon, socialShareImage, allSanitySiteSettings } = useStaticQuery(
+	const { site, appleTouchIcon, favicon, socialShareImage, allSanitySiteSettings } = useStaticQuery(
 		graphql`
 			query {
 				site {
@@ -55,28 +56,40 @@ function SEO ({
 
 	const sanitySiteSettings = allSanitySiteSettings?.edges[0]?.node
 
+	///
+	const metaTitle = title
 	const metaDescription = description || sanitySiteSettings?.description
+	let metaKeywords = keywords
+	shareImage = shareImage?.asset?.url
+	///
+
 	const host = process.env.GATSBY_SITE_URL
 
-	const metaTouchIcon = host + appleTouchIcon.publicURL
+	// let metaShareImage = host + socialShareImage.publicURL
+	// if (ogImage || twitterImage) {
+	// 	metaShareImage = ogImage || twitterImage
+	// }
 
-	let metaShareImage = host + socialShareImage.publicURL
-	if (ogImage || twitterImage) {
-		metaShareImage = ogImage || twitterImage
-	}
+	// if (keywords && keywords.length > 0) {
+	// 	metaKeywords = keywords.join(', ')
+	// } else if (sanitySiteSettings?.keywords) {
+	// 	metaKeywords = sanitySiteSettings?.keywords.join(', ')
+	// }
 
-	let metaKeywords = []
-	if (keywords && keywords.length > 0) {
-		metaKeywords = keywords.join(', ')
-	} else if (sanitySiteSettings?.keywords) {
-		metaKeywords = sanitySiteSettings?.keywords.join(', ')
-	}
-
+	// Default SEO content from file structure
+	const localTouchIcon = host + appleTouchIcon.publicURL
+	const localFavicon = host + favicon.publicURL
+	const localShareImage = host + socialShareImage.publicURL
+	// Sanity SEO content
 	const sanityFavicon = sanitySiteSettings?.favicon?.asset?.url
-	const sanitytouchIcon = sanitySiteSettings?.touchIcon?.asset?.url
+	const sanityTouchIcon = sanitySiteSettings?.touchIcon?.asset?.url
 	const siteTitle = sanitySiteSettings?.title
 
-	const titleTemplate = pagePath !== 'home' && title ? `%s | ${ siteTitle || site.siteMetadata.title }` : `${ siteTitle || site.siteMetadata.title }`
+	const metaFavicon = sanityFavicon || localFavicon
+	const metaTouchIcon = sanityTouchIcon || localTouchIcon
+	const metaShareImage = shareImage || localShareImage
+
+	const titleTemplate = pagePath !== 'home' && metaTitle ? `%s | ${ siteTitle || site.siteMetadata.title }` : `${ siteTitle || site.siteMetadata.title }`
 
 	return (
 		<Helmet
@@ -96,7 +109,7 @@ function SEO ({
 				},
 				{
 					property: 'og:title',
-					content: `${ ogTitle || titleTemplate }`,
+					content: titleTemplate,
 				},
 				{
 					property: 'og:type',
@@ -104,19 +117,19 @@ function SEO ({
 				},
 				{
 					property: 'og:image',
-					content: `${ ogImage || metaShareImage }`
+					content: metaShareImage
 				},
 				{
 					property: 'og:description',
-					content: ogDescription || metaDescription,
+					content: metaDescription,
 				},
 				{
 					name: 'twitter:image',
-					content: `${ twitterImage || metaShareImage }`
+					content: metaShareImage
 				},
 				{
 					name: 'twitter:card',
-					content: 'summary',
+					content: 'summary_large_image',
 				},
 				{
 					name: 'twitter:creator',
@@ -124,11 +137,11 @@ function SEO ({
 				},
 				{
 					name: 'twitter:title',
-					content: `${ twitterTitle || titleTemplate }`,
+					content: titleTemplate,
 				},
 				{
 					name: 'twitter:description',
-					content: twitterDescription || metaDescription,
+					content: metaDescription,
 				},
 				{
 					name: 'keywords',
@@ -136,8 +149,8 @@ function SEO ({
 				}
 			]}
 			link={[
-				{ rel: 'icon', type: 'image/png', sizes: '32x32', href: sanityFavicon },
-				{ rel: 'apple-touch-icon', type: 'image/png', sizes: '120x120', href: sanitytouchIcon || metaTouchIcon }
+				{ rel: 'icon', type: 'image/png', sizes: '32x32', href: metaFavicon },
+				{ rel: 'apple-touch-icon', type: 'image/png', sizes: '120x120', href: metaTouchIcon }
 			]}
 		/>
 	)

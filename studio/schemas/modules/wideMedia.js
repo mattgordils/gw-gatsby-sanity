@@ -1,7 +1,10 @@
 import React from 'react'
 
-import { MdSlideshow } from 'react-icons/md'
-import SectionIcon from "../../components/SectionIcon";
+import { MdPlayArrow } from 'react-icons/md'
+import { FiAlignCenter, FiAlignLeft } from "react-icons/fi"
+import { MdVerticalAlignBottom, MdVerticalAlignCenter, MdVerticalAlignTop } from "react-icons/md"
+import SectionIcon from "../../components/SectionIcon"
+import IconUI from '../../components/IconUI'
 
 export default {
   title: 'Wide Media',
@@ -36,8 +39,12 @@ export default {
       title: 'Alignment',
       type: 'string',
       initialValue: 'center',
+      inputComponent: IconUI,
       options: {
-        list: ['left', 'center']
+        list: [
+          { title: 'Left', value: 'left', icon: <FiAlignLeft/> },
+          { title: 'Center', value: 'center', icon: <FiAlignCenter/> }
+        ]
       }
     },
     {
@@ -45,8 +52,13 @@ export default {
       title: 'Vertical Placement',
       type: 'string',
       initialValue: 'center',
+      inputComponent: IconUI,
       options: {
-        list: ['center', 'top', 'bottom']
+        list: [
+          { title: 'Top', value: 'top', icon: <MdVerticalAlignTop/> },
+          { title: 'Center', value: 'center', icon: <MdVerticalAlignCenter/> },
+          { title: 'Bottom', value: 'bottom', icon: <MdVerticalAlignBottom/> }
+        ]
       }
     },
     {
@@ -102,9 +114,13 @@ export default {
     },
     prepare (selection) {
       const { title, subtitle, media, hidden } = selection
+      let subtitleText = subtitle
+      if (subtitle === 'fullWidth') {
+        subtitleText = 'Full Width'
+      }
       return Object.assign({}, selection, {
-        subtitle: hidden ? 'Hidden' : subtitle,
-        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdSlideshow size='24px'/></SectionIcon> : media.image
+        subtitle: hidden ? 'Hidden' : subtitleText,
+        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdPlayArrow size='24px'/></SectionIcon> : media.image
       })
     }
   }

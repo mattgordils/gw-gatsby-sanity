@@ -1,3 +1,5 @@
+import React from 'react'
+
 import Tabs from 'sanity-plugin-tabs'
 
 export default {
@@ -6,8 +8,8 @@ export default {
   title: "Page Content",
   inputComponent: Tabs,
   fieldsets: [
-    { name: "main", title: "Main" },
-    { name: "defaultMeta", title: "Meta" }
+    { name: "main", title: "Content" },
+    { name: "meta", title: "SEO" }
   ],
   fields: [
     {
@@ -16,9 +18,9 @@ export default {
       fieldset: "main"
     },
     {
-      type: "metaCard",
+      type: "seo",
       name: "meta",
-      fieldset: "defaultMeta"
+      fieldset: "meta"
     }
   ]
 }

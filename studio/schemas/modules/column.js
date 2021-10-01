@@ -1,3 +1,4 @@
+import React from 'react'
 import { FiAlignLeft } from 'react-icons/fi'
 
 export default {
@@ -6,26 +7,26 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'icon',
-      title: 'Icon',
-      type: 'image'
-    },
-    {
       name: 'text',
       title: 'text',
       type: 'textLockup'
+    },
+    {
+      name: 'image',
+      title: 'Icon',
+      type: 'image'
     }
   ],
   preview: {
     select: {
-      media: 'icon',
+      media: 'image',
       title: 'text.eyebrow',
     },
     prepare (selection) {
       const { media, title } = selection
       return Object.assign({}, selection, {
         title: title || 'Column',
-        media: media || FiAlignLeft
+        media: media || <FiAlignLeft size='24px' />
       })
     }
   }

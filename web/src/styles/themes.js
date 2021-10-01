@@ -10,20 +10,6 @@ export const themes = {
 		buttonTheme: 'default',
 		buttonThemeSecondary: 'lightGrey'
 	},
-	black: {
-		color: colors.bgColor,
-		background: colors.black,
-		hoverColor: colors.mainColor,
-		buttonTheme: 'white',
-		buttonThemeSecondary: 'currentcolorOutlined'
-	},
-	white: {
-		color: colors.textColor,
-		background: colors.white,
-		hoverColor: colors.mainColor,
-		buttonTheme: 'default',
-		buttonThemeSecondary: 'lightGrey'
-	},
 	lightGrey: {
 		color: colors.textColor,
 		background: colors.lightGrey,
@@ -36,13 +22,6 @@ export const themes = {
 		background: colors.mainColor,
 		hoverColor: colors.bgColor,
 		buttonTheme: 'white',
-		buttonThemeSecondary: 'lightGrey'
-	},
-	textColor: {
-		color: colors.bgColor,
-		background: colors.textColor,
-		hoverColor: colors.bgColor,
-		buttonTheme: 'default',
 		buttonThemeSecondary: 'lightGrey'
 	}
 }

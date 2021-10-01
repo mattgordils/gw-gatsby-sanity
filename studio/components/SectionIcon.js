@@ -6,8 +6,8 @@ const SectionIcon = ({ children, hidden }) => {
 		<div 
 			style={{ 
 				borderRadius: '3px',
-				width: '40px',
-				height: '40px',
+				width: '34px',
+				height: '100%',
 				background: '#e4e8ed',
 				display: 'flex',
 				alignItems: 'center',

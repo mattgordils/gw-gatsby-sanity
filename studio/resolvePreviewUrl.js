@@ -6,7 +6,6 @@ export default function resolvePreviewUrl(document) {
   if (slug === 'home') {
     slug = ''
   }
-  console.log(slug)
   switch (document._type) {
     case 'route':
       if (!slug && slug !== '') {

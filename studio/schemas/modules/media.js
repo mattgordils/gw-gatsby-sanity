@@ -10,7 +10,7 @@ export default {
       initialValue: 'image',
       validation: (Rule) => Rule.required(),
       options: {
-        list: ['image', 'video']
+        list: ['image', 'video'],
       }
     },
     {
@@ -19,7 +19,8 @@ export default {
       type: 'image',
       hidden: ({ parent }) => parent.mediaType !== 'image',
       options: {
-        hotspot: true
+        hotspot: true,
+        accept: ['.jpg', '.jpeg', '.png', '.gif'],
       }
     },
     {

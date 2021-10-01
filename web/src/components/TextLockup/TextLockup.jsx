@@ -66,7 +66,7 @@ const Headline = styled.h3`
 `
 
 const Text = styled.div`
-	p {
+	p:not(.large):not(.medium):not(.small):not(.tiny) {
 		${ ({ textSize }) => typography[textSize] }
 	}
 `
@@ -139,9 +139,9 @@ const TextLockup = ({
 								if (action._type === 'button') {
 									let actionTheme = 'default'
 									if (action.theme === 'primary') {
-										actionTheme = themes[theme].buttonTheme || 'default'
+										actionTheme = themes[theme]?.buttonTheme || 'default'
 									} else if (action.theme === 'secondary') {
-										actionTheme = themes[theme].buttonThemeSecondary || 'default'
+										actionTheme = themes[theme]?.buttonThemeSecondary || 'default'
 									}
 									return (
 										<ActionWrapper key={'button-' + index}>

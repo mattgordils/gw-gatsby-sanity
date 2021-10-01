@@ -126,20 +126,13 @@ export const pageQuery = graphql`
           metaTitle
           metaDescription
           keywords
-          openGraphDescription
-          openImage {
+          shareDescription
+          shareTitle
+          shareImage {
             asset {
               url
             }
           }
-          openTitle
-          twitterDescription
-          twitterImage {
-            asset {
-              url
-            }
-          }
-          twitterTitle
         }
       }
     }

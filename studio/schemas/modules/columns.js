@@ -1,7 +1,9 @@
 import React from 'react'
 
 import { MdViewWeek } from 'react-icons/md'
-import SectionIcon from "../../components/SectionIcon";
+import SectionIcon from '../../components/SectionIcon'
+import IconUI from '../../components/IconUI'
+import { FiAlignCenter, FiAlignLeft } from 'react-icons/fi'
 
 export default {
   title: 'Columns',
@@ -30,19 +32,19 @@ export default {
     {
       name: 'actions',
       title: 'Actions',
-      type: 'array',
-      of: [
-        { type: 'button' },
-        { type: 'link' }
-      ]
+      type: 'actions'
     },
     {
       name: 'alignment',
       title: 'Alignment',
       type: 'string',
       initialValue: 'center',
+      inputComponent: IconUI,
       options: {
-        list: ['left', 'center']
+        list: [
+          { title: 'Left', value: 'left', icon: <FiAlignLeft/> },
+          { title: 'Center', value: 'center', icon: <FiAlignCenter/> }
+        ]
       }
     },
     {

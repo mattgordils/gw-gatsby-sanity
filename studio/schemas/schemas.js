@@ -39,7 +39,7 @@ import columns from './modules/columns'
 import column from './modules/column'
 
 //
-import metaCard from './modules/metaCard'
+import seo from './modules/seo'
 import social from './modules/social'
 import socialLink from './modules/socialLink'
 import pageItem from './modules/pageItem'
@@ -103,7 +103,7 @@ export default createSchema({
     socialLink,
     standardText,
     moduleContent,
-    metaCard,
+    seo,
     blockContent,
     blockText,
     // Product Specific Modules

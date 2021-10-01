@@ -44,6 +44,8 @@ const TextSection = ({
     return false
   }
 
+  console.log(theme)
+
   const align = {
     // same as in WideMedia.jsx
     left: {
