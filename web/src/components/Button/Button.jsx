@@ -174,10 +174,6 @@ const StyledButtonLink = styled(Link)`
 	${ ({ loading, error, success, disabled, shape, size, theme }) => ButtonStyles(getState(loading, error, success, disabled), shape, size, theme) }
 `
 
-const StyledButtonElement = styled.button`
-	${ ({ loading, error, success, disabled, shape, size, theme }) => ButtonStyles(getState(loading, error, success, disabled), shape, size, theme) }
-`
-
 const Button = ({
 	to,
 	external,
@@ -230,53 +226,31 @@ const Button = ({
 		}
 	}
 
-	if (to) {
-		return (
-			<StyledButtonLink
-				className={'button ' + className}
-				to={to}
-				target={target}
-				external={external}
-				icon={icon}
-				iconPosition={iconPosition}
-				loading={loading ? loading.toString() : 'false'}
-				error={error}
-				success={success}
-				disabled={disabled}
-				onClick={onClick}
-				theme={setTheme || 'default'}
-				shape={shape}
-				size={size}
-				title={title}
-				name={name || title}
-				aria-label={name || title}
-				rel={external ? 'noopener noreferrer' : ''}
-			>
-				{renderButtonContent()}
-			</StyledButtonLink>
-		)
-	} else {
-		return (
-			<StyledButtonElement
-				className={'button ' + className}
-				icon={icon}
-				iconPosition={iconPosition}
-				loading={loading ? loading.toString() : 'false'}
-				error={error}
-				success={success}
-				disabled={disabled}
-				onClick={onClick}
-				theme={setTheme || 'default'}
-				shape={shape}
-				size={size}
-				title={title}
-				name={name || title}
-				aria-label={name || title}
-			>
-				{renderButtonContent()}
-			</StyledButtonElement>
-		)
-	}
+	return (
+		<StyledButtonLink
+			className={'button ' + className}
+			to={to}
+			target={target}
+			external={external}
+			icon={icon}
+			iconPosition={iconPosition}
+			loading={loading ? loading.toString() : 'false'}
+			error={error}
+			success={success}
+			disabled={disabled}
+			onClick={onClick}
+			theme={setTheme || 'default'}
+			shape={shape}
+			size={size}
+			title={title}
+			name={name || title}
+			aria-label={name || title}
+			rel={external ? 'noopener noreferrer' : ''}
+			as={to ? Link : 'button'}
+		>
+			{renderButtonContent()}
+		</StyledButtonLink>
+	)
 }
 
 Button.defaultProps = {
