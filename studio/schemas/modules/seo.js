@@ -14,7 +14,7 @@ export default {
     },
     {
       name: 'metaDescription',
-      title: 'Meta Description',
+      title: 'Description',
       type: 'string'
     },
     {
@@ -25,16 +25,6 @@ export default {
       options: {
         hotspot: true
       }
-    },
-    {
-      name: 'shareTitle',
-      title: 'Share Title',
-      type: 'string'
-    },
-    {
-      name: 'shareDescription',
-      title: 'Share Description',
-      type: 'text'
     }
   ]
 }

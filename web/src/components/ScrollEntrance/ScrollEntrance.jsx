@@ -8,12 +8,10 @@ const EnteranceWrap = styled.div`
 		> * {
 			will-change: transform, opacity;
 			transition: transform ${ speed + 'ms' } ${ timing }, opacity ${ speed + 'ms' } ${ timing };
-			${ inView
-				? `
+			${ inView ? `
 					transform: none;
 					opacity: 1;
-				`
-				: `
+				` : `
 					transform: ${ transform };
 					opacity: 0;
 				`

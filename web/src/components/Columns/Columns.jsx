@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Section from 'src/components/Section'
-import Grid from 'src/components/Grid'
+import Grid, { Container } from 'src/components/Grid'
 import ScrollEntrance from 'src/components/ScrollEntrance'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import TextLockup from 'src/components/TextLockup'
@@ -43,13 +43,11 @@ const ColumnText = styled(TextLockup)`
 const MediaScrollEntrance = styled(ScrollEntrance)`
   display: inline-block;
   vertical-align: top;
-  ${ ({ imageSize }) => imageSize
-? `
+  ${ ({ imageSize }) => imageSize ? `
     width: ${ imageSizes[imageSize].width };
     min-width: ${ imageSizes[imageSize].min };
     max-width: ${ imageSizes[imageSize].max };
-  `
-: `
+  ` : `
     width: 100%;
   ` }
 `
@@ -62,8 +60,7 @@ const ColumnWrapper = styled.div`
 `
 
 const ColumnsGrid = styled.div`
-  ${ ({ alignment, vAlign, smallCols, mediumCols, largeCols, colGap, rowGap }) => alignment === 'center'
-? `
+  ${ ({ alignment, vAlign, smallCols, mediumCols, largeCols, colGap, rowGap }) => alignment === 'center' ? `
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -101,8 +98,7 @@ const ColumnsGrid = styled.div`
         margin-bottom: ${ rowGap[2] };
       }
     }
-  `
-: '' }
+  ` : '' }
 `
 
 const gridSetup = {
@@ -139,7 +135,7 @@ const Columns = ({
       nextTheme={nextTheme}
       alignment={alignment === null ? 'left' : alignment}
     >
-      <Grid small="container" medium="container" large="container" larger="container">
+      <Container>
         <IntroTextWrapper small='[1]'>
           <TextLockup
             eyebrow={introText.eyebrow}
@@ -185,7 +181,7 @@ const Columns = ({
             )
           })}
         </ColumnsGrid>
-      </Grid>
+      </Container>
     </Wrapper>
   )
 }

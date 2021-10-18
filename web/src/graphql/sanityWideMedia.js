@@ -7,34 +7,7 @@ export const query = graphql`
     width
     height
     media {
-      mediaType
-      image {
-        asset {
-          gatsbyImageData(layout: FULL_WIDTH)
-          url
-          title
-          altText
-          originalFilename
-        }
-        hotspot {
-          width
-          height
-          x
-          y
-        }
-        crop {
-          top
-          bottom
-          left
-          right
-        }
-      }
-      video {
-        asset {
-          title
-          url
-        }
-      }
+      ...Media
     }
     text {
       eyebrow

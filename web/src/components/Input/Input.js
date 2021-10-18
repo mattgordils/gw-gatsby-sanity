@@ -112,8 +112,7 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
   text-align: left;
   box-shadow: none;
   padding: 0 ${ inputVars[size] * 0.3 + 'px' } 0;
-  ${ icon
-? `
+  ${ icon ? `
 		${ util.responsiveStyles(
 			('padding-' + iconPosition),
 			inputVars[size] * responsiveUiSizes.huge,
@@ -121,8 +120,7 @@ export const InputStyles = (state, size, icon, iconPosition, theme, label) => (`
 			inputVars[size] * responsiveUiSizes.medium,
 			inputVars[size] * responsiveUiSizes.small
 		) }
-	`
-: '' }
+	` : '' }
   padding-bottom: 1px;
   ${ util.fontSmoothing }
   transition: background ${ animations.mediumSpeed } ease-in-out,

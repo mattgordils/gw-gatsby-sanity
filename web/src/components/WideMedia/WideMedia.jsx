@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import Section from 'src/components/Section'
 import Image from 'src/components/Image'
 import Video from 'src/components/Video'
-import Grid from 'src/components/Grid'
+import Grid, { Container } from 'src/components/Grid'
 import { colors, animations } from 'src/styles'
 import TextLockup from 'src/components/TextLockup'
 // import ResponsiveComponent from 'src/components/ResponsiveComponent'
@@ -14,11 +14,9 @@ import { use100vh } from 'react-div-100vh'
 
 const Wrapper = styled(Section)`
   position: relative;
-  ${ ({ overlayTextColor }) => overlayTextColor === 'dark'
-? `
+  ${ ({ overlayTextColor }) => overlayTextColor === 'dark' ? `
     color: ${ colors.textColor };
-  `
-: `
+  ` : `
     color: ${ colors.bgColor };
   ` }
 `
@@ -38,26 +36,21 @@ const MediaItem = styled.div`
   z-index: 1;
   width: 100%;
   overflow: hidden;
-  ${ ({ isFirstSection }) => isFirstSection
-? css`
+  ${ ({ isFirstSection }) => isFirstSection ? css`
     opacity: 0;
     will-change: opacity;
     transform: translateZ(0);
     animation: ${ animations.fadeIn } ${ animations.mediumSpeed } .1s ease-in-out forwards;
-  `
-: '' }
-  ${ ({ overlay, height }) => (overlay && height !== 'auto')
-? `
+  ` : '' }
+  ${ ({ overlay, height }) => (overlay && height !== 'auto') ? `
     position: absolute !important;
     top: 0;
     left: 0;
     height: 100%;
-  `
-: `
+  ` : `
     position: relative;
   ` }
-  ${ ({ height }) => height !== 'auto'
-? `
+  ${ ({ height }) => height !== 'auto' ? `
     height: 100%;
     min-height: ${ height };
     > div, 
@@ -84,8 +77,7 @@ const MediaItem = styled.div`
       height: 100%;
       min-height: ${ height };
     }
-  `
-: `
+  ` : `
     height: 100%;
   ` }
 `
@@ -98,11 +90,9 @@ const OverlayContent = styled.div`
   z-index: 5;
   display: flex;
   flex-direction: column;
-  ${ ({ height }) => height === 'auto'
-? `
+  ${ ({ height }) => height === 'auto' ? `
     position: absolute;
-  `
-: `
+  ` : `
     position: relative;
   ` }
   ${ ({ height }) => height !== 'auto' && `
@@ -272,7 +262,7 @@ const WideMedia = ({
       overlayTextColor={overlayTextColor}
     >
       <WideMediaWrap height={heightValues[height]} overlayTextColor={overlayTextColor}>
-        <Grid small={fullWidth ? '[1]' : 'container'} medium={fullWidth ? '[1]' : 'container'} large={fullWidth ? '[1]' : 'container'}>
+        <Grid small={fullWidth ? '[1]' : 'container'} medium={fullWidth ? '[1]' : 'container'} large={fullWidth ? '[1]' : 'container'} larger={fullWidth ? '[1]' : 'container'}>
           <ContentWrap>
             {/* <ResponsiveComponent
               small={renderMedia(mediaSmall, 'small', hasOverlay, height === 'auto')}
@@ -289,11 +279,7 @@ const WideMedia = ({
                 height={heightValues[height]}
               >
                 <OverlaySection isFirstSection={isFirstSection}>
-                  <Grid
-                    small='container'
-                    medium='container'
-                    large='container'
-                  >
+                  <Container>
                     <Grid small='[1]' {...overlayGridSettings}>
                       <TextLockup
                         eyebrow={text.eyebrow}
@@ -304,7 +290,7 @@ const WideMedia = ({
                         transitionIn={!isFirstSection}
                       />
                     </Grid>
-                  </Grid>
+                  </Container>
                 </OverlaySection>
               </OverlayContent>
             )}

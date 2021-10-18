@@ -16,22 +16,21 @@ const Page = ({ data }) => {
     // Filter out hidden modules
     modules = modules.filter(module => !module.hidden)
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
-  const siteTitle = data?.allSanitySiteSettings?.edges[0]?.node?.title
   const mainNavigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
   return (
     <>
       <SEO
         pagePath={path}
-        title={pageMeta?.metaTitle || page.title}
+        title={page.title}
         description={pageMeta?.metaDescription}
         keywords={pageMeta?.keywords}
-        ogTitle={pageMeta?.openTitle}
-        ogImage={pageMeta?.openImage?.asset?.url || getBackupShareImage(modules)}
-        ogDescription={pageMeta?.openGraphDescription}
-        twitterDescription={pageMeta?.twitterDescription}
-        twitterImage={pageMeta?.twitterImage?.asset?.url || getBackupShareImage(modules)}
-        twitterTitle={pageMeta?.twitterTitle}
+        ogTitle={page.title}
+        ogImage={pageMeta?.shareImage?.asset?.url || getBackupShareImage(modules)}
+        ogDescription={pageMeta?.metaDescription}
+        twitterDescription={pageMeta?.metaDescription}
+        twitterImage={pageMeta?.shareImage?.asset?.url || getBackupShareImage(modules)}
+        twitterTitle={page.title}
       />
       <Header
         hasAtf={hasAtf}
@@ -39,7 +38,6 @@ const Page = ({ data }) => {
         // bannerColor={site.bannerColor}
         navigation={mainNavigation}
         location={path}
-        title={siteTitle}
       />
       {modules.map((item, index) => {
         const prevSection = modules[index - 1]
@@ -66,20 +64,13 @@ const Page = ({ data }) => {
         )
       })}
       {/* RenderModules(modules) */}
-      <Footer title={siteTitle}/>
+      <Footer />
     </>
   )
 }
 
 export const pageQuery = graphql`
   query ($id: String!) {
-    allSanitySiteSettings {
-      edges {
-        node {
-          title
-        }
-      }
-    }
     allSanityMenus {
       edges {
         node {
@@ -123,11 +114,8 @@ export const pageQuery = graphql`
           }
         }
         meta {
-          metaTitle
           metaDescription
           keywords
-          shareDescription
-          shareTitle
           shareImage {
             asset {
               url

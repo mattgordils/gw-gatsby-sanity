@@ -39,8 +39,7 @@ const StyledVideo = styled(ReactPlayer)`
 			object-fit: cover;
 		}
 	` }
-	${ ({ url, cover }) => url.indexOf('youtube') > -1 || url.indexOf('vimeo') > -1
-? `
+	${ ({ url, cover }) => url.indexOf('youtube') > -1 || url.indexOf('vimeo') > -1 ? `
 		padding-bottom: ${ 9 / 16 * 100 }%;
 		${ cover && `
 			position: absolute;
@@ -73,8 +72,7 @@ const StyledVideo = styled(ReactPlayer)`
 			width: 100% !important;
 			height: 100% !important;
 		}
-	`
-: `
+	` : `
 	` }
 `
 

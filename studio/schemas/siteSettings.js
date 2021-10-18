@@ -40,6 +40,12 @@ export default {
       }
     },
     {
+      name: 'social',
+      title: 'Social',
+      type: 'social',
+      fieldset: 'main'
+    },
+    {
       name: 'favicon',
       title: 'Favicon',
       description: '32x32 .png file to be shown in the browser tab bar. transparent background is best.',
@@ -58,12 +64,6 @@ export default {
       options: {
         accept: ['.png'],
       }
-    },
-    {
-      name: 'social',
-      title: 'Social',
-      type: 'social',
-      fieldset: 'main'
     },
     {
       name: 'seo',

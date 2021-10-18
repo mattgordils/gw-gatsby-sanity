@@ -82,8 +82,7 @@ const Option = styled.label`
 	}) => InputStyles(getState(loading, error, success, disabled), size, icon, iconPosition, theme, label) }
 	border-top: none;
 	position: relative;
-	${ ({ lastItem, size }) => !lastItem
-? `
+	${ ({ lastItem, size }) => !lastItem ? `
 		border-bottom: none;
 		border-radius: 0;
 		${ util.responsiveStyles(
@@ -102,8 +101,7 @@ const Option = styled.label`
 				(uiElementSizes[size] - inputVars.borderWidth * 2) * responsiveUiSizes.small
 			) }
 		}
-	`
-: `
+	` : `
 		${ util.responsiveStyles(
 			'height',
 			(uiElementSizes[size] - inputVars.borderWidth) * responsiveUiSizes.huge,
@@ -126,13 +124,11 @@ const Option = styled.label`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	${ ({ disabled }) => disabled
-? `
+	${ ({ disabled }) => disabled ? `
 		cursor: not-allowed;
 		border-color: ${ colors.textColor };
 		color: ${ colors.lightTextColor };
-	`
-: `
+	` : `
 		cursor: pointer;
 		&:hover {
 			background: ${ colors.lightGrey };

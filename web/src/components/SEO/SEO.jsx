@@ -59,7 +59,7 @@ function SEO ({
 	///
 	const metaTitle = title
 	const metaDescription = description || sanitySiteSettings?.description
-	let metaKeywords = keywords
+	const metaKeywords = keywords
 	shareImage = shareImage?.asset?.url
 	///
 

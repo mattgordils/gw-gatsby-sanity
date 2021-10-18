@@ -29,9 +29,7 @@ const ShopifyProvider = ({ children }) => {
     const initializeCheckout = async () => {
       // Check for an existing cart.
       const isBrowser = typeof window !== 'undefined'
-      const existingCheckoutID = isBrowser
-        ? localStorage.getItem('shopify_checkout_id')
-        : null
+      const existingCheckoutID = isBrowser ? localStorage.getItem('shopify_checkout_id') : null
 
       const setCheckoutInState = checkout => {
         if (isBrowser) {

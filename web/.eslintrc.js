@@ -31,6 +31,7 @@ module.exports = {
     semi: ['error', 'never'],
     'template-curly-spacing': ['error', 'always'],
     'arrow-parens': ['error', 'as-needed'],
+    'multiline-ternary': ['error', 'never'],
 
     // standard.js
     'space-before-function-paren': [

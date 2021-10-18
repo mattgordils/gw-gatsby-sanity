@@ -20,8 +20,7 @@ const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, i
     return false
   }
   // console.log(item)
-  return Component
-    ? (
+  return Component ? (
       <Component
         {...item}
         prevTheme={prevTheme}
@@ -30,8 +29,7 @@ const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, i
         isFirstSection={isFirstSection}
         index={index}
       />
-    )
-  : null
+    ) : null
 }
 
 export default ComponentRenderer

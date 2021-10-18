@@ -1,7 +1,8 @@
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import Link from 'src/components/Link'
-import Grid from 'src/components/Grid'
+import Grid, { Container } from 'src/components/Grid'
 import { Logomark } from 'src/components/Logo'
 import Section from 'src/components/Section'
 import ThemeSelector from 'src/components/ThemeSelector'
@@ -58,11 +59,25 @@ const SiteCredit = styled.div`
 	}
 `
 
-const Footer = ({ title }) => {
+const Footer = () => {
+	const { allSanitySiteSettings } = useStaticQuery(
+		graphql`
+			query {
+				allSanitySiteSettings {
+		      edges {
+		        node {
+		          title
+		        }
+		      }
+		    }
+			}
+		`
+	)
+	const siteTitle = allSanitySiteSettings?.edges[0]?.node?.title
 	return (
 		<Wrapper setTheme="textColor">
 			<Section>
-				<Grid small='container' medium='container' large='container' larger='container'>
+				<Container>
 					<Grid
 						small="[1]"
 						medium="[4] [4] [4]"
@@ -82,10 +97,10 @@ const Footer = ({ title }) => {
 							Newsletter
 						</div>
 					</Grid>
-				</Grid>
+				</Container>
 			</Section>
 			<FooterBottom setTheme="textColor">
-				<Grid small='container' medium='container' large='container' larger='container'>
+				<Container>
 					<Grid
 						small="[7] [5]"
 						medium="[8] [4]"
@@ -94,11 +109,11 @@ const Footer = ({ title }) => {
 					>
 						<Copyright>
 							<FooterLogo />
-							<p className="sm">© <span className="mobile-hide">{title}</span> {new Date().getFullYear()}</p>
+							<p className="sm">© <span className="mobile-hide">{siteTitle}</span> {new Date().getFullYear()}</p>
 						</Copyright>
 						<SiteCredit><p className="sm"><Link to="https://gordilsandwillis.com/" target="_blank" external>Site Credit</Link></p></SiteCredit>
 					</Grid>
-				</Grid>
+				</Container>
 			</FooterBottom>
 		</Wrapper>
 	)

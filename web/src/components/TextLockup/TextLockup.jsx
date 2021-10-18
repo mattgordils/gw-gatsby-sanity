@@ -46,11 +46,9 @@ const TextContainer = styled(ScrollEntrance)`
 
 const Eyebrow = styled.p`
 	${ typography.eyebrow }
-	${ ({ hasText }) => hasText
-? `
+	${ ({ hasText }) => hasText ? `
 		margin: 0 0 0.5em;
-	`
-: `
+	` : `
 		margin: 0;
 	` }
 `

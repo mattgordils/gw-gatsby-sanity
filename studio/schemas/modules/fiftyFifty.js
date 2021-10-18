@@ -81,10 +81,10 @@ export default {
       }
     },
     {
-      name: "hidden",
-      title: "Hidden",
+      name: 'hidden',
+      title: 'Hidden',
       initialValue: false,
-      type: "boolean",
+      type: 'boolean',
     },
   ],
   preview: {
@@ -92,13 +92,14 @@ export default {
       title: 'internalName',
       subtitle: 'text.eyebrow',
       media: 'media',
-      hidden: 'hidden'
+      hidden: 'hidden',
+      theme: 'theme'
     },
     prepare (selection) {
-      const { title, subtitle, media, hidden } = selection
+      const { title, subtitle, media, hidden, theme } = selection
       return Object.assign({}, selection, {
         subtitle: hidden ? 'Hidden' : subtitle || 'Fifty Fifty',
-        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden}><MdPlayArrow size='24px'/></SectionIcon> : media.image
+        media: media.mediaType === 'video' ? <SectionIcon hidden={hidden} theme={theme}><MdPlayArrow size='24px'/></SectionIcon> : media.image
       })
     }
   }

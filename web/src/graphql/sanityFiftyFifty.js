@@ -4,29 +4,12 @@ export const query = graphql`
   fragment FiftyFifty on SanityFiftyFifty {
     _key
     _type
-    theme {
-      title
-    }
+    theme
     mediaPlacement
     mediaWidth
     width
     media {
-      mediaType
-      image {
-        asset {
-          gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
-          url
-          title
-          altText
-          originalFilename
-        }
-      }
-      video {
-        asset {
-          title
-          url
-        }
-      }
+      ...Media
     }
     text {
       eyebrow

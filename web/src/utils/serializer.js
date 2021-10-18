@@ -62,7 +62,7 @@ export const Serializer = {
       return <div className='embeded-content'><YoutubeVideo src={node.url}/></div>
     },
     embed: ({ node }) => {
-      console.log('TBD')
+      // TODO
       return <p><EmbedCode embedCode={node.embedCode} /></p>
     },
   },

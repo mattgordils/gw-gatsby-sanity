@@ -55,13 +55,14 @@ export default {
       title: 'internalName',
       subtitle: "text.eyebrow",
       alignment: "alignment",
-      hidden: "hidden"
+      hidden: "hidden",
+      theme: 'theme'
     },
     prepare(selection) {
-      const { alignment, subtitle, hidden } = selection;
+      const { alignment, subtitle, hidden, theme } = selection;
       return Object.assign({}, selection, {
         subtitle: hidden ? 'Hidden' : subtitle || 'Text Section',
-        media: alignment === "left" ? <SectionIcon hidden={hidden}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
+        media: alignment === "left" ? <SectionIcon hidden={hidden} theme={theme}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
       });
     },
   },

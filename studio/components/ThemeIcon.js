@@ -1,22 +1,26 @@
-// import React from 'react'
+import React from 'react'
 
-// const ThemeIcon = ({ theme }) => {
-// 	return (
-// 		<div
-// 			style={{ 
-// 				borderRadius: '3px',
-// 				width: '36px',
-// 				height: '36px',
-// 				background: theme.background || '#e4e8ed',
-// 				color: theme.color || 'currentcolor',
-// 				display: 'flex',
-// 				alignItems: 'center',
-// 				justifyContent: 'center',
-// 				fontSize: '20px',
-// 			}}
-// 		>
-// 			<strong>Aa</strong>
-// 		</div>)
-// }
+const ThemeIcon = ({ theme }) => {
+	if (!theme) {
+		return false
+	}
 
-// export default ThemeIcon
+	return (
+		<div
+			style={{ 
+				width: '40px',
+				height: '40px',
+				margin: '2px',
+				background: theme[1]?.background || '#e4e8ed',
+				color: theme[1]?.color || 'currentcolor',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				fontSize: '20px'
+			}}
+		>
+			<strong>Aa</strong>
+		</div>)
+}
+
+export default ThemeIcon

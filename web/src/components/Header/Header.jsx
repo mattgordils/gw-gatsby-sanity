@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { rgba } from 'polished'
 import Link from 'src/components/Link'
@@ -71,12 +72,10 @@ const NavLink = styled(Link)`
                 background ${ animations.mediumSpeed } ease-in-out,
                 opacity ${ animations.mediumSpeed } ease-in-out,
                 color ${ animations.mediumSpeed } ease-in-out;
-  ${ ({ hasAtf, active }) => hasAtf
-    ? `
+  ${ ({ hasAtf, active }) => hasAtf ? `
       color: inherit;
       ${ !active && '&:hover { opacity: .6; }' }
-    `
-    : `
+    ` : `
       color: inherit;
       ${ !active && `&:hover { color: ${ colors.mainColor }; }` }
   ` }
@@ -129,24 +128,18 @@ const HeaderLogo = styled(Logo)`
   ${ util.responsiveStyles('width', 80, 50, 50, 40) }
   height: auto;
   transition: color ${ animations.mediumSpeed } ease-in-out, width ${ animations.mediumSpeed } ease-in-out;
-  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled
-? `
+  ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled ? `
     color: ${ colors.mainColor };
     ${ util.responsiveStyles('width', 50, 40, 40, 30) }
     ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen
-? `
+      ${ mobileMenuOpen ? `
         ${ util.responsiveStyles('width', 80, 50, 50, 40) }
-      `
-: '' }
+      ` : '' }
     }
-  `
-: `
-    ${ !hasAtf
-? `
+  ` : `
+    ${ !hasAtf ? `
       color: ${ colors.mainColor };
-    `
-: `
+    ` : `
       color: ${ colors.bgColor };
     ` }
   ` }
@@ -221,9 +214,22 @@ const Header = ({
   bannerText,
   collapsed,
   bannerColor,
-  navigation,
-  title
+  navigation
 }) => {
+  const { allSanitySiteSettings } = useStaticQuery(
+    graphql`
+      query {
+        allSanitySiteSettings {
+          edges {
+            node {
+              title
+            }
+          }
+        }
+      }
+    `
+  )
+  const siteTitle = allSanitySiteSettings?.edges[0]?.node?.title
   const [bannerVisible, toggleBanner] = useState(true)
 
   const { mobileMenu, toggleMobileMenu } = useContext(AppContext)
@@ -334,7 +340,7 @@ const Header = ({
                     </NavLinks>
                   </div>
                   <LogoCol>
-                    <Link to="/" title={title}>
+                    <Link to="/" title={siteTitle}>
                       <HeaderLogo
                         scrolled={scrolled}
                         hasAtf={pageHasAtf}

@@ -51,18 +51,34 @@ export default {
       name: 'theme',
       title: 'Theme',
       type: 'theme'
-    }
+    },
+    {
+      name: 'hidden',
+      title: 'Hidden',
+      initialValue: false,
+      type: 'boolean',
+    },
   ],
   preview: {
     select: {
       title: 'internalName',
-      columns: 'columns'
+      columns: 'columns',
+      theme: 'theme',
+      hidden: 'hidden'
     },
     prepare (selection) {
-      const { columns } = selection
+      const { columns, theme, hidden } = selection
+      console.log(theme)
+      const getSubtitle = (columns) => {
+        if (hidden) {
+          return 'Hidden'
+        } else {
+          return columns.length + ' columns'
+        }
+      }
       return Object.assign({}, selection, {
-        subtitle: columns && columns.length + ' columns',
-        media: <SectionIcon><MdViewWeek size='24px'/></SectionIcon>
+        subtitle: getSubtitle(columns),
+        media: <SectionIcon hidden={hidden} theme={theme}><MdViewWeek size='24px'/></SectionIcon>
       })
     }
   }

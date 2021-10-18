@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Section from 'src/components/Section'
 import TextLockup from 'src/components/TextLockup'
-import Grid from 'src/components/Grid'
+import Grid, { Container } from 'src/components/Grid'
 
 const Wrapper = styled(Section)`
   ${ ({ alignment }) => alignment !== 'right' && `
@@ -44,24 +44,22 @@ const TextSection = ({
     return false
   }
 
-  console.log(theme)
-
   const align = {
     // same as in WideMedia.jsx
     left: {
-      medium: 'container',
-      large: 'container',
-      larger: 'container'
+      medium: '[1]',
+      large: '[1]',
+      larger: '[1]'
     },
     center: {
-      medium: 'container',
-      large: 'container',
-      larger: 'container'
+      medium: '[1]',
+      large: '[1]',
+      larger: '[1]'
     },
     right: {
-      medium: '7 [6] 1',
-      large: '7 [6] 1',
-      larger: '7 [5] 2'
+      medium: '6 [6]',
+      large: '6 [6]',
+      larger: '7 [5]'
     }
   }
 
@@ -78,20 +76,22 @@ const TextSection = ({
       alignment={alignment}
       isFirstSection={isFirstSection}
     >
-      <Grid
-        small="container"
-        medium={align[alignment].medium}
-        large={align[alignment].large}
-        larger={align[alignment].larger}
-      >
-        <TextLockup
-          eyebrow={text.eyebrow}
-          text={text._rawText}
-          // textSize={paragraphSize}
-          actions={actions}
-          theme={theme}
-        />
-      </Grid>
+      <Container>
+        <Grid
+          small="container"
+          medium={align[alignment].medium}
+          large={align[alignment].large}
+          larger={align[alignment].larger}
+        >
+          <TextLockup
+            eyebrow={text.eyebrow}
+            text={text._rawText}
+            // textSize={paragraphSize}
+            actions={actions}
+            theme={theme}
+          />
+        </Grid>
+      </Container>
     </Wrapper>
   )
 }

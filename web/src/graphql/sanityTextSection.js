@@ -9,9 +9,7 @@ export const query = graphql`
       _rawText(resolveReferences: {maxDepth: 10})
     }
     alignment
-    theme {
-      title
-    }
+    theme
     actions {
       ...Button
       ...Link

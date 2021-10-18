@@ -39,7 +39,7 @@ export const IconUI = React.forwardRef((props, ref) => {
   		inputId={inputId}
   		style={{ gridTemplateColumns: 'max-content max-content', columnGap: '16px', alignItems: 'center' }}
   	>
-  		<div style={{ display: 'flex', width: '75%' }}>
+  		<div style={{ display: 'flex', width: '75%', paddingRight: '11px' }}>
 	  		{type.options.list.map((item, index) => {
 	  			const checked = item.value == value
 	  			const itemId = useId()
@@ -53,16 +53,31 @@ export const IconUI = React.forwardRef((props, ref) => {
 		  						alignItems: 'center',
 		  						justifyContent: 'center',
 			  					minWidth: '42px',
-			  					height: '36px',
+			  					minHeight: '36px',
 			  					fontSize: '24px',
 			  					boxSizing: 'border-box',
-			  					marginRight: '-1px',
+			  					marginRight: type.options.list.length !== index + 1 ? '-1px' : '0',
 			  					position: 'relative',
-			  					border: checked ? '2px solid var(--card-focus-ring-color)' : '1px solid var(--card-border-color)',
+			  					// padding: checked ? '0' : '1px',
+			  					border: '1px solid var(--card-border-color)',
 			  					zIndex: checked ? '2' : '1',
 			  					cursor: 'pointer',
+			  					position: 'relative'
 			  				}}
-		  				>{item.icon || item.title}</label>
+		  				>
+		  					{item.icon || item.title}
+		  					<div
+			  					style={{
+			  						display: checked ? 'block' : 'none',
+			  						position: 'absolute',
+			  						top: '-1px',
+			  						left: '-1px',
+			  						bottom: '-1px',
+			  						right: '-1px',
+			  						border: '2px solid var(--card-focus-ring-color)',
+			  					}}
+			  				/>
+		  				</label>
 			  			<input
 			  				type='radio'
 			  				value={item.value}

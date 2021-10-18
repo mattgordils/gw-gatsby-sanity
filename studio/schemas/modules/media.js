@@ -24,6 +24,13 @@ export default {
       }
     },
     {
+      name: 'altText',
+      title: 'Alternative Text',
+      description: 'A description of the image. Important for SEO and accessibility',
+      type: 'string',
+      hidden: ({ parent }) => parent.mediaType !== 'image',
+    },
+    {
       name: 'video',
       title: 'Video',
       type: 'file',

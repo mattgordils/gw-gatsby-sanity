@@ -27,7 +27,7 @@ const createPages = (graphql, createPage) => new Promise((resolve, reject) => {
 
     result.data.allSanityPage.edges
       .forEach(edge => {
-        let slug = edge.node.content.main.slug.current === 'home' ? '/' : '/' + edge.node.content.main.slug.current
+        const slug = edge.node.content.main.slug.current === 'home' ? '/' : '/' + edge.node.content.main.slug.current
         createPage({
           path: slug,
           component: template,

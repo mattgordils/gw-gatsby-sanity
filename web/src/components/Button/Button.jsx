@@ -72,11 +72,9 @@ const DisabledButtonStyles = () => `
 `
 
 const ButtonIcon = styled.div`
-	${ ({ position }) => position === 'left'
-? `
+	${ ({ position }) => position === 'left' ? `
 		margin-right: .5em;
-	`
-: `
+	` : `
 		margin-left: .5em;
 	` }
 	span,

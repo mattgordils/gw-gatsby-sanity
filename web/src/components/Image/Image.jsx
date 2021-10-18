@@ -12,7 +12,7 @@ const StyledImage = styled(GatsbyImage)`
       right: ${ crop.right * -100 }%;
       top: ${ crop.top * -100 }%;
       bottom: ${ crop.bottom * -100 }%;
-    ` : `` }
+    ` : '' }
   }
 `
 

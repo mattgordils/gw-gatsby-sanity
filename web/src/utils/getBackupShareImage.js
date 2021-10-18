@@ -22,5 +22,5 @@ export const getBackupShareImage = sections => {
 			})
 		}
 	})
-	console.log(pageImages[0])
+	return pageImages[0]
 }

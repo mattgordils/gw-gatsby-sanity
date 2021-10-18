@@ -42,13 +42,11 @@ const parseGridItemDef = d => {
 		size = gutter
 		isVariableColumn = true
 	}
-	return size !== null
-? ({
+	return size !== null ? ({
 		isColumn: isColumnDef(d),
 		size,
 		isVariableColumn
-	})
-: null
+	}) : null
 }
 
 // parse an entire grid definition (eg. '1 [4] 2 [8] 1')
@@ -134,7 +132,7 @@ const StyledGrid = styled.div`
 	direction: ${ ({ gridDirection }) => gridDirection };
 	align-items: ${ ({ vAlign }) => vAlign };
 	> * {
-		direction: ltr;
+		direction: unset;
 	}
 
 	${ props => gridDefToCss(props.small) }
@@ -224,6 +222,19 @@ class Grid extends Component {
 		)
 	}
 }
+
+export const Container = ({ small, medium, large, larger, extraLarge, children, ...rest }) => (
+	<Grid
+		small={small || 'container'}
+		medium={medium || 'container'}
+		large={large || 'container'}
+		larger={larger || 'container'}
+		extraLarge={extraLarge || 'container'}
+		{...rest}
+	>
+		{children}
+	</Grid>
+)
 
 Grid.propTypes = {
 	small: PropTypes.string.isRequired,
