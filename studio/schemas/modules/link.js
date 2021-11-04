@@ -5,7 +5,6 @@ export default {
   title: 'Link',
   name: 'link',
   type: 'object',
-  hidden: true,
   fields: [
     {
       name: 'title',

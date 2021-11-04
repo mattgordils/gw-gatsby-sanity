@@ -215,9 +215,9 @@ const Header = ({
   bannerText,
   collapsed,
   bannerColor,
-  navigation
+  // navigation
 }) => {
-  const { allSanitySiteSettings } = useStaticQuery(
+  const { allSanitySiteSettings, allSanityMenus } = useStaticQuery(
     graphql`
       query {
         allSanitySiteSettings {
@@ -227,9 +227,36 @@ const Header = ({
             }
           }
         }
+        allSanityMenus {
+          edges {
+            node {
+              _id
+              _key
+              slug {
+                current
+              }
+              items {
+                _key
+                itemLink {
+                  ...Link
+                }
+                sublinks {
+                  ...Link
+                }
+              }
+            }
+          }
+        }
       }
     `
   )
+
+  const menus = allSanityMenus?.edges
+  const navigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
+
+  console.log(navigation)
+
+  // const navigation = []
 
   const navLinksLeft = useRef()
   const logoCol = useRef()
@@ -308,16 +335,16 @@ const Header = ({
                           </MenuIcon>
                         }
                         medium={navigation && navigation.map((item, index) => {
-                          // let link = item?.link?.content?.main?.slug?.current
-                          const link = getSlugLink(item?.link)
-                          const externalLink = item.externalLink
-                          if (!item.title) {
+                          const { itemLink } = item
+                          const link = getSlugLink(itemLink)
+                          const externalLink = itemLink.externalLink
+                          if (!itemLink.title) {
                             return false
                           }
                           return (
                             <li key={'header-link-' + item._key}>
                               <NavLink
-                                target={item.newTab && '_blank'}
+                                target={itemLink.newTab && '_blank'}
                                 external={externalLink}
                                 scrolled={scrolled}
                                 hasAtf={pageHasAtf}
@@ -326,7 +353,7 @@ const Header = ({
                                 key={link}
                                 hasDropdown={item?.sublinks?.length > 0}
                                 >
-                                  {item.title}
+                                  {itemLink.title}
                                 </NavLink>
                                 {item.sublinks && item?.sublinks?.length > 0 && (
                                   <Dropdown>

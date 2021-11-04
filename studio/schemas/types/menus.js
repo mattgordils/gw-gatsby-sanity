@@ -30,7 +30,7 @@ export default {
       title: 'Nav Items',
       type: 'array',
       of: [
-        { type: 'link' }
+        { type: 'navLink' }
       ]
     },
   ]

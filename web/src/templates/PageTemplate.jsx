@@ -9,14 +9,12 @@ import { getBackupShareImage } from 'src/utils/getBackupShareImage'
 
 const Page = ({ data }) => {
   const page = data?.sanityPage?.content?.main
-  const menus = data?.allSanityMenus?.edges
   const pageMeta = data?.sanityPage?.content?.meta
   const path = page?.slug?.current
   let modules = page?.modules
     // Filter out hidden modules
     modules = modules.filter(module => !module.hidden)
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
-  const mainNavigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
   return (
     <>
@@ -36,7 +34,6 @@ const Page = ({ data }) => {
         hasAtf={hasAtf}
         // bannerText={site.bannerText}
         // bannerColor={site.bannerColor}
-        navigation={mainNavigation}
         location={path}
       />
       {modules.map((item, index) => {
@@ -71,34 +68,6 @@ const Page = ({ data }) => {
 
 export const pageQuery = graphql`
   query ($id: String!) {
-    allSanityMenus {
-      edges {
-        node {
-          _id
-          _key
-          slug {
-            current
-          }
-          items {
-            title
-            newTab
-            link {
-              content {
-                main {
-                  slug {
-                    current
-                  }
-                }
-              }
-              _key
-              _id
-            }
-            externalLink
-            _key
-          }
-        }
-      }
-    }
     sanityPage(id: { eq: $id }) {
       content {
         main {

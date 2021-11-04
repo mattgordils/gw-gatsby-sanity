@@ -26,6 +26,7 @@ import textLockup from './modules/textLockup'
 import media from './modules/media'
 import actions from './modules/actions'
 import link from './modules/link'
+import navLink from './modules/navLink'
 import button from './modules/button'
 import youTubeEmbed from './modules/youTubeEmbed'
 import embed from './modules/embed'
@@ -84,6 +85,7 @@ export default createSchema({
     textLockup,
     actions,
     link,
+    navLink,
     button,
     youTubeEmbed,
     embed,

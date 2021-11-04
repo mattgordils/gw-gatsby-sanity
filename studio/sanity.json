@@ -35,6 +35,14 @@
     {
       "implements": "part:@sanity/production-preview/resolve-production-url",
       "path": "./resolvePreviewUrl.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "./logo/adminLogo.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./styles/variables.css"
     }
   ]
 }

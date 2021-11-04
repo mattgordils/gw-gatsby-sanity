@@ -4,7 +4,6 @@ export default {
   title: 'Button',
   name: 'button',
   type: 'object',
-  hidden: true,
   fields: [
     {
       name: 'title',
