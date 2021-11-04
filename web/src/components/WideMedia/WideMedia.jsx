@@ -336,20 +336,9 @@ WideMedia.propTypes = {
     'mediumHeight',
     'shortHeight'
   ]),
-  /** Text above the headline */
-  eyebrow: PropTypes.string,
-  /** `raw` rich text from Contentful */
-  text: PropTypes.shape({ raw: PropTypes.string }),
   paragraphSize: PropTypes.oneOf(['body', 'bodyMedium', 'bodyLarge', 'bodySmall']),
-  actions: PropTypes.shape([
-    {
-      __typename: PropTypes.oneOf(['ContentfulButton', 'ContentfulLink']),
-      to: PropTypes.string,
-      linkToPage: PropTypes.shape({ slug: PropTypes.string }),
-      openInNewTab: PropTypes.bool,
-      label: PropTypes.string
-    }
-  ]),
+  /** Array of Buttons or Links */
+  actions: PropTypes.array,
   /** What position should the overlay text be in? */
   overlayPlacement: PropTypes.oneOf([
     'top left',

@@ -194,20 +194,8 @@ FiftyFifty.propTypes = {
   /** How wide should the media be? */
   mediaWidth: PropTypes.oneOf(['normal', 'large', 'extraLarge']),
   width: PropTypes.oneOf(['default', 'fullWidth']),
-  /** Text above the headline */
-  eyebrow: PropTypes.string,
-  /** `raw` rich text from Contentful */
-  text: PropTypes.shape({ raw: PropTypes.string }),
-  /** Buttons or links to go under text */
-  actions: PropTypes.shape([
-    {
-      __typename: PropTypes.oneOf(['ContentfulButton', 'ContentfulLink']),
-      to: PropTypes.string,
-      linkToPage: PropTypes.shape({ slug: PropTypes.string }),
-      openInNewTab: PropTypes.bool,
-      label: PropTypes.string
-    }
-  ]),
+  /** Array of Buttons or Links */
+  actions: PropTypes.array,
   verticalAlignment: PropTypes.oneOf(['bottom', 'top', 'center', 'baseline', 'stretch']),
   /** Should we adjust the space to accomidate the header? */
   isFirstSection: PropTypes.bool,

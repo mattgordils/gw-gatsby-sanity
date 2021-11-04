@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useState, useEffect, useContext, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { rgba } from 'polished'
@@ -194,6 +194,7 @@ const MenuIcon = styled.li`
     background: transparent;
     appearance: none;
     color: inherit;
+    cursor: pointer;
   }
   span {
     display: block;
@@ -229,6 +230,10 @@ const Header = ({
       }
     `
   )
+
+  const navLinksLeft = useRef()
+  const logoCol = useRef()
+
   const siteTitle = allSanitySiteSettings?.edges[0]?.node?.title
   const [bannerVisible, toggleBanner] = useState(true)
 
@@ -236,6 +241,11 @@ const Header = ({
 
   const pathname = location
   const pageHasAtf = hasAtf && !mobileMenu
+
+  useEffect(() => {
+    console.log("navLinksLeft width: ", navLinksLeft.current.offsetWidth)
+    console.log("logoCol width: ", logoCol.current.offsetWidth)
+  }, [navLinksLeft, logoCol])
 
   return (
     <Fragment>
@@ -286,7 +296,7 @@ const Header = ({
                   navVisible={!scrolledUp && !scrolledToTop && showHide}
                 >
                   <div>
-                    <NavLinks alignment="left">
+                    <NavLinks alignment="left" ref={navLinksLeft}>
                       <ResponsiveComponent
                         small={
                           <MenuIcon id="mobile-menu-icon">
@@ -340,13 +350,15 @@ const Header = ({
                     </NavLinks>
                   </div>
                   <LogoCol>
-                    <Link to="/" title={siteTitle}>
-                      <HeaderLogo
-                        scrolled={scrolled}
-                        hasAtf={pageHasAtf}
-                        mobileMenuOpen={mobileMenu}
-                      />
-                    </Link>
+                    <div ref={logoCol} style={{ display: 'inline-block', verticalAlign: 'top' }}>
+                      <Link to="/" title={siteTitle}>
+                        <HeaderLogo
+                          scrolled={scrolled}
+                          hasAtf={pageHasAtf}
+                          mobileMenuOpen={mobileMenu}
+                        />
+                      </Link>
+                    </div>
                   </LogoCol>
                   <div>
                   </div>
