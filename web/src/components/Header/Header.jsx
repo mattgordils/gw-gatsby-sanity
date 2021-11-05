@@ -18,48 +18,39 @@ const showHide = false // show and hide header on scroll
 export const headerHeight = (attr = 'height', multiplier = 1) => util.responsiveStyles(attr, (140 * multiplier), (130 * multiplier), (110 * multiplier), (75 * multiplier))
 const headerHeightCollapsed = () => util.responsiveStyles('height', 80, 70, 66, 60)
 
-const Dropdown = styled.ul`
+const Dropdown = styled.nav`
   list-style: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  min-width: 200px;
-  background: ${ colors.mainColor };
-  color: ${ colors.bgColor };
+  // min-width: 200px;
+  border-radius: 5px;
+  background: ${ colors.bgColor };
   ${ typography.bodySmall };
   font-weight: 600;
   letter-spacing: 0;
-  padding: 10px 16px;
+  padding: 10px 12px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility ${ animations.mediumSpeed } ease-in-out, opacity ${ animations.mediumSpeed } ease-in-out;
+  transition: visibility ${ animations.mediumSpeed } ease-in-out,
+    opacity ${ animations.mediumSpeed } ease-in-out,
+    transform ${ animations.mediumSpeed } cubic-bezier(0.44, 0.24, 0.16, 1);
+  background: ${ colors.bgColor };
+  padding: 10px 12px 11px;
+  text-align: left;
+  left: -12px;
   a {
-    display: inline-block;
     padding: 3px 0;
-    opacity: .6;
-    position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      left: 100%;
-      width: 5px;
-      height: 5px;
-      transform: rotate(-45deg);
-      border-bottom: 2px solid;
-      border-right: 2px solid;
-      border-color: ${ colors.mainColor };
-      top: 50%;
-      margin-top: -3px;
-      opacity: 0;
-      transition: transform ${ animations.mediumSpeed } ease-in-out, opacity ${ animations.mediumSpeed } ease-in-out;
-    }
+    color: ${ colors.lightTextColor };
     &:hover {
-      opacity: 1;
-      &:after {
-        opacity: 1;
-        transform: rotate(-45deg) translate3d(5px, 5px, 0);
-      }
+      color: ${ colors.textColor };
     }
+  }
+  li {
+    width: 100%;
+    white-space: nowrap;
+  }
+  a {
+    display: block;
   }
 `
 
@@ -254,10 +245,6 @@ const Header = ({
   const menus = allSanityMenus?.edges
   const navigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
-  console.log(navigation)
-
-  // const navigation = []
-
   const navLinksLeft = useRef()
   const logoCol = useRef()
 
@@ -352,11 +339,12 @@ const Header = ({
                                 active={'/' + pathname === link}
                                 key={link}
                                 hasDropdown={item?.sublinks?.length > 0}
-                                >
-                                  {itemLink.title}
-                                </NavLink>
-                                {item.sublinks && item?.sublinks?.length > 0 && (
-                                  <Dropdown>
+                              >
+                                {itemLink.title}
+                              </NavLink>
+                              {item.sublinks && item?.sublinks?.length > 0 && (
+                                <Dropdown>
+                                  <ul>
                                     {item.sublinks.map((dropdownLink, index) => (
                                       <li key={dropdownLink._key}>
                                         <Link
@@ -368,8 +356,9 @@ const Header = ({
                                         </Link>
                                       </li>
                                     ))}
-                                  </Dropdown>
-                                )}
+                                  </ul>
+                                </Dropdown>
+                              )}
                             </li>
                           )
                         })}

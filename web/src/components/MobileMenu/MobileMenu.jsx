@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Link from 'src/components/Link'
 import Grid from 'src/components/Grid'
 import ThemeSelector from 'src/components/ThemeSelector'
 import ScrollEntrance from 'src/components/ScrollEntrance'
-import { colors, typography, util } from 'src/styles'
+import { colors, typography, util, animations } from 'src/styles'
 import { Transition } from 'react-transition-group'
 import { getSlugLink } from 'src/utils/format'
+import AnimateHeight from 'react-animate-height'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 
 const timeout = 300
 const timingFunction = 'cubic-bezier(0.44, 0.24, 0.16, 1.00)'
@@ -37,6 +40,10 @@ const Wrapper = styled(ThemeSelector)`
 		// transform: none;
 		opacity: 1;
 	` }
+	ul {
+		list-style: none;
+		padding: 0;
+	}
 `
 
 const MobileNavLink = styled(Link)`
@@ -44,7 +51,8 @@ const MobileNavLink = styled(Link)`
 	${ ({ size }) => size === 'smallCaps' && `
 		margin-top: 20px;
 	` }
-	display: block;
+	display: flex;
+	align-items: center;
 	padding: 2px 0;
 	color: ${ colors.textColor };
 	span {
@@ -60,14 +68,70 @@ const MainSection = styled.div`
 	padding: 5vw 0 0;
 `
 
+const Sublinks = styled.nav`
+	ul {
+		list-style: none;
+	}
+`
+
+const SublinkIcon = styled.div`
+	padding: 4px;
+	transition: transform ${ animations.mediumSpeed } ease-in-out;
+	${ ({ expanded }) => expanded ? `
+		transform: rotate(-180deg);
+	` : `` }
+	svg {
+		display: block;
+	}
+`
+
 const MobileMenu = ({
 	open,
 	toggleMobileMenu,
-	navLinks = [],
 	footerColumn1,
 	footerColumn2,
 	pathname
 }) => {
+	const { allSanityMenus } = useStaticQuery(
+    graphql`
+      query {
+        allSanityMenus {
+          edges {
+            node {
+              _id
+              _key
+              slug {
+                current
+              }
+              items {
+                _key
+                itemLink {
+                  ...Link
+                }
+                sublinks {
+                  ...Link
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+	const [expandedSection, setExpandedSection] = useState(false)
+  const menus = allSanityMenus?.edges
+  const navLinks = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
+
+  const toggleExpandedSection = id => {
+  	console.log('expanded', id)
+  	console.log('expandedSection', expandedSection)
+  	if (id !== expandedSection) {
+  		setExpandedSection(id)
+  	} else {
+  		setExpandedSection(false)
+  	}
+  }
+
 	return (
 		<Transition
 			in={open}
@@ -82,24 +146,64 @@ const MobileMenu = ({
 				<Wrapper transitionStatus={transitionStatus}>
 					<MainSection>
 						<Grid small="container">
-							<ScrollEntrance>
-								{navLinks.map((item, index) => {
-									const link = getSlugLink(item?.link)
-									const externalLink = item.externalLink
-									return (
-										<div>
-											<MobileNavLink
-												external={externalLink}
-												to={externalLink || link}
-												active={'/' + pathname === link}
-												key={link}
-												type={item._type}
-											>
-												<span onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>{item.title}</span>
-											</MobileNavLink>
-										</div>
-									)
-								})}
+							<ScrollEntrance as='ul'>
+								{navLinks && navLinks.map((item, index) => {
+                  const { itemLink } = item
+                  const link = getSlugLink(itemLink)
+                  const externalLink = itemLink.externalLink
+                  const hasSublinks = item.sublinks && item?.sublinks?.length > 0
+                  if (!itemLink.title) {
+                    return false
+                  }
+                  return (
+                    <li key={'header-link-' + item._key}>
+                      <MobileNavLink
+                        target={itemLink.newTab && '_blank'}
+                        external={externalLink}
+                        to={externalLink || link}
+                        active={'/' + pathname === link}
+                        key={link}
+                        hasDropdown={hasSublinks}
+                      >
+                        <span
+                        	onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>
+                        	{itemLink.title}
+                        </span>
+                        {hasSublinks && (
+                        	<SublinkIcon
+                        		expanded={expandedSection === item._key}
+                        		onClick={() => toggleExpandedSection(item._key)}>
+	                      		<MdKeyboardArrowDown />
+                      		</SublinkIcon>
+                      	)}
+                      </MobileNavLink>
+                      {hasSublinks && (
+                        <AnimateHeight
+                        	duration={300}
+													delay={0}
+													animateOpacity={false}
+													height={expandedSection === item._key ? 'auto' : 0}
+                        >
+	                        <Sublinks>
+	                        	<ul>
+		                          {item.sublinks.map((dropdownLink, index) => (
+		                            <li key={dropdownLink._key}>
+		                              <Link
+		                                target={dropdownLink.newTab ? '_blank' : ''}
+		                                external={dropdownLink.externalLink}
+		                                to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
+		                              >
+		                                {dropdownLink.title}
+		                              </Link>
+		                            </li>
+		                          ))}
+	                          </ul>
+	                        </Sublinks>
+                        </AnimateHeight>
+                      )}
+                    </li>
+                  )
+                })}
 							</ScrollEntrance>
 						</Grid>
 					</MainSection>
