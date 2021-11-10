@@ -48,6 +48,15 @@ export default {
       }
     },
     {
+      name: 'imageSize',
+      title: 'Image Size',
+      type: 'string',
+      initialValue: 'small',
+      options: {
+        list: ['small', 'medium', 'large']
+      }
+    },
+    {
       name: 'theme',
       title: 'Theme',
       type: 'theme'

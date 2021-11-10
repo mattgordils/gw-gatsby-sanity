@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 import { get, map, identity, filter } from 'lodash'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-import gridSettings, { margin, gutter, containerSmall, containerMedium, containerLarge, containerLarger } from 'src/styles/gridSettings'
+import gridSettings, { margin, gutter, containerSmall, containerMedium, containerLarge, containerLarger, containerMaxWidth } from 'src/styles/gridSettings'
 import { mq } from 'src/styles'
 
 // Calculate how many columns the grid has
@@ -230,6 +231,7 @@ export const Container = ({ small, medium, large, larger, extraLarge, children, 
 		large={large || 'container'}
 		larger={larger || 'container'}
 		extraLarge={extraLarge || 'container'}
+		css={css`max-width: ${ containerMaxWidth }; margin-left: auto; margin-right: auto;`}
 		{...rest}
 	>
 		{children}

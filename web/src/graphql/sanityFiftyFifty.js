@@ -8,6 +8,7 @@ export const query = graphql`
     mediaPlacement
     mediaWidth
     width
+    textAlignment
     media {
       ...Media
     }

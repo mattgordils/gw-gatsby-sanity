@@ -17,6 +17,7 @@ import { colors, typography, animations, mq, util } from 'src/styles'
 const showHide = false // show and hide header on scroll
 export const headerHeight = (attr = 'height', multiplier = 1) => util.responsiveStyles(attr, (140 * multiplier), (130 * multiplier), (110 * multiplier), (75 * multiplier))
 const headerHeightCollapsed = () => util.responsiveStyles('height', 80, 70, 66, 60)
+const mobileBreak = mq.largeBreakpoint
 
 const Dropdown = styled.nav`
   list-style: none;
@@ -25,19 +26,19 @@ const Dropdown = styled.nav`
   // min-width: 200px;
   border-radius: 5px;
   background: ${ colors.bgColor };
-  ${ typography.bodySmall };
-  font-weight: 600;
-  letter-spacing: 0;
-  padding: 10px 12px;
   visibility: hidden;
   opacity: 0;
   transition: visibility ${ animations.mediumSpeed } ease-in-out,
     opacity ${ animations.mediumSpeed } ease-in-out,
     transform ${ animations.mediumSpeed } cubic-bezier(0.44, 0.24, 0.16, 1);
   background: ${ colors.bgColor };
-  padding: 10px 12px 11px;
+  padding: 10px 16px 11px;
   text-align: left;
-  left: -12px;
+  left: -16px;
+  ul {
+    list-style: none;
+    padding: 0;
+  }
   a {
     padding: 3px 0;
     color: ${ colors.lightTextColor };
@@ -51,6 +52,10 @@ const Dropdown = styled.nav`
   }
   a {
     display: block;
+    ${ typography.bodySmall };
+    font-weight: 600;
+    line-height: 1em;
+    padding: .5em 0;
   }
 `
 
@@ -58,6 +63,7 @@ const NavLink = styled(Link)`
   display: block;
   ${ typography.h6 }
   line-height: 1em;
+  padding: 1em 0;
   transition:   padding ${ animations.mediumSpeed } ease-in-out,
                 margin ${ animations.mediumSpeed } ease-in-out,
                 background ${ animations.mediumSpeed } ease-in-out,
@@ -92,13 +98,6 @@ const HeaderWrapper = styled.div`
     background: ${ colors.white };
     color: ${ colors.textColor };
     box-shadow: 0 1px 0 ${ rgba(colors.textColor, 0.1) };
-    ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen ? `
-        background: transparent;
-        box-shadow: none;
-        ${ headerHeight() }
-      ` : '' }
-    }
   ` : `
     ${ headerHeight() }
     background: transparent;
@@ -111,6 +110,15 @@ const HeaderWrapper = styled.div`
   ${ ({ navVisible }) => navVisible && `
     transform: translate3d(0, -101%, 0);
   ` }
+
+  ${ mq.maxWidth(mobileBreak) } {
+    ${ ({ mobileMenuOpen }) => mobileMenuOpen ? `
+      background: transparent;
+      box-shadow: none;
+      color: ${ colors.textColor };
+      ${ headerHeight() }
+    ` : '' }
+  }
 `
 
 const HeaderContent = styled(Grid)``
@@ -122,11 +130,6 @@ const HeaderLogo = styled(Logo)`
   ${ ({ scrolled, hasAtf, mobileMenuOpen }) => scrolled ? `
     color: ${ colors.mainColor };
     ${ util.responsiveStyles('width', 50, 40, 40, 30) }
-    ${ mq.mediumAndBelow } {
-      ${ mobileMenuOpen ? `
-        ${ util.responsiveStyles('width', 80, 50, 50, 40) }
-      ` : '' }
-    }
   ` : `
     ${ !hasAtf ? `
       color: ${ colors.mainColor };
@@ -134,6 +137,13 @@ const HeaderLogo = styled(Logo)`
       color: ${ colors.bgColor };
     ` }
   ` }
+
+  ${ mq.maxWidth(mobileBreak) } {
+    ${ ({ mobileMenuOpen }) => mobileMenuOpen ? `
+      color: ${ colors.mainColor };
+      ${ util.responsiveStyles('width', 80, 50, 50, 40) }
+    ` : '' }
+  }
 `
 
 const LogoCol = styled.div`
@@ -254,7 +264,7 @@ const Header = ({
   const { mobileMenu, toggleMobileMenu } = useContext(AppContext)
 
   const pathname = location
-  const pageHasAtf = hasAtf && !mobileMenu
+  const pageHasAtf = hasAtf
 
   useEffect(() => {
     console.log("navLinksLeft width: ", navLinksLeft.current.offsetWidth)
@@ -321,47 +331,50 @@ const Header = ({
                             </button>
                           </MenuIcon>
                         }
-                        medium={navigation && navigation.map((item, index) => {
-                          const { itemLink } = item
-                          const link = getSlugLink(itemLink)
-                          const externalLink = itemLink.externalLink
-                          if (!itemLink.title) {
-                            return false
-                          }
-                          return (
-                            <li key={'header-link-' + item._key}>
-                              <NavLink
-                                target={itemLink.newTab && '_blank'}
-                                external={externalLink}
-                                scrolled={scrolled}
-                                hasAtf={pageHasAtf}
-                                to={externalLink || link}
-                                active={'/' + pathname === link}
-                                key={link}
-                                hasDropdown={item?.sublinks?.length > 0}
-                              >
-                                {itemLink.title}
-                              </NavLink>
-                              {item.sublinks && item?.sublinks?.length > 0 && (
-                                <Dropdown>
-                                  <ul>
-                                    {item.sublinks.map((dropdownLink, index) => (
-                                      <li key={dropdownLink._key}>
-                                        <Link
-                                          target={dropdownLink.newTab ? '_blank' : ''}
-                                          external={dropdownLink.externalLink}
-                                          to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
-                                        >
-                                          {dropdownLink.title}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Dropdown>
-                              )}
-                            </li>
-                          )
-                        })}
+                        custom={{
+                          breakpoint: mobileBreak,
+                          content: navigation && navigation.map((item, index) => {
+                            const { itemLink } = item
+                            const link = getSlugLink(itemLink)
+                            const externalLink = itemLink.externalLink
+                            if (!itemLink.title) {
+                              return false
+                            }
+                            return (
+                              <li key={'header-link-' + item._key}>
+                                <NavLink
+                                  target={itemLink.newTab && '_blank'}
+                                  external={externalLink}
+                                  scrolled={scrolled}
+                                  hasAtf={pageHasAtf}
+                                  to={externalLink || link}
+                                  active={'/' + pathname === link}
+                                  key={link}
+                                  hasDropdown={item?.sublinks?.length > 0}
+                                >
+                                  {itemLink.title}
+                                </NavLink>
+                                {item.sublinks && item?.sublinks?.length > 0 && (
+                                  <Dropdown>
+                                    <ul>
+                                      {item.sublinks.map((dropdownLink, index) => (
+                                        <li key={dropdownLink._key}>
+                                          <Link
+                                            target={dropdownLink.newTab ? '_blank' : ''}
+                                            external={dropdownLink.externalLink}
+                                            to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
+                                          >
+                                            {dropdownLink.title}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </Dropdown>
+                                )}
+                              </li>
+                            )
+                          })
+                        }}
                       />
                     </NavLinks>
                   </div>
@@ -396,7 +409,10 @@ const Header = ({
           // footerColumn2={footerColumn2}
           />
         }
-        medium={<span />}
+        custom={{
+          breakpoint: mobileBreak,
+          content: <span />
+        }}
       />
 
     </Fragment>

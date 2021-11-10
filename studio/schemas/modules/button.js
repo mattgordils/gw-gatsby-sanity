@@ -29,16 +29,19 @@ export default {
       type: 'reference',
       hidden: ({ parent }) => parent.type !== 'pageLink',
       to: [
-        { type: 'page' },
-        // { type: 'product' }
+        { type: 'page' }
       ]
     },
     {
       name: 'externalLink',
       title: 'External Link',
       type: 'string',
-      description: 'There is no `link` validation on this so please type accurate urls with https://, mailto:, tel: etc.',
       hidden: ({ parent }) => parent.type !== 'externalLink',
+      validation: Rule =>
+        Rule.uri({
+          allowRelative: true,
+          scheme: ['https', 'http', 'mailto', 'tel']
+        })
     },
     {
       name: 'theme',

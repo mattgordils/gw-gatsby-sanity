@@ -115,7 +115,9 @@ body {
   line-height: 1;
 }
 
-
+dl {
+  list-style: none;
+}
 
 blockquote,
 q {

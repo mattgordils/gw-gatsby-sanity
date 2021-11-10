@@ -31,9 +31,11 @@ import button from './modules/button'
 import youTubeEmbed from './modules/youTubeEmbed'
 import embed from './modules/embed'
 import video from './modules/video'
+import descriptionList, { listItem } from './modules/descriptionList'
 
 // Modules
 import textSection from './modules/textSection'
+import twoColumnText from './modules/twoColumnText'
 import wideMedia from './modules/wideMedia'
 import fiftyFifty from './modules/fiftyFifty'
 import columns from './modules/columns'
@@ -90,9 +92,12 @@ export default createSchema({
     youTubeEmbed,
     embed,
     video,
+    descriptionList,
+    listItem,
     media,
     // Modules
     textSection,
+    twoColumnText,
     wideMedia,
     fiftyFifty,
     columns,

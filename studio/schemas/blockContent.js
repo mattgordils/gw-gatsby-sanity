@@ -55,37 +55,9 @@ export default {
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'External Link',
+            title: 'Link',
             name: 'link',
-            type: 'object',
-            blockEditor: {
-              icon: MdLink
-            },
-            fields: [
-              {
-                name: 'page',
-                title: 'Page Link',
-                type: 'reference',
-                to: [
-                  { type: 'page' }
-                ]
-              },
-              {
-                title: 'External Link (URL)',
-                name: 'href',
-                type: 'url',
-                validation: Rule =>
-                  Rule.uri({
-                    allowRelative: true,
-                    scheme: ['https', 'http', 'mailto', 'tel']
-                  })
-              },
-              {
-                title: 'Open in new tab',
-                name: 'blank',
-                type: 'boolean'
-              }
-            ]
+            type: 'link'
           }
         ]
       }
@@ -99,15 +71,6 @@ export default {
         hotspot: true
       }
     },
-    // {
-    //   name: 'video',
-    //   title: 'Video',
-    //   type: 'file',
-    //   description: 'Only .mp4 files are supported',
-    //   options: {
-    //     accept: 'video/mp4',
-    //   }
-    // },
     {
       type: 'video',
       title: 'Video',
@@ -119,10 +82,16 @@ export default {
       icon: FaYoutube
     },
     {
-      type: 'embed',
-      title: 'Embed',
-      icon: MdCode
+      type: 'descriptionList',
+      title: 'Description List',
+      // icon: FaYoutube
     },
+    // Embed In Progress
+    // {
+    //   type: 'embed',
+    //   title: 'Embed',
+    //   icon: MdCode
+    // },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.

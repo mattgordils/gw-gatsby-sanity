@@ -6,9 +6,8 @@ export default {
     { type: 'textSection' },
     { type: 'wideMedia' },
     { type: 'fiftyFifty' },
-    { type: 'columns' }
-    // {
-    //   type: 'productGrid'
-    // },
+    { type: 'columns' },
+    { type: 'twoColumnText' },
+    // { type: 'productGrid' }
   ]
 }

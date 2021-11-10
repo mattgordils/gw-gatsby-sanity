@@ -80,6 +80,7 @@ export const pageQuery = graphql`
             ...WideMedia
             ...FiftyFifty
             ...Columns
+            ...TwoColumnText
           }
         }
         meta {

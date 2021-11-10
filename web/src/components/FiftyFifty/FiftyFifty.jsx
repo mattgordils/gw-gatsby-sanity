@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Section from 'src/components/Section'
-import Grid from 'src/components/Grid'
+import Grid, { Container } from 'src/components/Grid'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import Video from 'src/components/Video'
 import TextLockup from 'src/components/TextLockup'
@@ -96,6 +96,7 @@ const FiftyFifty = ({
   text,
   actions,
   verticalAlignment = 'center',
+  textAlignment = 'left',
   isFirstSection,
   listType
 }) => {
@@ -169,6 +170,7 @@ const FiftyFifty = ({
                   actions={actions}
                   theme={theme}
                   listType={listType}
+                  alignment={textAlignment}
                 />
               </TextWrapper>
             </Grid>

@@ -35,7 +35,8 @@ const Section = ({
 	padded,
 	sectionid,
 	className,
-	isFirstSection
+	isFirstSection,
+	as
 }) => {
 	return (
 		<SectionWrapper
@@ -46,6 +47,7 @@ const Section = ({
 			zIndex={zIndex}
 			padded={padded}
 			isFirstSection={isFirstSection}
+			as={as || 'section'}
 		>
 			{children}
 		</SectionWrapper>

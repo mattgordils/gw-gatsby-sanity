@@ -14,6 +14,7 @@ export const query = graphql`
       ...Button
       ...Link
     }
+    imageSize
     columns {
       image {
         asset {

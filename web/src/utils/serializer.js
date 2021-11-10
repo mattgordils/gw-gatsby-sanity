@@ -56,10 +56,28 @@ export const Serializer = {
       return <div className='embeded-content'><Image image={imageData(node.asset.id)}/></div>
     },
     video: ({ node }) => {
-      return <div className='embeded-content'><Video src={node.asset.url}/></div>
+      if (!node?.video?.asset?.url) {
+        return false
+      }
+      return <div className='embeded-content'><Video src={node?.video?.asset?.url}/></div>
     },
     youTube: ({ node }) => {
       return <div className='embeded-content'><YoutubeVideo src={node.url}/></div>
+    },
+    descriptionList: ({ node }) => {
+      if (!node?.listItems || node?.listItems.length === 0) {
+        return false
+      }
+      return <div className='description-list'>
+        <dl>
+          {node.listItems.map(item => (
+            <li key={item._key}>
+              <dt>{item.title}</dt>
+              <dd>{item.text}</dd>
+            </li>
+          ))}
+        </dl>
+      </div>
     },
     embed: ({ node }) => {
       // TODO
@@ -88,5 +106,5 @@ export const Serializer = {
     }
     return <ol>{props.children}</ol>
   },
-  listItem: props => <li>{props.children}</li>
+  listItem: props => <li><p>{props.children}</p></li>
 }

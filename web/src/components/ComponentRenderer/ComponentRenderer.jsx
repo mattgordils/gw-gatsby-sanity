@@ -3,12 +3,14 @@ import TextSection from 'src/components/TextSection'
 import WideMedia from 'src/components/WideMedia'
 import FiftyFifty from 'src/components/FiftyFifty'
 import Columns from 'src/components/Columns'
+import TwoColumnText from 'src/components/TwoColumnText'
 
 const componentMap = {
   textSection: TextSection,
   wideMedia: WideMedia,
   fiftyFifty: FiftyFifty,
-  columns: Columns
+  columns: Columns,
+  twoColumnText: TwoColumnText
 }
 
 const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, isFirstSection }) => {
@@ -19,7 +21,6 @@ const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, i
   if (!Component) {
     return false
   }
-  // console.log(item)
   return Component ? (
       <Component
         {...item}

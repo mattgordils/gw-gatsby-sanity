@@ -9,7 +9,7 @@ const Wrapper = styled(Section)`
   ${ ({ alignment }) => alignment !== 'right' && `
     text-align: ${ alignment };
   ` }
-  h1, h2, h3, h4, h5, h6, p {
+  h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, dl {
     ${ ({ alignment }) => alignment === 'center' && `
       margin-left: auto;
       margin-right: auto;
@@ -26,6 +26,12 @@ const Wrapper = styled(Section)`
   }
   p {
     max-width: 36em;
+  }
+  ol,
+  ul,
+  dl,
+  blockquote {
+    max-width: 32em;
   }
 `
 
@@ -89,6 +95,7 @@ const TextSection = ({
             // textSize={paragraphSize}
             actions={actions}
             theme={theme}
+            alignment={alignment}
           />
         </Grid>
       </Container>

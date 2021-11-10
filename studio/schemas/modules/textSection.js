@@ -1,7 +1,7 @@
 import React from 'react'
 import IconUI from '../../components/IconUI'
-import { FiAlignCenter, FiAlignLeft } from "react-icons/fi"
-import SectionIcon from "../../components/SectionIcon"
+import { FiAlignCenter, FiAlignLeft } from 'react-icons/fi'
+import SectionIcon from '../../components/SectionIcon'
 
 export default {
   title: "Text Section",
@@ -62,7 +62,7 @@ export default {
       const { alignment, subtitle, hidden, theme } = selection;
       return Object.assign({}, selection, {
         subtitle: hidden ? 'Hidden' : subtitle || 'Text Section',
-        media: alignment === "left" ? <SectionIcon hidden={hidden} theme={theme}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden}><FiAlignCenter size='24px'/></SectionIcon>,
+        media: alignment === "left" ? <SectionIcon hidden={hidden} theme={theme}><FiAlignLeft size='24px'/></SectionIcon> : <SectionIcon hidden={hidden} theme={theme}><FiAlignCenter size='24px'/></SectionIcon>,
       });
     },
   },

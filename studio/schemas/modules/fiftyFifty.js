@@ -1,7 +1,14 @@
 import React from 'react'
 
-import { MdArtTrack, MdPlayArrow, MdVerticalAlignBottom, MdVerticalAlignCenter, MdVerticalAlignTop } from 'react-icons/md'
-import SectionIcon from "../../components/SectionIcon"
+import {
+  MdArtTrack,
+  MdPlayArrow,
+  MdVerticalAlignBottom,
+  MdVerticalAlignCenter,
+  MdVerticalAlignTop,
+} from 'react-icons/md'
+import { FiAlignCenter, FiAlignLeft } from 'react-icons/fi'
+import SectionIcon from '../../components/SectionIcon'
 import IconUI from '../../components/IconUI'
 
 export default {
@@ -79,6 +86,19 @@ export default {
           { title: 'Bottom', value: 'bottom', icon: <MdVerticalAlignBottom/> }
         ]
       }
+    },
+    {
+      name: "textAlignment",
+      title: "Alignment",
+      type: "string",
+      initialValue: "center",
+      inputComponent: IconUI,
+      options: {
+        list: [
+          { title: "Left", value: "left", icon: <FiAlignLeft />},
+          { title: "Center", value: "center", icon: <FiAlignCenter />}
+        ],
+      },
     },
     {
       name: 'hidden',

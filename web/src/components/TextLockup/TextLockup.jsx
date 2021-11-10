@@ -17,13 +17,23 @@ const Wrapper = styled.div`
 	${ ({ alignment }) => alignment === 'center' && `
 		margin-left: auto;
 		margin-right: auto;
-		> div {
+		> div,
+		.embeded-content {
 			margin-left: auto;
 			margin-right: auto;
 		}
 	` }
 	${ mq.mediumAndBelow } {
 		display: block;
+	}
+	dl {
+		margin: 1.5em 0;
+		li:not(:first-child) {
+			margin-top: .75em;
+		}
+		dt {
+			font-weight: ${ typography.bold };
+		}
 	}
 `
 const TextContainer = styled(ScrollEntrance)`
@@ -99,7 +109,7 @@ const TextLockup = ({
 		transitionIn,
 		listType
 	}) => {
-	if (!text && !actions) {
+	if (!text && !actions && !headline) {
 		return false
 	}
 	eyebrow = eyebrow || text?.eyebrow
