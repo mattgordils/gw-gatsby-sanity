@@ -28,3 +28,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# sanity placeholder data
+.sanity-template/data
