@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdLink, MdOpenInNew } from 'react-icons/md'
 import IconUI from '../../components/IconUI'
+import ClientAsyncSelect from '../../components/ClientAsyncSelect'
 
 export default {
   title: 'Button',
@@ -45,6 +46,14 @@ export default {
           allowRelative: true,
           scheme: ['https', 'http', 'mailto', 'tel']
         })
+    },
+    {
+      name: 'pageSectionLink',
+      title: 'Page Section',
+      description: 'Optional',
+      inputComponent: ClientAsyncSelect,
+      type: 'string',
+      hidden: ({ parent }) => !parent.link || parent.type !== 'pageLink',
     },
     {
       name: 'theme',
