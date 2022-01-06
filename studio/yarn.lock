@@ -1309,17 +1309,17 @@
     prop-types "^15.6.0"
     rxjs "^6.5.3"
 
-"@sanity/desk-tool@^2.23.3":
-  version "2.23.3"
-  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.23.3.tgz#e8fdafe70798ee8a5f2cbe565428bc88fc0b8525"
-  integrity sha512-m3drNKD3ANBWkdcqVC4XqmqxI2Z7kJr596uFEu5t2uZrE+tfYVa5BfYTLxiUXB3cKIU3GcD8Np0EP/R9TvEokA==
+"@sanity/desk-tool@^2.23.4":
+  version "2.23.4"
+  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.23.4.tgz#1daaf19f9ccb094a91df6193d4eeb890914ff924"
+  integrity sha512-K3FVmxdQfXFNMb1k8f8V0YNwVFSFPA6j3mb7Gcr1CHEmKEyKao3l6AQMFN+4Cad087Iq2cZFqpNOXlwtZ6dhxw==
   dependencies:
     "@reach/auto-id" "^0.13.2"
     "@sanity/client" "2.23.2"
     "@sanity/data-aspects" "2.18.0"
     "@sanity/diff" "2.20.0"
     "@sanity/field" "2.23.3"
-    "@sanity/form-builder" "2.23.3"
+    "@sanity/form-builder" "2.23.4"
     "@sanity/generate-help-url" "2.18.0"
     "@sanity/icons" "^1.2.1"
     "@sanity/react-hooks" "2.23.3"
@@ -1390,10 +1390,10 @@
     lodash "^4.17.15"
     sanity-diff-patch "^1.0.9"
 
-"@sanity/form-builder@2.23.3", "@sanity/form-builder@^2.0.1":
-  version "2.23.3"
-  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.23.3.tgz#2e70cad07bfa49cf016ea9bfd00063fc44522a58"
-  integrity sha512-Ks9rBHSw76qPiRsAYH0ifzGAX+Lgog/zU66e5aDBskJul7X3EGopQkbXNvvVgtMU/03qvyZ/vmh5/tOtj83emg==
+"@sanity/form-builder@2.23.4", "@sanity/form-builder@^2.0.1":
+  version "2.23.4"
+  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.23.4.tgz#ba8dac176f4acd6cb02851823b5f0732af6c906b"
+  integrity sha512-Jbve3rZI0VjaU3LRwlmABcZApS6JRzpgDPBX/Ff2OZAExmDUFUYlwT56WdYAGk6KKDjgneCPU9N6U5p6puuElg==
   dependencies:
     "@reach/auto-id" "^0.13.2"
     "@sanity/base" "2.23.3"
@@ -1889,9 +1889,9 @@
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
 "@types/uuid@^8.0.0":
-  version "8.3.3"
-  resolved "https://registry.npmjs.org/@types/uuid/-/uuid-8.3.3.tgz#c6a60686d953dbd1b1d45e66f4ecdbd5d471b4d0"
-  integrity sha512-0LbEEx1zxrYB3pgpd1M5lEhLcXjKJnYghvhTRgaBeUivLHMDM1TzF3IJ6hXU2+8uA4Xz+5BA63mtZo5DjVT8iA==
+  version "8.3.4"
+  resolved "https://registry.npmjs.org/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/warning@^3.0.0":
   version "3.0.0"
@@ -3775,9 +3775,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.30, electron-to-chromium@^1.4.17:
-  version "1.4.36"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.36.tgz#446c6184dbe5baeb5eae9a875490831e4bc5319a"
-  integrity sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg==
+  version "1.4.37"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.37.tgz#eedd53cad229ae2d1632b958a92a3d7d7b27f553"
+  integrity sha512-XIvFB1omSAxYgHYX48sC+HR8i/p7lx7R+0cX9faElg1g++h9IilCrJ12+bQuY+d96Wp7zkBiJwMOv+AhLtLrTg==
 
 element-resize-detector@^1.1.14:
   version "1.2.4"
@@ -5211,9 +5211,9 @@ is-color-stop@^1.0.0:
     rgba-regex "^1.0.0"
 
 is-core-module@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.npmjs.org/is-core-module/-/is-core-module-2.8.0.tgz#0321336c3d0925e497fd97f5d95cb114a5ccd548"
-  integrity sha512-vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw==
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/is-core-module/-/is-core-module-2.8.1.tgz#f59fdfca701d5879d0a6b100a40aa1560ce27211"
+  integrity sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==
   dependencies:
     has "^1.0.3"
 
