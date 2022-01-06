@@ -2,7 +2,6 @@ import React from 'react'
 import { MdArtTrack, MdSlideshow } from 'react-icons/md'
 
 const listPreview = ({ value }) => {
-	console.log('value',value)
 	const { listItems } = value
 	if (!listItems || listItems?.length === 0) {
 		return (
@@ -33,10 +32,10 @@ const listPreview = ({ value }) => {
 			</header>
 			<dl style={{ padding: '0 1rem' }}>
 				{listItems.map((item, index) => (
-					<>
+					<div key={'dl-item-' + index}>
 					  {item.title && (<dt style={{ margin: 0, fontWeight: 600, marginTop: index !== 0 ? '1rem' : 0 }}>{item.title}</dt>)}
 					  {item.text && (<dd style={{ margin: 0, fontSize: '.9em' }}>{item.text}</dd>)}
-				  </>
+				  </div>
 			  ))}
 			</dl>
 		</div>

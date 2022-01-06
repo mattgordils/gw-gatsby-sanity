@@ -52,8 +52,16 @@ export const Serializer = {
           return <p>{props.children}</p>
       }
     },
-    image: ({ node }) => {
-      return <div className='embeded-content'><Image image={imageData(node.asset.id)}/></div>
+    inlineImage: ({ node }) => {
+      if (!node?.image?.asset?.id) {
+        return false
+      }
+      return (
+        <div className='embeded-content'>
+          <Image image={imageData(node.image.asset.id)}/>
+          {node.caption && <figcaption style={{ paddingTop: '.75em' }}>{node.caption}</figcaption>}
+        </div>
+      )
     },
     video: ({ node }) => {
       if (!node?.video?.asset?.url) {
@@ -92,10 +100,10 @@ export const Serializer = {
       <em>{props.children}</em>
     ),
     strong: props => (
-      <span>{props.children}</span>
+      <strong>{props.children}</strong>
     ),
     code: props => (
-      <pre>{props.children}</pre>
+      <code>{props.children}</code>
     )
   },
   list: props => {

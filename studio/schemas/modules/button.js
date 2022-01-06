@@ -1,4 +1,6 @@
+import React from 'react'
 import { MdLink, MdOpenInNew } from 'react-icons/md'
+import IconUI from '../../components/IconUI'
 
 export default {
   title: 'Button',
@@ -15,11 +17,12 @@ export default {
       title: 'Button Type',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      inputComponent: IconUI,
       initialValue: 'pageLink',
       options: {
         list: [
-          { title: 'To Page', value: 'pageLink' },
-          { title: 'External Link', value: 'externalLink' }
+          { title: 'To Page', value: 'pageLink', icon: <MdLink /> },
+          { title: 'External Link', value: 'externalLink', icon: <MdOpenInNew /> }
         ]
       }
     },

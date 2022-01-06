@@ -40,7 +40,7 @@ export const getVariantOption = (item, name) => {
 }
 
 export const getSlugLink = (link, prefix) => {
-	const currentLink = link?.content?.main?.slug?.current
+	const currentLink = link?.link?.content?.main?.slug?.current
 	if (currentLink && prefix) {
 		return '/' + prefix + '/' + currentLink
 	} else if (currentLink === 'home') {

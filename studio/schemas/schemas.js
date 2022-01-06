@@ -24,6 +24,7 @@ import post from './types/post'
 import theme from './modules/theme'
 import textLockup from './modules/textLockup'
 import media from './modules/media'
+import inlineImage from './modules/inlineImage'
 import actions from './modules/actions'
 import link from './modules/link'
 import navLink from './modules/navLink'
@@ -59,7 +60,6 @@ import moduleContent from './modules/moduleContent'
 
 
 // GraphQL Tab Modules
-import globalContent from './tabs/globalContent'
 import pageContent from './tabs/pageContent'
 // Ecommerce Tab Modules
 // import variantContent from './tabs/ecommerce/variantContent'
@@ -95,6 +95,7 @@ export default createSchema({
     descriptionList,
     listItem,
     media,
+    inlineImage,
     // Modules
     textSection,
     twoColumnText,
@@ -120,7 +121,6 @@ export default createSchema({
     // variantModule,
     // defaultVariant,
     // GrapqhQL Tab Things
-    globalContent,
     pageContent,
     // productContent,
     // variantContent

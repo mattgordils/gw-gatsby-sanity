@@ -30,20 +30,6 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-image',
-    'gatsby-plugin-env-variables',
-    {
-      resolve: 'gatsby-plugin-breakpoints',
-      options: {
-        queries: {
-          sm: '(min-width: 320px)',
-          md: '(min-width: 768px)',
-          l: '(min-width: 1024px)',
-          xl: '(min-width: 1440px)',
-          portrait: '(orientation: portrait)',
-          landscape: '(orientation: landscape)'
-        }
-      }
-    },
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
@@ -84,6 +70,7 @@ module.exports = {
         }
       }
     },
+    'gatsby-plugin-remove-console',
     {
       resolve: 'gatsby-plugin-root-import',
       options: {

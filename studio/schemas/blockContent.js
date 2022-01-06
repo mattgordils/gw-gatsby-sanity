@@ -2,17 +2,6 @@ import React from 'react'
 import { MdLink, MdPlayArrow, MdCode, MdImage } from 'react-icons/md'
 import { FaYoutube } from 'react-icons/fa'
 
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
-
 const largeRender = props => (
   <span style={{ fontSize: '1.2em' }}>{props.children}</span>
 )
@@ -63,13 +52,10 @@ export default {
       }
     },
     {
-      name: 'image',
+      name: 'inlineImage',
       title: 'Image',
-      type: 'image',
-      icon: MdImage,
-      options: {
-        hotspot: true
-      }
+      type: 'inlineImage',
+      icon: MdImage
     },
     {
       type: 'video',

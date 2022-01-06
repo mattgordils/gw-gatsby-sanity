@@ -16,7 +16,11 @@ export const PageMenuItem = S.listItem()
       .params({ type: 'page' })
       .child(documentId =>
         S.document()
+          .schemaType('page')
           .documentId(documentId)
-          .views([S.view.form(), PreviewIFrame()])
+          .views([
+            S.view.form(),
+            PreviewIFrame(documentId)
+          ])
         )
   );

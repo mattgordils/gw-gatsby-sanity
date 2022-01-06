@@ -84,7 +84,7 @@ const TextSection = ({
     >
       <Container>
         <Grid
-          small="container"
+          small="[1]"
           medium={align[alignment].medium}
           large={align[alignment].large}
           larger={align[alignment].larger}

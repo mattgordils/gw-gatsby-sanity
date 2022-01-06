@@ -171,8 +171,8 @@ const Columns = ({
                 )}
                 <ColumnText
                   entranceDelay={column.media ? index + 1 : index}
-                  eyebrow={column.text.eyebrow}
-                  text={column.text._rawText}
+                  eyebrow={column?.text?.eyebrow}
+                  text={column?.text?._rawText}
                   textSize={paragraphSize}
                   theme={theme}
                   alignment={alignment}

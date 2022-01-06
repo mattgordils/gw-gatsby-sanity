@@ -107,7 +107,6 @@ const StyledBlockContent = styled(BlockContent)`
 `
 
 const SanityRichText = ({ text, className }) => {
-	console.log(text)
 	return (
 		<Wrapper className={className}>
 		<StyledBlockContent className={className} blocks={text?._rawText || text?.text || text } serializers={Serializer} />

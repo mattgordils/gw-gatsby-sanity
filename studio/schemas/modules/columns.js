@@ -77,7 +77,6 @@ export default {
     },
     prepare (selection) {
       const { columns, theme, hidden } = selection
-      console.log(theme)
       const getSubtitle = (columns) => {
         if (hidden) {
           return 'Hidden'

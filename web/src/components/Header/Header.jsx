@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext, useRef } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { rgba } from 'polished'
@@ -38,6 +38,7 @@ const Dropdown = styled.nav`
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   a {
     padding: 3px 0;
@@ -255,9 +256,6 @@ const Header = ({
   const menus = allSanityMenus?.edges
   const navigation = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
-  const navLinksLeft = useRef()
-  const logoCol = useRef()
-
   const siteTitle = allSanitySiteSettings?.edges[0]?.node?.title
   const [bannerVisible, toggleBanner] = useState(true)
 
@@ -265,11 +263,6 @@ const Header = ({
 
   const pathname = location
   const pageHasAtf = hasAtf
-
-  useEffect(() => {
-    console.log("navLinksLeft width: ", navLinksLeft.current.offsetWidth)
-    console.log("logoCol width: ", logoCol.current.offsetWidth)
-  }, [navLinksLeft, logoCol])
 
   return (
     <Fragment>
@@ -320,7 +313,7 @@ const Header = ({
                   navVisible={!scrolledUp && !scrolledToTop && showHide}
                 >
                   <div>
-                    <NavLinks alignment="left" ref={navLinksLeft}>
+                    <NavLinks alignment="left">
                       <ResponsiveComponent
                         small={
                           <MenuIcon id="mobile-menu-icon">
@@ -344,10 +337,10 @@ const Header = ({
                               <li key={'header-link-' + item._key}>
                                 <NavLink
                                   target={itemLink.newTab && '_blank'}
-                                  external={externalLink}
+                                  external={itemLink.type === 'externalLink'}
                                   scrolled={scrolled}
                                   hasAtf={pageHasAtf}
-                                  to={externalLink || link}
+                                  to={itemLink.type === 'pageLink' ? link : externalLink}
                                   active={'/' + pathname === link}
                                   key={link}
                                   hasDropdown={item?.sublinks?.length > 0}
@@ -361,8 +354,8 @@ const Header = ({
                                         <li key={dropdownLink._key}>
                                           <Link
                                             target={dropdownLink.newTab ? '_blank' : ''}
-                                            external={dropdownLink.externalLink}
-                                            to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
+                                            external={dropdownLink.type === 'externalLink'}
+                                            to={itemLink.type === 'pageLink' ? getSlugLink(dropdownLink) : dropdownLink.externalLink}
                                           >
                                             {dropdownLink.title}
                                           </Link>
@@ -379,7 +372,7 @@ const Header = ({
                     </NavLinks>
                   </div>
                   <LogoCol>
-                    <div ref={logoCol} style={{ display: 'inline-block', verticalAlign: 'top' }}>
+                    <div style={{ display: 'inline-block', verticalAlign: 'top' }}>
                       <Link to="/" title={siteTitle}>
                         <HeaderLogo
                           scrolled={scrolled}
