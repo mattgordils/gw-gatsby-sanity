@@ -4,6 +4,7 @@ export const query = graphql`
   fragment TextSection on SanityTextSection {
     _key
     _type
+    internalName
     text {
       eyebrow
       _rawText(resolveReferences: {maxDepth: 10})

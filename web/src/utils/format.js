@@ -39,14 +39,31 @@ export const getVariantOption = (item, name) => {
 	return option
 }
 
-export const getSlugLink = (link, prefix) => {
-	const currentLink = link?.link?.content?.main?.slug?.current
-	if (currentLink && prefix) {
-		return '/' + prefix + '/' + currentLink
-	} else if (currentLink === 'home') {
-		return '/'
-	} else if (currentLink) {
-		return '/' + currentLink
+export const slugify = (text, separator = '-') => {
+	if (!text) {
+		return ''
 	}
-	return '/'
+	return text
+		.toString()
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9 ]/g, '')
+		.replace(/\s+/g, separator)
+}
+
+export const getSlugLink = (link, prefix, hash = '') => {
+	const currentLink = link?.content?.main?.slug?.current
+	if (hash) {
+		hash = '#' + hash
+	}
+	if (currentLink && prefix) {
+		return '/' + prefix + '/' + currentLink + hash
+	} else if (currentLink === 'home') {
+		return '/' + hash
+	} else if (currentLink) {
+		return '/' + currentLink + hash
+	}
+	return '/' + hash
 }

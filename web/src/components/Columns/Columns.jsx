@@ -134,6 +134,7 @@ const Columns = ({
       prevTheme={prevTheme}
       nextTheme={nextTheme}
       alignment={alignment === null ? 'left' : alignment}
+      id={id}
     >
       <Container>
         <IntroTextWrapper small='[1]'>

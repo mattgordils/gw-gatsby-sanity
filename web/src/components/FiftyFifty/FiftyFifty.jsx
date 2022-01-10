@@ -98,7 +98,8 @@ const FiftyFifty = ({
   verticalAlignment = 'center',
   textAlignment = 'left',
   isFirstSection,
-  listType
+  listType,
+  id
 }) => {
   const image = media?.image?.asset
   const video = media?.video?.asset
@@ -121,6 +122,7 @@ const FiftyFifty = ({
       nextTheme={nextTheme}
       isFirstSection={isFirstSection}
       padded={!fullWidth}
+      id={id}
     >
       <Grid
         small={fullWidth ? '[1]' : 'container'}

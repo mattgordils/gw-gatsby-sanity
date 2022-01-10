@@ -12,7 +12,8 @@ const TwoColumnText = ({
 	isFirstSection,
 	leftText,
 	_rawRightText,
-	actions
+	actions,
+	id
 }) => {
 	const rightText = _rawRightText
 	return (
@@ -22,6 +23,7 @@ const TwoColumnText = ({
       prevTheme={prevTheme}
       nextTheme={nextTheme}
       isFirstSection={isFirstSection}
+      id={id}
 		>
 			<Container>
 				<Grid

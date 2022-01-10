@@ -27,6 +27,12 @@ module.exports = {
         component: require.resolve('./src/layout/index.js'),
       },
     },
+    {
+      resolve: 'gatsby-plugin-anchor-links',
+      options: {
+        offset: -100
+      }
+    },
     'gatsby-plugin-emotion',
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-image',

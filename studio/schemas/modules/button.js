@@ -48,7 +48,7 @@ export default {
         })
     },
     {
-      name: 'pageSectionLink',
+      name: 'linkSection',
       title: 'Page Section',
       description: 'Optional',
       inputComponent: ClientAsyncSelect,

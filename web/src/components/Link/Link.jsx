@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import { AppContext } from 'src/state/AppState'
-
 import { Link as GatsbyLink } from 'gatsby'
+import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
 const LinkStyles = setTheme => `
 	font-size: inherit;
@@ -22,8 +22,11 @@ const StyledGatsbyLink = styled(GatsbyLink)`
 	` }
 `
 
-const Link = ({ to, external, target, children, label, className, setTheme, title, pageTransition = 'fade' }) => {
+const Link = ({ to, external, target, children, label, className, setTheme, title, pageTransition = 'fade', as }) => {
 	const { setPageTransition } = useContext(AppContext)
+	if (!external && to.includes('#')) {
+		as = AnchorLink
+	}
 
 	if (external) {
 		return (
@@ -34,6 +37,7 @@ const Link = ({ to, external, target, children, label, className, setTheme, titl
 				target={target}
 				theme={setTheme}
 				rel='noopener noreferrer'
+				as={as}
 			>
 				{children || label}
 			</StyledLinkElement>
@@ -46,6 +50,7 @@ const Link = ({ to, external, target, children, label, className, setTheme, titl
 				to={to}
 				theme={setTheme}
 				onClick={() => setPageTransition(pageTransition)}
+				as={as}
 			>
 				{children || label}
 			</StyledGatsbyLink>

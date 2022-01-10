@@ -9,6 +9,7 @@ export const query = graphql`
     externalLink
     newTab
     type
+    linkSection
     link {
     	content {
     		main {

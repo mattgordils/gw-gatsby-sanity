@@ -149,7 +149,7 @@ const MobileMenu = ({
 							<ScrollEntrance as='ul'>
 								{navLinks && navLinks.map((item, index) => {
                   const { itemLink } = item
-                  const link = getSlugLink(itemLink)
+                  const link = getSlugLink(itemLink.link)
                   const externalLink = itemLink.externalLink
                   const hasSublinks = item.sublinks && item?.sublinks?.length > 0
                   if (!itemLink.title) {

@@ -81,6 +81,7 @@ const TextSection = ({
       nextTheme={nextTheme}
       alignment={alignment}
       isFirstSection={isFirstSection}
+      id={id}
     >
       <Container>
         <Grid

@@ -144,7 +144,9 @@ const TextLockup = ({
 					{actions && actions.length > 0 && (
 						<ButtonActions buttons={actions} alignment={alignment} className='actions'>
 							{actions.map((action, index) => {
+								const actionType = action.type || 'pageLink'
 								if (action._type === 'button') {
+									console.log(action)
 									let actionTheme = 'default'
 									if (action.theme === 'primary') {
 										actionTheme = themes[theme]?.buttonTheme || 'default'
@@ -154,10 +156,10 @@ const TextLockup = ({
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<Button
-												target={action.newTab && '_blank'}
 												setTheme={actionTheme}
-												to={action.externalLink || getSlugLink(action.link)}
-												external={action.externalLink}
+												to={actionType === 'externalLink' ? action.externalLink : getSlugLink(action.link, false, action.linkSection)}
+												external={actionType === 'externalLink'}
+												target={action.newTab ? '_blank' : ''}
 												title={action.title}
 												name={action.title}
 											>
@@ -169,9 +171,8 @@ const TextLockup = ({
 									return (
 										<ActionWrapper key={'button-' + index}>
 											<TextLink
-												target={action.newTab && '_blank'}
-												to={action.externalLink || getSlugLink(action.link)}
-												external={action.externalLink}
+												to={actionType === 'externalLink' ? action.externalLink : getSlugLink(action.link, false, action.linkSection)}
+												external={actionType === 'externalLink'}
 												target={action.newTab ? '_blank' : ''}
 												title={action.title}
 												name={action.title}

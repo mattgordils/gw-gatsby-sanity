@@ -4,6 +4,7 @@ import WideMedia from 'src/components/WideMedia'
 import FiftyFifty from 'src/components/FiftyFifty'
 import Columns from 'src/components/Columns'
 import TwoColumnText from 'src/components/TwoColumnText'
+import { slugify } from 'src/utils/format'
 
 const componentMap = {
   textSection: TextSection,
@@ -21,11 +22,13 @@ const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, i
   if (!Component) {
     return false
   }
+  console.log(item)
   return Component ? (
       <Component
         {...item}
         prevTheme={prevTheme}
         nextTheme={nextTheme}
+        id={slugify(item.internalName)}
         isLastSection={isLastSection}
         isFirstSection={isFirstSection}
         index={index}

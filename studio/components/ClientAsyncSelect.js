@@ -5,6 +5,17 @@ import PatchEvent, {set, unset} from '@sanity/form-builder/PatchEvent'
 import { useId } from '@reach/auto-id' 
 import sanityClient from 'part:@sanity/base/client'
 
+export const slugify = (text, separator = '-') => {
+  return text
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/\s+/g, separator)
+}
+
 const ClientAsyncSelect = React.forwardRef((props, ref) => {
 
   const [listItems, setListItems] = useState([])
@@ -39,8 +50,9 @@ const ClientAsyncSelect = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     const getSections = async () => {
-      const items = await client.fetch(`*[_id == $id][0].content.main.modules[].internalName`, {id: parent.link._ref})
+      const items = await client.fetch(`*[_id == $id][0].content.main.modules[]`, {id: parent.link._ref})
       setListItems(items)
+      console.log(items)
     }
 
     getSections()
@@ -59,9 +71,6 @@ const ClientAsyncSelect = React.forwardRef((props, ref) => {
         <Stack>
           <Select
             id={inputId}                  // A unique ID for this input
-            fontSize={2}
-            padding={[3, 3, 4]}
-            space={[3, 3, 4]}
             value={value}                 // Current field value
             readOnly={readOnly}           // If "readOnly" is defined make this field read only
             onFocus={onFocus}             // Handles focus events
@@ -72,10 +81,10 @@ const ClientAsyncSelect = React.forwardRef((props, ref) => {
             <option value='---'>— Select Page Section —</option>
             {listItems.map(item => (
               <option 
-                key={item} 
-                value={item}
+                key={item._key} 
+                value={slugify(item.internalName)}
               >
-                {item}
+                {item.internalName}
               </option>
             ))}
           </Select>

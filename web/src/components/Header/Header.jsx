@@ -328,7 +328,7 @@ const Header = ({
                           breakpoint: mobileBreak,
                           content: navigation && navigation.map((item, index) => {
                             const { itemLink } = item
-                            const link = getSlugLink(itemLink)
+                            const link = getSlugLink(itemLink.link)
                             const externalLink = itemLink.externalLink
                             if (!itemLink.title) {
                               return false
@@ -355,7 +355,7 @@ const Header = ({
                                           <Link
                                             target={dropdownLink.newTab ? '_blank' : ''}
                                             external={dropdownLink.type === 'externalLink'}
-                                            to={itemLink.type === 'pageLink' ? getSlugLink(dropdownLink) : dropdownLink.externalLink}
+                                            to={itemLink.type === 'pageLink' ? getSlugLink(dropdownLink.link) : dropdownLink.externalLink}
                                           >
                                             {dropdownLink.title}
                                           </Link>

@@ -4,6 +4,7 @@ export const query = graphql`
   fragment WideMedia on SanityWideMedia {
     _key
     _type
+    internalName
     width
     height
     media {

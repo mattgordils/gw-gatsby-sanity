@@ -182,7 +182,8 @@ const WideMedia = ({
   overlayPlacementHorizontal,
   alignment,
   isFirstSection,
-  overlayTextColor
+  overlayTextColor,
+  id
 }) => {
   const winHeight = use100vh()
   if (!media) {
@@ -260,6 +261,7 @@ const WideMedia = ({
       setTheme={theme}
       padded={!fullWidth}
       overlayTextColor={overlayTextColor}
+      id={id}
     >
       <WideMediaWrap height={heightValues[height]} overlayTextColor={overlayTextColor}>
         <Grid small={fullWidth ? '[1]' : 'container'} medium={fullWidth ? '[1]' : 'container'} large={fullWidth ? '[1]' : 'container'} larger={fullWidth ? '[1]' : 'container'}>

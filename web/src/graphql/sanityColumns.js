@@ -4,6 +4,7 @@ export const query = graphql`
   fragment Columns on SanityColumns {
     _key
     _type
+    internalName
     theme
     alignment
     introText {
