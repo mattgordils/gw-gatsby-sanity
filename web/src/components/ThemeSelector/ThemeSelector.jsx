@@ -5,11 +5,13 @@ import { rgba } from 'polished'
 
 const ThemeWrapper = styled.div`
 	${ ({ 'data-theme': setTheme }) => (setTheme && setTheme !== 'bgColor' && themes[setTheme]) && `
-		background-color: ${ themes[setTheme].background };
-		color: ${ themes[setTheme].color };
+		--bg-color: ${ themes[setTheme].background };
+		--text-color: ${ themes[setTheme].color };
+		background-color: var(--bg-color);
+		color: var(--text-color);
 		*::selection {
 	    background: ${ rgba(themes[setTheme].hoverColor, 0.9) };
-	    color: ${ themes[setTheme].background };
+	    color: var(--bg-color);
 	  }
 	  p a {
 	  	border-color: ${ rgba(themes[setTheme].color, 0.25) };

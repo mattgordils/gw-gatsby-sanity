@@ -9,7 +9,7 @@ async function workflowStatus(draft) {
   if (!draft) return null
 
   return client.fetch('* [_id == $id][0]{_rev}', { id: draft._id }).then(doc => {
-    console.log('draft', draft, doc)
+    // console.log('draft', draft, doc)
     return client.fetch(
       " *[_type == 'workflow.status' && draft == $id && revision == $revision] | order(_updatedAt desc)[0]",
       {

@@ -212,12 +212,6 @@ const WideMedia = ({
   const hasOverlay = text._rawText !== null || actions.length > 0
 
   const renderMedia = (mediaItem, size, hasOverlay, autoHeight) => {
-    // if (size === 'small' && !mediaItem) {
-    //   mediaItem = mediaMedium || media
-    // } else if (size === 'medium' && !mediaItem) {
-    //   mediaItem = media
-    // }
-    // console.log(mediaItem)
     if (mediaItem) {
       if (contentType === 'video') {
         const media = mediaItem.video.asset

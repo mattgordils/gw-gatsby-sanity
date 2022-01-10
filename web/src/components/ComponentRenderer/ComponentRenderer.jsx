@@ -22,7 +22,6 @@ const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, i
   if (!Component) {
     return false
   }
-  console.log(item)
   return Component ? (
       <Component
         {...item}

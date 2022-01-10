@@ -52,7 +52,6 @@ const ClientAsyncSelect = React.forwardRef((props, ref) => {
     const getSections = async () => {
       const items = await client.fetch(`*[_id == $id][0].content.main.modules[]`, {id: parent.link._ref})
       setListItems(items)
-      console.log(items)
     }
 
     getSections()

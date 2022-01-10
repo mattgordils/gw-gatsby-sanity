@@ -16,6 +16,11 @@ const globalStyles = `
   ${ fonts.DmSansBoldFont }
   ${ fonts.DmSansBoldItalicFont }
 
+  :root {
+    --bg-color: ${ colors.bgColor };
+    --text-color: ${ colors.textColor };
+  }
+
   * {
     box-sizing: border-box;
   }

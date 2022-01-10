@@ -146,7 +146,6 @@ const TextLockup = ({
 							{actions.map((action, index) => {
 								const actionType = action.type || 'pageLink'
 								if (action._type === 'button') {
-									console.log(action)
 									let actionTheme = 'default'
 									if (action.theme === 'primary') {
 										actionTheme = themes[theme]?.buttonTheme || 'default'

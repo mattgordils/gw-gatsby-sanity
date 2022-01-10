@@ -2,8 +2,10 @@ import React from 'react'
 import { getGatsbyImageData } from 'gatsby-source-sanity'
 import Image from 'src/components/Image'
 import Video from 'src/components/Video'
+import Link from 'src/components/Link'
 import YoutubeVideo from 'src/components/Video/YoutubeVideo'
 import EmbedCode from 'src/components/EmbedCode'
+import { getSlugLink } from 'src/utils/format'
 
 const sanityConfig = {
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
@@ -104,7 +106,20 @@ export const Serializer = {
     ),
     code: props => (
       <code>{props.children}</code>
-    )
+    ),
+    link: props => {
+      const action = props.mark
+      console.log(props)
+      return (
+        <Link
+          to={action.type === 'externalLink' ? action.externalLink : getSlugLink(action.link, false, action.linkSection)}
+          external={action.type === 'externalLink'}
+          target={action.newTab ? '_blank' : ''}
+          title={action.title}
+          name={action.title}
+        >{props.children}</Link>
+      )
+    }
   },
   list: props => {
     const { type } = props

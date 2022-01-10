@@ -123,8 +123,6 @@ const MobileMenu = ({
   const navLinks = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
   const toggleExpandedSection = id => {
-  	console.log('expanded', id)
-  	console.log('expandedSection', expandedSection)
   	if (id !== expandedSection) {
   		setExpandedSection(id)
   	} else {
