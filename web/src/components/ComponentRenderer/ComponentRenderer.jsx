@@ -4,6 +4,7 @@ import WideMedia from 'src/components/WideMedia'
 import FiftyFifty from 'src/components/FiftyFifty'
 import Columns from 'src/components/Columns'
 import TwoColumnText from 'src/components/TwoColumnText'
+// plopImportModules
 import { slugify } from 'src/utils/format'
 
 const componentMap = {
@@ -11,7 +12,8 @@ const componentMap = {
   wideMedia: WideMedia,
   fiftyFifty: FiftyFifty,
   columns: Columns,
-  twoColumnText: TwoColumnText
+  twoColumnText: TwoColumnText,
+  // plopAddModules
 }
 
 const ComponentRenderer = ({ item, prevTheme, nextTheme, index, isLastSection, isFirstSection }) => {

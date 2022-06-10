@@ -17,8 +17,7 @@ const SectionIcon = ({ children, hidden, theme }) => {
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
-				fontSize: '18px',
-				boxShadow: themes[theme] && !hidden ? 'inset 0 0 0 1px rgba(0, 0, 0, .15)' : 'none',
+				fontSize: '18px'
 			}}
 		>
 			{hidden ? <MdVisibilityOff size='24px' style={{ color: '#a5b1c4' }}/> : children}

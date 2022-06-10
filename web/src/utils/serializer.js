@@ -14,44 +14,59 @@ const sanityConfig = {
 
 const imageData = id => getGatsbyImageData(id, { maxWidth: 1024 }, sanityConfig)
 
+const getClassName = (className, first, last) => {
+  let classText = className
+  if (first) {
+    classText = classText + ' first-item'
+  }
+  if (last) {
+    classText = classText + ' last-item'
+  }
+  return classText
+}
+
 export const Serializer = {
   types: {
     block (props) {
       switch (props.node.style) {
         case 'h1':
-          return <h1 className="">{props.children}</h1>
+          return <h1 className={getClassName('h1', props.node.firstItem, props.node.lastItem)}>{props.children}</h1>
 
         case 'h2':
-          return <h2 className="">{props.children}</h2>
+          return <h2 className={getClassName('h2', props.node.firstItem, props.node.lastItem)}>{props.children}</h2>
 
         case 'h3':
-          return <h3 className="">{props.children}</h3>
+          return <h3 className={getClassName('h3', props.node.firstItem, props.node.lastItem)}>{props.children}</h3>
 
         case 'h4':
-          return <h4 className="">{props.children}</h4>
+          return <h4 className={getClassName('h4', props.node.firstItem, props.node.lastItem)}>{props.children}</h4>
 
         case 'h5':
-          return <h5 className="">{props.children}</h5>
+          return <h5 className={getClassName('h5', props.node.firstItem, props.node.lastItem)}>{props.children}</h5>
 
         case 'li':
           return <li>{props.children}</li>
 
         case 'blockquote':
-          return <blockquote className="">{props.children}</blockquote>
+          return <blockquote className={getClassName('', props.node.firstItem, props.node.lastItem)}>{props.children}</blockquote>
 
         case 'bodyLarge':
           if (props.listItem) return <strong>{props.children}</strong>
-          else return <p className='large'>{props.children}</p>
+          else return <p className={getClassName('large', props.node.firstItem, props.node.lastItem)}>{props.children}</p>
+
+        case 'bodyMedium':
+          if (props.listItem) return <strong>{props.children}</strong>
+          else return <p className={getClassName('medium', props.node.firstItem, props.node.lastItem)}>{props.children}</p>
 
         case 'bodySmall':
           if (props.listItem) return <strong>{props.children}</strong>
-          else return <p className='small'>{props.children}</p>
+          else return <p className={getClassName('small', props.node.firstItem, props.node.lastItem)}>{props.children}</p>
 
         case 'normal':
           if (props.listItem) return <strong>{props.children}</strong>
-          else return <p>{props.children}</p>
+          else return <p className={getClassName('', props.node.firstItem, props.node.lastItem)}>{props.children}</p>
         default:
-          return <p>{props.children}</p>
+          return <p className={getClassName('', props.node.firstItem, props.node.lastItem)}>{props.children}</p>
       }
     },
     inlineImage: ({ node }) => {
@@ -59,7 +74,7 @@ export const Serializer = {
         return false
       }
       return (
-        <div className='embeded-content'>
+        <div className={getClassName('embeded-content', node.firstItem, node.lastItem)}>
           <Image image={imageData(node.image.asset.id)}/>
           {node.caption && <figcaption style={{ paddingTop: '.75em' }}>{node.caption}</figcaption>}
         </div>
@@ -69,16 +84,16 @@ export const Serializer = {
       if (!node?.video?.asset?.url) {
         return false
       }
-      return <div className='embeded-content'><Video src={node?.video?.asset?.url}/></div>
+      return <div className={getClassName('embeded-content', node.firstItem, node.lastItem)}><Video src={node?.video?.asset?.url}/></div>
     },
     youTube: ({ node }) => {
-      return <div className='embeded-content'><YoutubeVideo src={node.url}/></div>
+      return <div className={getClassName('embeded-content', node.firstItem, node.lastItem)}><YoutubeVideo src={node.url}/></div>
     },
     descriptionList: ({ node }) => {
       if (!node?.listItems || node?.listItems.length === 0) {
         return false
       }
-      return <div className='description-list'>
+      return <div className={getClassName('description-list', node.firstItem, node.lastItem)}>
         <dl>
           {node.listItems.map(item => (
             <li key={item._key}>
@@ -109,7 +124,6 @@ export const Serializer = {
     ),
     link: props => {
       const action = props.mark
-      console.log(props)
       return (
         <Link
           to={action.type === 'externalLink' ? action.externalLink : getSlugLink(action.link, false, action.linkSection)}

@@ -74,8 +74,10 @@ const Headline = styled.h3`
 `
 
 const Text = styled.div`
-	p:not(.large):not(.medium):not(.small):not(.tiny) {
-		${ ({ textSize }) => typography[textSize] }
+	> div {
+		> p:not(.large):not(.medium):not(.small):not(.tiny) {
+			${ ({ textSize }) => textSize ? typography[textSize] : '' }
+		}
 	}
 `
 
@@ -126,7 +128,9 @@ const TextLockup = ({
 					)}
 
 					{headline && (
-						<Headline as={headlineElement || headlineSize} headlineSize={headlineSize} hasText={text} hasEyebrow={eyebrow}>{headline}</Headline>
+						<div>
+							<Headline as={headlineElement || headlineSize} headlineSize={headlineSize} hasText={text} hasEyebrow={eyebrow}>{headline}</Headline>
+						</div>
 					)}
 
 					{text && Array.isArray(text) &&

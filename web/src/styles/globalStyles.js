@@ -4,7 +4,7 @@ import * as animations from './animations'
 import * as util from './util'
 import * as fonts from './fonts'
 import { slick } from './slick'
-import { rgba } from 'polished'
+import { rgba, cssVar } from 'polished'
 
 const responsiveStyles = util.responsiveStyles
 
@@ -17,8 +17,21 @@ const globalStyles = `
   ${ fonts.DmSansBoldItalicFont }
 
   :root {
+    // Colors
     --bg-color: ${ colors.bgColor };
+    --bg-color: ${ colors.bgColor };
+    --main-color: ${ colors.mainColor };
+    --alert: ${ colors.alert };
+    --notify: ${ colors.notify };
+    --success: ${ colors.success };
     --text-color: ${ colors.textColor };
+    --light-text-color: ${ colors.lightTextColor };
+    --light-grey: ${ colors.lightGrey };
+    --hr-color: ${ colors.hrColor };
+
+    // Grid
+    --site-margins: ${ 100 / 14 }vw;
+    --site-gutters: 3vw;
   }
 
   * {
@@ -27,8 +40,8 @@ const globalStyles = `
 
   html {
     font-display: block;
-    background: ${ colors.bgColor };
-    color: ${ colors.textColor };
+    background: var(--bg-color);
+    color: var(--text-color);
     ${ util.fontSmoothing }
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
@@ -44,8 +57,8 @@ const globalStyles = `
 
   body {
     ${ typography.body }
-    color: ${ colors.textColor };
-    background: ${ colors.bgColor };
+    color: var(--text-color);
+    background: var(--bg-color);
     padding: 0;
     margin: 0;
   }
@@ -83,10 +96,10 @@ const globalStyles = `
       ${ typography.bodyLarge }
     }
     a {
-      border-bottom: 1px solid ${ colors.hrColor };
+      border-bottom: 1px solid var(--hr-color);
       padding-bottom: .1em;
       &:hover {
-        border-color: ${ colors.mainColor };
+        border-color: var(--main-color);
       }
     }
   }
@@ -129,14 +142,14 @@ const globalStyles = `
 
   figcaption {
     ${ typography.bodySmall }
-    color: ${ colors.lightTextColor };
+    color: var(--light-text-color)
   }
 
   hr {
     margin: 2em auto;
     border: 0;
     display: block;
-    border-bottom: 1px solid ${ colors.hrColor };
+    border-bottom: 1px solid var(--hr-color);
   }
 
   a {
@@ -154,9 +167,9 @@ const globalStyles = `
       font-weight: bold;
       text-decoration: none;
       letter-spacing: 1.75px;
-      border-bottom: 1px solid ${ colors.mainColor };
+      border-bottom: 1px solid var(--main-color);
       text-transform: uppercase;
-      color: ${ colors.mainColor };
+      color: var(--main-color);
       padding-bottom: 3px;
     }
   }
@@ -188,8 +201,8 @@ const globalStyles = `
   }
 
   ::selection {
-    background: ${ rgba(colors.mainColor, 0.9) };
-    color: ${ colors.bgColor };
+    background: ${ rgba(cssVar('--main-color'), 0.9) };
+    color: var(--bg-color);
   }
   
   ${ slick }

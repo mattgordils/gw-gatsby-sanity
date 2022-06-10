@@ -3,6 +3,14 @@ import styled from '@emotion/styled'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 const StyledImage = styled(GatsbyImage)`
+  ${ ({ ratio }) => ratio ? `
+    > div:first-of-type {
+      padding-top: ${ ratio * 100 }% !important;
+    }
+    img {
+      display: block;
+    }
+  ` : '' }
 	img {
     ${ ({ crop, hotspot }) => crop && hotspot ? `
     	object-position: ${ hotspot.x * 100 + '%' } ${ hotspot.y * 100 + '%' };
@@ -16,9 +24,13 @@ const StyledImage = styled(GatsbyImage)`
   }
 `
 
-const Image = ({ media, ...rest }) => (
+const Image = ({ media, image, ratio, sizes, className, ...rest }) => (
 	<StyledImage
 		{...rest}
+    className={className}
+    image={image}
+    ratio={ratio}
+    sizes={sizes}
 		crop={media?.crop}
 		hotspot={media?.hotspot}
 	/>

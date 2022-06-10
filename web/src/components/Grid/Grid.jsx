@@ -5,7 +5,10 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 import PropTypes from 'prop-types'
 
-import gridSettings, { margin, gutter, containerSmall, containerMedium, containerLarge, containerLarger, containerMaxWidth } from 'src/styles/gridSettings'
+import gridSettings, { margin,
+	gutter,
+	containerMaxWidth
+} from 'src/styles/gridSettings'
 import { mq } from 'src/styles'
 
 // Calculate how many columns the grid has
@@ -178,21 +181,12 @@ class Grid extends Component {
 	render () {
 		let { small, medium, large, larger, extraLarge, colGap, rowGap, children, vAlign, gridDirection, className, as, ...rest } = this.props
 
-		if (small === 'container') {
-			small = containerSmall
-		}
-
-		if (medium === 'container') {
-			medium = containerMedium
-		}
-
-		if (large === 'container') {
-			large = containerLarge
-		}
-
-		if (larger === 'container') {
-			larger = containerLarger
-		}
+		// Set up special 'container' value
+		const containerValue = 'm [1] m'
+		if (small === 'container') { small = containerValue }
+		if (medium === 'container') { medium = containerValue }
+		if (large === 'container') { large = containerValue }
+		if (larger === 'container') { larger = containerValue }
 
 		const vAlignMap = {
 			bottom: 'end',
@@ -226,11 +220,7 @@ class Grid extends Component {
 
 export const Container = ({ small, medium, large, larger, extraLarge, children, ...rest }) => (
 	<Grid
-		small={small || 'container'}
-		medium={medium || 'container'}
-		large={large || 'container'}
-		larger={larger || 'container'}
-		extraLarge={extraLarge || 'container'}
+		small='m [1] m'
 		css={css`max-width: ${ containerMaxWidth }; margin-left: auto; margin-right: auto;`}
 		{...rest}
 	>

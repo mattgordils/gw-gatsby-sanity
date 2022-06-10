@@ -1,63 +1,15 @@
 import React from 'react'
 import { MdLink, MdPlayArrow, MdCode, MdImage } from 'react-icons/md'
 import { FaYoutube } from 'react-icons/fa'
+import ImagePreview from '../components/previews/ImagePreview'
 
 const largeRender = props => (
   <span style={{ fontSize: '1.2em' }}>{props.children}</span>
 )
 
 const smallRender = props => (
-  <span style={{ fontSize: '.8em' }}>{props.children}</span>
+  <span style={{ fontSize: '.85em', lineHeight: '1.4em' }}>{props.children}</span>
 )
-
-const imagePreview = ({ value }) => {
-  const { image, caption } = value
-
-  const projectId = process.env.SANITY_STUDIO_API_PROJECT_ID
-  const dataset = process.env.SANITY_STUDIO_API_DATASET
-  const ref = image.asset._ref
-  const [_file, id, size, extension] = ref.split('-')
-  const getUrlFromId = () => {
-    // Example ref: file-207fd9951e759130053d37cf0a558ffe84ddd1c9-mp3
-    // We don't need the first part, unless we're using the same function for files and images
-    return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${size}.${extension}`
-  }
-  const fileUrl = getUrlFromId()
-  const fileName = id + '.' + extension
-
-  if (!image) {
-    return (
-      <header style={{ padding: '1rem' }}>
-        <h2 style={{
-          fontSize: '16px',
-          fontSize: '1rem',
-          lineHeight: '1.25',
-          padding: '4px 0',
-          padding: '0.25rem 0',
-          margin: '-2px 0 -1px',
-          opacity: .5
-        }}>There is no image yet.</h2>
-      </header>
-    )
-  }
-
-  return (
-    <div>
-      <header style={{ padding: '1rem', borderBottom: '1px solid rgb(93 113 145 / 25%)' }}>
-        <h2 style={{
-          fontSize: '16px',
-          fontSize: '1rem',
-          lineHeight: '1.25',
-          padding: '4px 0',
-          padding: '0.25rem 0',
-          margin: '-2px 0 -1px',
-        }}>{fileName}</h2>
-      </header>
-      <img src={fileUrl} style={{ display: 'block', width: '100%', height: 'auto' }}/>
-      {caption && <p style={{ padding: '1rem0.25rem 0', margin: 0, fontSize: '.9em' }}>{caption}</p>}
-    </div>
-  )
-}
 
 export default {
   title: 'Block Content',
@@ -125,7 +77,7 @@ export default {
           image: 'image',
           caption: 'caption'
         },
-        component: imagePreview,
+        component: ImagePreview,
       }
     },
     {

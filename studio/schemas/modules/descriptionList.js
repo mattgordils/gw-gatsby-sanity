@@ -43,6 +43,7 @@ const listPreview = ({ value }) => {
 }
 
 export const listItem = {
+	title: 'List Item',
 	name: 'listItem',
 	type: 'object',
 	fields: [

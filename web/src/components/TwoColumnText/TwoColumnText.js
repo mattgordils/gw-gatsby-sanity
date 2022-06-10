@@ -2,7 +2,6 @@ import React from 'react'
 import Section from 'src/components/Section'
 import Grid, { Container } from 'src/components/Grid'
 import TextLockup from 'src/components/TextLockup'
-import BlockContent from '@sanity/block-content-to-react'
 
 const TwoColumnText = ({
 	className,

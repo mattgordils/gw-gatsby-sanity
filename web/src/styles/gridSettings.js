@@ -1,9 +1,6 @@
-export const margin = 100 / 14 + 'vw'
-export const gutter = '3vw'
-export const containerSmall = '1 [12] 1'
-export const containerMedium = containerSmall
-export const containerLarge = containerSmall
-export const containerLarger = containerSmall
+export const margin = 'var(--site-margins)'
+export const gutter = 'var(--site-gutters)'
+export const containerSmall = 'm [1] m'
 export const containerMaxWidth = '100%'
 
 const colSpacingSmall = '0'

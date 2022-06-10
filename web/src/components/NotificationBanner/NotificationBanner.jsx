@@ -60,7 +60,7 @@ const NotificationBanner = ({ className, setTheme, text, closeBanner, collapsed 
 				{text.raw ? (<SanityRichText richText={text}/>) : <p>{text}</p>}
 				<CloseButton onClick={closeBanner} icon={<MdClose size="18"/>} shape="circle" size="tiny" name="Close header banner"/>
 			</Wrapper>
-	  </NotificationCollapse>
+		</NotificationCollapse>
 	)
 }
 

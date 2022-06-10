@@ -1,26 +1,24 @@
 import * as colors from './colors'
-import { lighten, darken } from 'polished'
+import { lighten, darken, cssVar } from 'polished'
 
 // Themes (ThemeSelector Component)
 export const themes = {
 	default: {
 		color: colors.textColor,
 		background: colors.bgColor,
-		hoverColor: colors.mainColor,
 		buttonTheme: 'default',
 		buttonThemeSecondary: 'lightGrey'
 	},
 	lightGrey: {
 		color: colors.textColor,
 		background: colors.lightGrey,
-		hoverColor: colors.textColor,
 		buttonTheme: 'default',
 		buttonThemeSecondary: 'white'
 	},
 	mainColor: {
 		color: colors.bgColor,
 		background: colors.mainColor,
-		hoverColor: colors.bgColor,
+		mainColor: colors.bgColor,
 		buttonTheme: 'white',
 		buttonThemeSecondary: 'lightGrey'
 	}
@@ -29,7 +27,7 @@ export const themes = {
 // Button Themes
 export const buttonThemes = {
 	default: {
-		color: colors.bgColor,
+		color: 'var(--bg-color)',
 		background: colors.mainColor,
 		hoverColor: colors.bgColor,
 		hoverBackground: lighten(0.07, colors.mainColor)
@@ -40,18 +38,12 @@ export const buttonThemes = {
 		hoverColor: colors.textColor,
 		hoverBackground: 'transparent'
 	},
-	currentcolor: {
-		color: colors.textColor,
-		background: 'currentcolor',
-		hoverColor: 'currentcolor',
-		hoverBackground: 'currentcolor'
-	},
-	currentcolorOutlined: {
-		color: 'currentcolor',
-		background: 'transparent',
-		hoverColor: colors.textColor,
-		hoverBackground: 'currentcolor',
-		borderColor: 'currentcolor'
+	// textColor theme inherits the themes colors
+	textColor: {
+		color: colors.bgColor,
+		background: colors.textColor,
+		hoverColor: lighten(0.07, colors.bgColor),
+		hoverBackground: lighten(0.07, colors.textColor)
 	},
 	black: {
 		color: colors.bgColor,
@@ -77,12 +69,6 @@ export const buttonThemes = {
 		hoverColor: colors.bgColor,
 		hoverBackground: lighten(0.07, colors.mainColor)
 	},
-	textColor: {
-		color: colors.bgColor,
-		background: colors.textColor,
-		hoverColor: colors.bgColor,
-		hoverBackground: lighten(0.2, colors.textColor)
-	}
 }
 
 // Input Themes

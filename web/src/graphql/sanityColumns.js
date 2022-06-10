@@ -7,6 +7,7 @@ export const query = graphql`
     internalName
     theme
     alignment
+    hidden
     introText {
       eyebrow
       _rawText
@@ -19,7 +20,7 @@ export const query = graphql`
     columns {
       image {
         asset {
-          gatsbyImageData(placeholder: NONE)
+          gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH, width: 750)
           url
           title
           altText

@@ -1,23 +1,21 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import themes from 'src/styles/themes'
-import { rgba } from 'polished'
+import { rgba, cssVar } from 'polished'
+import { colors } from 'src/styles'
 
 const ThemeWrapper = styled.div`
-	${ ({ 'data-theme': setTheme }) => (setTheme && setTheme !== 'bgColor' && themes[setTheme]) && `
-		--bg-color: ${ themes[setTheme].background };
-		--text-color: ${ themes[setTheme].color };
+	${ ({ 'data-theme': setTheme }) => (setTheme && setTheme !== 'default' && themes[setTheme]) && `
+		--bg-color: ${ themes[setTheme].background || colors.bgColor };
+		--text-color: ${ themes[setTheme].color || colors.textColor };
+		--main-color: ${ themes[setTheme].mainColor || colors.mainColor };
+		--light-text-color: ${ themes[setTheme].color || colors.lightTextColor };
+		--hr-color: ${ themes[setTheme].color || colors.hrColor };
 		background-color: var(--bg-color);
 		color: var(--text-color);
 		*::selection {
-	    background: ${ rgba(themes[setTheme].hoverColor, 0.9) };
+	    background: ${ rgba(cssVar('--main-color'), 0.9) };
 	    color: var(--bg-color);
-	  }
-	  p a {
-	  	border-color: ${ rgba(themes[setTheme].color, 0.25) };
-	  	&:hover {
-	  		border-color: ${ themes[setTheme].hoverColor };
-	  	}
 	  }
 	` }
 `

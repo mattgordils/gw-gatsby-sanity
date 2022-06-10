@@ -22,9 +22,9 @@ const StyledGatsbyLink = styled(GatsbyLink)`
 	` }
 `
 
-const Link = ({ to, external, target, children, label, className, setTheme, title, pageTransition = 'fade', as }) => {
+const Link = ({ to, external, target, children, label, className, name, title, setTheme, pageTransition = 'fade', as }) => {
 	const { setPageTransition } = useContext(AppContext)
-	if (!external && to.includes('#')) {
+	if (!external && to?.includes('#')) {
 		as = AnchorLink
 	}
 
@@ -32,6 +32,8 @@ const Link = ({ to, external, target, children, label, className, setTheme, titl
 		return (
 			<StyledLinkElement
 				title={title}
+				name={name || title}
+				aria-label={name || title}
 				className={className}
 				href={to}
 				target={target}
@@ -46,6 +48,8 @@ const Link = ({ to, external, target, children, label, className, setTheme, titl
 		return (
 			<StyledGatsbyLink
 				title={title}
+				name={name || title}
+				aria-label={name || title}
 				className={className}
 				to={to}
 				theme={setTheme}

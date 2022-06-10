@@ -79,10 +79,11 @@ const Footer = () => {
 			<Section>
 				<Container>
 					<Grid
-						small="[1]"
-						medium="[4] [4] [4]"
-						large="[4] [4] [4]"
-						rowGap="7vw"
+						small='[1]'
+						medium='[4] [4] [4]'
+						large='[4] [4] [4]'
+						rowGap='7vw'
+						vAlign='top'
 					>
 						<div>
 							<ListHeader>List Header</ListHeader>

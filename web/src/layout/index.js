@@ -29,7 +29,7 @@ const Layout = ({ children, location }) => (
 					/>
 					<IntersectionObserverPolyfill>
 						<AppProvider>
-			        <ScrollListener>
+							<ScrollListener>
 								<PageTransition location={location || { pathName: '/' }}>
 									{children}
 								</PageTransition>

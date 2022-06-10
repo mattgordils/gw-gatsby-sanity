@@ -11,9 +11,9 @@ const Page = ({ data }) => {
   const page = data?.sanityPage?.content?.main
   const pageMeta = data?.sanityPage?.content?.meta
   const path = page?.slug?.current
-  let modules = page?.modules
+  let modules = page?.modules || []
     // Filter out hidden modules
-    modules = modules.filter(module => !module.hidden)
+    modules = modules?.filter(module => !module?.hidden)
   const hasAtf = modules[0]?._type === 'wideMedia' && modules[0]?.width === 'fullWidth'
 
   return (
@@ -36,7 +36,7 @@ const Page = ({ data }) => {
         // bannerColor={site.bannerColor}
         location={path}
       />
-      {modules.map((item, index) => {
+      {modules?.map((item, index) => {
         const prevSection = modules[index - 1]
         const nextSection = modules[index + 1]
         let prevTheme = false
@@ -69,30 +69,7 @@ const Page = ({ data }) => {
 export const pageQuery = graphql`
   query ($id: String!) {
     sanityPage(id: { eq: $id }) {
-      content {
-        main {
-          title
-          slug {
-            current
-          }
-          modules {
-            ...TextSection
-            ...WideMedia
-            ...FiftyFifty
-            ...Columns
-            ...TwoColumnText
-          }
-        }
-        meta {
-          metaDescription
-          keywords
-          shareImage {
-            asset {
-              url
-            }
-          }
-        }
-      }
+      ...Page
     }
   }
 `

@@ -203,11 +203,11 @@ const Wrapper = styled.div`
 const AnimatedIcon = ({ size, weight, icon, className, rounded }) => {
 	return (
 		<Wrapper size={size} icon={icon} className={className}>
-	  	<Piece piece="one" weight={weight} icon={icon} size={size} rounded={rounded} />
-	  	<Piece piece="two" weight={weight} icon={icon} size={size} rounded={rounded} />
-	  	<Piece piece="three" weight={weight} icon={icon} size={size} rounded={rounded} />
-	  	<Piece piece="four" weight={weight} icon={icon} size={size} rounded={rounded} />
-	  </Wrapper>
+			<Piece piece="one" weight={weight} icon={icon} size={size} rounded={rounded} />
+			<Piece piece="two" weight={weight} icon={icon} size={size} rounded={rounded} />
+			<Piece piece="three" weight={weight} icon={icon} size={size} rounded={rounded} />
+			<Piece piece="four" weight={weight} icon={icon} size={size} rounded={rounded} />
+		</Wrapper>
 	)
 }
 

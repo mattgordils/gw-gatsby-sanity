@@ -23,7 +23,10 @@ export default {
       options: {
         list: [
           { title: 'To Page', value: 'pageLink', icon: <MdLink /> },
-          { title: 'External Link', value: 'externalLink', icon: <MdOpenInNew /> }
+          { title: 'External Link', value: 'externalLink', icon: <MdOpenInNew /> },
+          { title: 'Email', value: 'emailLink', icon: <MdMail /> },
+          { title: 'Phone', value: 'phoneLink', icon: <MdPhone /> },
+          { title: 'File', value: 'fileLink', icon: <MdFolder /> }
         ]
       }
     },
@@ -37,6 +40,14 @@ export default {
       ]
     },
     {
+      name: 'linkSection',
+      title: 'Page Section',
+      description: 'Optional',
+      inputComponent: ClientAsyncSelect,
+      type: 'string',
+      hidden: ({ parent }) => !parent.link || parent.type !== 'pageLink',
+    },
+    {
       name: 'externalLink',
       title: 'External Link',
       type: 'string',
@@ -48,12 +59,23 @@ export default {
         })
     },
     {
-      name: 'linkSection',
-      title: 'Page Section',
-      description: 'Optional',
-      inputComponent: ClientAsyncSelect,
+      name: 'file',
+      title: 'File',
+      type: 'file',
+      hidden: ({ parent }) => parent.type !== 'fileLink',
+    },
+    {
+      name: 'emailLink',
+      title: 'Email Address',
       type: 'string',
-      hidden: ({ parent }) => !parent.link || parent.type !== 'pageLink',
+      hidden: ({ parent }) => parent.type !== 'emailLink',
+    },
+    {
+      name: 'phoneLink',
+      title: 'Phone Number',
+      description: 'No spaces dashes or dots'
+      type: 'string',
+      hidden: ({ parent }) => parent.type !== 'phoneLink',
     },
     {
       name: 'theme',
@@ -74,14 +96,25 @@ export default {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'externalLink',
+      externalLink: 'externalLink',
+      pageLink: 'link.content.main.title',
       link: 'link',
     },
     prepare (selection) {
-      const { subtitle, link } = selection
+      const { link, externalLink, pageLink, type } = selection
+      let subtitle = 'Link to page'
+      if (type === 'externalLink') {
+        subtitle = 'Link to ' + externalLink
+      } else if (type === 'postLink') {
+        subtitle = 'Link to blog post'
+      } else if (type === 'fileLink') {
+        subtitle = 'Link to file'
+      } else if (type === 'pageLink') {
+        subtitle = 'Link to ' + pageLink + ' page'
+      }
       return Object.assign({}, selection, {
         media: subtitle ? MdOpenInNew : MdLink,
-        subtitle: subtitle ? 'Button to ' + subtitle : 'Button to page'
+        subtitle: subtitle
       })
     }
   }

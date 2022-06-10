@@ -41,6 +41,7 @@ import wideMedia from './modules/wideMedia'
 import fiftyFifty from './modules/fiftyFifty'
 import columns from './modules/columns'
 import column from './modules/column'
+// plopImportModules
 
 //
 import seo from './modules/seo'
@@ -103,6 +104,7 @@ export default createSchema({
     fiftyFifty,
     columns,
     column,
+    // plopAddModules
     //
     // productGrid,
     pageModule,

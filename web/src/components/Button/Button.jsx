@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { lighten, cssVar } from 'polished'
 import styled from '@emotion/styled'
 import * as util from 'src/styles/util'
 import { typography, animations } from 'src/styles'
@@ -33,27 +34,32 @@ const getState = (loading, error, success, disabled) => {
 }
 
 const setButtonTheme = (theme, state) => `
-	color: ${ themes[theme].color };
-	background: ${ themes[theme].background };
+	--button-color: ${ themes[theme].color };
+	--button-background: ${ themes[theme].background };
+	--button-border-color: ${ themes[theme].borderColor || 'var(--button-background)' };
+	--button-hover-color: ${ themes[theme].hoverColor };
+	--button-hover-background: ${ themes[theme].hoverBackground };
+	--button-hover-border-color: ${ themes[theme].borderHoverColor || 'var(--button-hover-background)' };
+	${ theme === 'textColor' ? `
+		--button-color: var(--bg-color);
+		--button-background: var(--text-color);
+		--button-hover-color: ${ lighten(0.07, cssVar('--bg-color'))};
+		--button-hover-background: ${ lighten(0.07, cssVar('--text-color')) };
+	` : '' }
+
+	color: var(--button-color);
+	background: var(--button-background);
+	border-color: var(--button-border-color);
 	${ themes[theme].shadow ? `
 		box-shadow: ${ themes[theme].shadow };
 	` : `
 		box-shadow: none;
 	` }
-	${ themes[theme].borderColor ? `
-		border-color: ${ themes[theme].borderColor };
-	` : `
-		border-color: ${ themes[theme].background };
-	` }
 	&:hover {
 		${ !state ? `
-			color: ${ themes[theme].hoverColor };
-			background: ${ themes[theme].hoverBackground };
-			${ themes[theme].borderHoverColor ? `
-				border-color: ${ themes[theme].borderHoverColor };
-			` : `
-				border-color: ${ themes[theme].hoverBackground };
-			` }
+			border-color: var(--button-hover-border-color);
+			color: var(--button-hover-color);
+			background: var(--button-hover-background);
 			${ themes[theme].hoverShadow ? `
 				box-shadow: ${ themes[theme].hoverShadow };
 			` : '' }
@@ -161,6 +167,7 @@ const ButtonContent = styled.div`
 	justify-content: center;
 	height: 100%;
 	width: 100%;
+	white-space: nowrap;
 	svg {
 		* {
 			fill: currentcolor;
@@ -168,7 +175,7 @@ const ButtonContent = styled.div`
 	}
 `
 
-const StyledButtonLink = styled(Link)`
+const StyledButtonLink = styled.div`
 	${ ({ loading, error, success, disabled, shape, size, theme }) => ButtonStyles(getState(loading, error, success, disabled), shape, size, theme) }
 `
 

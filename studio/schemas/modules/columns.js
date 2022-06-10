@@ -81,7 +81,7 @@ export default {
         if (hidden) {
           return 'Hidden'
         } else {
-          return columns.length + ' columns'
+          return columns?.length ? (columns.length + ' columns') : '0 columns'
         }
       }
       return Object.assign({}, selection, {

@@ -108,7 +108,7 @@ const OverlayContent = styled.div`
   h1, h2, h3 {
     max-width: 10em;
   }
-  h4, h4 {
+  h4, h5 {
     max-width: 12em;
   }
   h6 {
@@ -209,12 +209,12 @@ const WideMedia = ({
   }
 
   const overlayGridSettings = getHorizontalPlacementGridValues({ fullWidth, overlayPlacementHorizontal })
-  const hasOverlay = text._rawText !== null || actions.length > 0
+  const hasOverlay = text?._rawText !== null || actions.length > 0
 
   const renderMedia = (mediaItem, size, hasOverlay, autoHeight) => {
     if (mediaItem) {
       if (contentType === 'video') {
-        const media = mediaItem.video.asset
+        const media = mediaItem?.video?.asset
         if (!media) return false
         return <MediaItem
           overlay={hasOverlay}
@@ -229,7 +229,7 @@ const WideMedia = ({
           overlayTextColor={overlayTextColor}
         />
       } else {
-        const media = mediaItem.image.asset
+        const media = mediaItem?.image?.asset
         if (!media) return false
         return <MediaItem
           overlay={hasOverlay}
@@ -279,7 +279,7 @@ const WideMedia = ({
                     <Grid small='[1]' {...overlayGridSettings}>
                       <TextLockup
                         eyebrow={text.eyebrow}
-                        text={text._rawText}
+                        text={text?._rawText}
                         textSize={paragraphSize}
                         actions={actions}
                         alignment={alignment}

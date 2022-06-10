@@ -11,7 +11,7 @@ function supportsIntersectionObserver () {
 }
 
 class IntersectionObserverPolyfill extends React.Component {
-	state = {};
+	state = {}
 
 	componentDidMount () {
 		this.initialize()

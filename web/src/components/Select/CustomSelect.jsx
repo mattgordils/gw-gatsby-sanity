@@ -286,9 +286,9 @@ const CustomSelect = ({
 				unmountOnExit
 				mountOnEnter
 			>
-	      {transitionStatus => (
+				{transitionStatus => (
 					<Fragment>
-	      		<MobileOverlay onClick={() => setOpen(false)} transitionStatus={transitionStatus}/>
+						<MobileOverlay onClick={() => setOpen(false)} transitionStatus={transitionStatus}/>
 						<Options id={itemId} transitionStatus={transitionStatus}>
 							{options && options.map((option, index) => {
 								const selected = option.value === selectedOption.value
@@ -314,7 +314,7 @@ const CustomSelect = ({
 						</Options>
 					</Fragment>
 				)}
-	    </Transition>
+			</Transition>
 
 			{renderIcon(open ? 'keyboard_arrow_up' : 'keyboard_arrow_down', size, 'right', theme, open)}
 		</SelectWrap>

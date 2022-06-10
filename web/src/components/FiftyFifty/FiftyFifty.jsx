@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import Section from 'src/components/Section'
-import Grid, { Container } from 'src/components/Grid'
+import Grid from 'src/components/Grid'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import Video from 'src/components/Video'
 import TextLockup from 'src/components/TextLockup'
@@ -37,7 +37,7 @@ const ColumnWrapper = styled.div`
   h1, h2, h3 {
     max-width: 20em;
   }
-  h4, h4 {
+  h4, h5 {
     max-width: 26em;
   }
   h6 {

@@ -15,7 +15,7 @@ const defaultValue = {
 const { Provider, Consumer } = React.createContext(defaultValue)
 
 class ScrollListener extends React.Component {
-  static Consumer = Consumer;
+  static Consumer = Consumer
 
   state = defaultValue
 
@@ -87,7 +87,7 @@ class ScrollListener extends React.Component {
     }
   }
 
-  scrollHandler = throttle(this._scrollHandler, 100);
+  scrollHandler = throttle(this._scrollHandler, 100)
 
   observe = () => {
     window.addEventListener('scroll', this.scrollHandler, passiveListener() ? { passive: true } : false)

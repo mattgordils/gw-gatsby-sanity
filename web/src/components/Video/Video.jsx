@@ -77,13 +77,15 @@ const StyledVideo = styled(ReactPlayer)`
 `
 
 const Video = ({
-  video,
+	video,
 	loop,
 	cover,
 	muted,
 	autoplay,
 	className,
 	playing,
+	allowFullscreen = false,
+	controls = false,
 	src
 }) => {
 	if (!src && !video && !video.file && !video.file.url) {
@@ -100,6 +102,15 @@ const Video = ({
 					loop={loop}
 					muted={muted}
 					autoPlay={autoplay}
+					allowFullscreen={allowFullscreen}
+					controls={controls}
+					config={{
+						file: {
+							attributes: {
+								controlsList: allowFullscreen ? 'nofullscreen' : '',
+							},
+						},
+					}}
 				/>
 			</VideoWrapper>
 		</Wrapper>

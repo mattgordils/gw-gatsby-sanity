@@ -18,7 +18,7 @@ const Wrapper = styled(Section)`
   h1, h2, h3 {
     max-width: 20em;
   }
-  h4, h4 {
+  h4, h5 {
     max-width: 26em;
   }
   h6 {

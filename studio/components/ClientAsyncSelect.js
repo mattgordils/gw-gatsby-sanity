@@ -76,9 +76,10 @@ const ClientAsyncSelect = React.forwardRef((props, ref) => {
             onBlur={onBlur}               // Handles blur events
             ref={ref}
             onChange={handleChange}       // A function to call when the input value changes
+            disabled={!listItems || listItems.length < 1}
           >
-            <option value='---'>— Select Page Section —</option>
-            {listItems.map(item => (
+            <option value='---'>{listItems ? '— Select Page Section —' : 'This page has no sections'}</option>
+            {listItems?.map(item => (
               <option 
                 key={item._key} 
                 value={slugify(item.internalName)}

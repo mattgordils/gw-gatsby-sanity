@@ -67,3 +67,19 @@ export const getSlugLink = (link, prefix, hash = '') => {
 	}
 	return '/' + hash
 }
+
+export const getSanityLink = item => {
+  const linkSlug = item?.link?.content?.main?.slug?.current
+  const pageParent = item?.link?.content?.main?.parentPage?.content?.main?.slug?.current
+  let renderedLink = getSlugLink(linkSlug, pageParent)
+  if (item?.type === 'externalLink') {
+    renderedLink = item.externalLink
+  } else if (item?.type === 'fileLink') {
+    renderedLink = item?.file?.asset?.url
+  } else if (item?.type === 'phoneLink') {
+    renderedLink = 'tel:' + item?.phoneLink
+  } else if (item?.type === 'emailLink') {
+    renderedLink = 'mailto:' + item?.emailLink
+  }
+  return renderedLink
+}

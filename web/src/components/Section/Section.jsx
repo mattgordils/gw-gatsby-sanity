@@ -57,7 +57,7 @@ const Section = ({
 }
 
 Section.defaultProps = {
-	setTheme: 'bgColor',
+	setTheme: 'default',
 	prevTheme: false,
 	nextTheme: false,
 	zIndex: 1,

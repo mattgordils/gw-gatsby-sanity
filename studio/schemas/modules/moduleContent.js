@@ -8,6 +8,7 @@ export default {
     { type: 'fiftyFifty' },
     { type: 'columns' },
     { type: 'twoColumnText' },
-    // { type: 'productGrid' }
+    // { type: 'productGrid' },
+    // plopAddModules
   ]
 }

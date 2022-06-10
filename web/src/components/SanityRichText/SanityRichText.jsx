@@ -6,10 +6,10 @@ import { typography } from 'src/styles'
 
 const Wrapper = styled.div`
 	> * {
-		&:first-child {
+		&.first-item {
 			margin-top: 0;
 		}
-		&:last-child {
+		&.last-item {
 			margin-bottom: 0;
 			&:empty {
 				display: none;
@@ -46,10 +46,10 @@ const StyledBlockContent = styled(BlockContent)`
 		}
 	}
 	> * {
-		&:first-child {
+		&.first-item {
 			margin-top: 0;
 		}
-		&:last-child {
+		&.last-item {
 			margin-bottom: 0;
 			&:empty {
 				display: none;
@@ -107,9 +107,13 @@ const StyledBlockContent = styled(BlockContent)`
 `
 
 const SanityRichText = ({ text, className }) => {
+	if (text) {
+		text[0].firstItem = true
+		text[text?.length - 1].lastItem = true
+	}
 	return (
 		<Wrapper className={className}>
-		<StyledBlockContent className={className} blocks={text?._rawText || text?.text || text } serializers={Serializer} />
+			<StyledBlockContent className={className} blocks={text?._rawText || text?.text || text } serializers={Serializer} />
 		</Wrapper>
 	)
 }

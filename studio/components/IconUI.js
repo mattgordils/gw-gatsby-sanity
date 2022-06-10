@@ -43,8 +43,11 @@ export const IconUI = React.forwardRef((props, ref) => {
 	  		{type.options.list.map((item, index) => {
 	  			const checked = item.value == value
 	  			const itemId = useId()
+	  			if (!item) {
+	  				return false
+	  			}
 	  			return (
-		  			<div>
+		  			<div key={itemId}>
 		  				<label
 		  					htmlFor={itemId}
 		  					title={item.title}
@@ -54,14 +57,16 @@ export const IconUI = React.forwardRef((props, ref) => {
 		  						justifyContent: 'center',
 			  					minWidth: '42px',
 			  					minHeight: '36px',
-			  					fontSize: '24px',
+			  					fontSize: item.icon ? '24px' : '13px',
+			  					fontWeight: item.icon ? 'normal' : '600',
 			  					boxSizing: 'border-box',
 			  					marginRight: type.options.list.length !== index + 1 ? '-1px' : '0',
 			  					position: 'relative',
-			  					// padding: checked ? '0' : '1px',
+			  					padding: item.icon ? '0' : '0 10px',
 			  					border: '1px solid var(--card-border-color)',
 			  					zIndex: checked ? '2' : '1',
 			  					cursor: 'pointer',
+			  					whiteSpace: 'nowrap',
 			  					position: 'relative'
 			  				}}
 		  				>

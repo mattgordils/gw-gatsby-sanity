@@ -1,8 +1,5 @@
-import Tabs from 'sanity-plugin-tabs'
 import React from 'react'
-
 import { MdInsertDriveFile, MdHome } from 'react-icons/md'
-import SectionIcon from "../../components/SectionIcon"
 
 export default {
   name: 'page',

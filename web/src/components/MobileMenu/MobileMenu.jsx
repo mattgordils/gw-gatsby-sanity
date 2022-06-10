@@ -79,7 +79,7 @@ const SublinkIcon = styled.div`
 	transition: transform ${ animations.mediumSpeed } ease-in-out;
 	${ ({ expanded }) => expanded ? `
 		transform: rotate(-180deg);
-	` : `` }
+	` : '' }
 	svg {
 		display: block;
 	}
@@ -93,42 +93,42 @@ const MobileMenu = ({
 	pathname
 }) => {
 	const { allSanityMenus } = useStaticQuery(
-    graphql`
-      query {
-        allSanityMenus {
-          edges {
-            node {
-              _id
-              _key
-              slug {
-                current
-              }
-              items {
-                _key
-                itemLink {
-                  ...Link
-                }
-                sublinks {
-                  ...Link
-                }
-              }
-            }
-          }
-        }
-      }
-    `
-  )
+		graphql`
+			query {
+				allSanityMenus {
+					edges {
+						node {
+							_id
+							_key
+							slug {
+								current
+							}
+							items {
+								_key
+								itemLink {
+									...Link
+								}
+								sublinks {
+									...Link
+								}
+							}
+						}
+					}
+				}
+			}
+		`
+	)
 	const [expandedSection, setExpandedSection] = useState(false)
-  const menus = allSanityMenus?.edges
-  const navLinks = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
+	const menus = allSanityMenus?.edges
+	const navLinks = menus.filter(menu => menu?.node?.slug?.current === 'main-navigation')[0]?.node?.items
 
-  const toggleExpandedSection = id => {
-  	if (id !== expandedSection) {
-  		setExpandedSection(id)
-  	} else {
-  		setExpandedSection(false)
-  	}
-  }
+	const toggleExpandedSection = id => {
+		if (id !== expandedSection) {
+			setExpandedSection(id)
+		} else {
+			setExpandedSection(false)
+		}
+	}
 
 	return (
 		<Transition
@@ -146,62 +146,62 @@ const MobileMenu = ({
 						<Grid small="container">
 							<ScrollEntrance as='ul'>
 								{navLinks && navLinks.map((item, index) => {
-                  const { itemLink } = item
-                  const link = getSlugLink(itemLink.link)
-                  const externalLink = itemLink.externalLink
-                  const hasSublinks = item.sublinks && item?.sublinks?.length > 0
-                  if (!itemLink.title) {
-                    return false
-                  }
-                  return (
-                    <li key={'header-link-' + item._key}>
-                      <MobileNavLink
-                        target={itemLink.newTab && '_blank'}
-                        external={externalLink}
-                        to={externalLink || link}
-                        active={'/' + pathname === link}
-                        key={link}
-                        hasDropdown={hasSublinks}
-                      >
-                        <span
-                        	onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>
-                        	{itemLink.title}
-                        </span>
-                        {hasSublinks && (
-                        	<SublinkIcon
-                        		expanded={expandedSection === item._key}
-                        		onClick={() => toggleExpandedSection(item._key)}>
-	                      		<MdKeyboardArrowDown />
-                      		</SublinkIcon>
-                      	)}
-                      </MobileNavLink>
-                      {hasSublinks && (
-                        <AnimateHeight
-                        	duration={300}
+									const { itemLink } = item
+									const link = getSlugLink(itemLink.link)
+									const externalLink = itemLink.externalLink
+									const hasSublinks = item.sublinks && item?.sublinks?.length > 0
+									if (!itemLink.title) {
+										return false
+									}
+									return (
+										<li key={'header-link-' + item._key}>
+											<MobileNavLink
+												target={itemLink.newTab && '_blank'}
+												external={externalLink}
+												to={externalLink || link}
+												active={'/' + pathname === link}
+												key={link}
+												hasDropdown={hasSublinks}
+											>
+												<span
+													onClick={() => '/' + pathname === link ? toggleMobileMenu(false) : setTimeout(() => toggleMobileMenu(false), 500)}>
+													{itemLink.title}
+												</span>
+												{hasSublinks && (
+													<SublinkIcon
+														expanded={expandedSection === item._key}
+														onClick={() => toggleExpandedSection(item._key)}>
+														<MdKeyboardArrowDown />
+													</SublinkIcon>
+												)}
+											</MobileNavLink>
+											{hasSublinks && (
+												<AnimateHeight
+													duration={300}
 													delay={0}
 													animateOpacity={false}
 													height={expandedSection === item._key ? 'auto' : 0}
-                        >
-	                        <Sublinks>
-	                        	<ul>
-		                          {item.sublinks.map((dropdownLink, index) => (
-		                            <li key={dropdownLink._key}>
-		                              <Link
-		                                target={dropdownLink.newTab ? '_blank' : ''}
-		                                external={dropdownLink.externalLink}
-		                                to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
-		                              >
-		                                {dropdownLink.title}
-		                              </Link>
-		                            </li>
-		                          ))}
-	                          </ul>
-	                        </Sublinks>
-                        </AnimateHeight>
-                      )}
-                    </li>
-                  )
-                })}
+												>
+													<Sublinks>
+														<ul>
+															{item.sublinks.map((dropdownLink, index) => (
+																<li key={dropdownLink._key}>
+																	<Link
+																		target={dropdownLink.newTab ? '_blank' : ''}
+																		external={dropdownLink.externalLink}
+																		to={dropdownLink.externalLink || getSlugLink(dropdownLink?.link)}
+																	>
+																		{dropdownLink.title}
+																	</Link>
+																</li>
+															))}
+														</ul>
+													</Sublinks>
+												</AnimateHeight>
+											)}
+										</li>
+									)
+								})}
 							</ScrollEntrance>
 						</Grid>
 					</MainSection>

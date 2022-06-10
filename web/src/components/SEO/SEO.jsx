@@ -29,14 +29,26 @@ function SEO ({
 				allSanitySiteSettings {
 			    edges {
 			      node {
+			      	title
 			        favicon {
 			          asset {
 			            url
 			          }
 			        }
-			        description
-			        title
-			        keywords
+			        touchicon {
+			          asset {
+			            url
+			          }
+			        }
+			        touchicon {
+			          asset {
+			            url
+			          }
+			        }
+			        seo {
+				        metaDescription
+				        keywords
+			      	}
 			      }
 			    }
 			  }
@@ -82,14 +94,14 @@ function SEO ({
 	const localShareImage = host + socialShareImage.publicURL
 	// Sanity SEO content
 	const sanityFavicon = sanitySiteSettings?.favicon?.asset?.url
-	const sanityTouchIcon = sanitySiteSettings?.touchIcon?.asset?.url
+	const sanityTouchIcon = sanitySiteSettings?.touchicon?.asset?.url
 	const siteTitle = sanitySiteSettings?.title
 
 	const metaFavicon = sanityFavicon || localFavicon
 	const metaTouchIcon = sanityTouchIcon || localTouchIcon
 	const metaShareImage = shareImage || localShareImage
 
-	const titleTemplate = pagePath !== 'home' && metaTitle ? `%s | ${ siteTitle || site.siteMetadata.title }` : `${ siteTitle || site.siteMetadata.title }`
+	const titleTemplate = pagePath !== 'home' && metaTitle ? `${ metaTitle } | ${ siteTitle || site.siteMetadata.title }` : `${ siteTitle || site.siteMetadata.title }`
 
 	return (
 		<Helmet
